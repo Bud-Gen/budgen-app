@@ -1,0 +1,49 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'import_spreadsheet_store.dart';
+
+// **************************************************************************
+// StoreGenerator
+// **************************************************************************
+
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+
+mixin _$ImportSpreadsheetStore on _ImportSpreadsheetStore, Store {
+  final _$spreadsheetsAtom = Atom(name: '_ImportSpreadsheetStore.spreadsheets');
+
+  @override
+  ObservableList<DriveFile> get spreadsheets {
+    _$spreadsheetsAtom.reportRead();
+    return super.spreadsheets;
+  }
+
+  @override
+  set spreadsheets(ObservableList<DriveFile> value) {
+    _$spreadsheetsAtom.reportWrite(value, super.spreadsheets, () {
+      super.spreadsheets = value;
+    });
+  }
+
+  final _$getFilesAsyncAction = AsyncAction('_ImportSpreadsheetStore.getFiles');
+
+  @override
+  Future<void> getFiles() {
+    return _$getFilesAsyncAction.run(() => super.getFiles());
+  }
+
+  final _$importSpreadsheetAsyncAction =
+      AsyncAction('_ImportSpreadsheetStore.importSpreadsheet');
+
+  @override
+  Future<void> importSpreadsheet(BuildContext context, String id) {
+    return _$importSpreadsheetAsyncAction
+        .run(() => super.importSpreadsheet(context, id));
+  }
+
+  @override
+  String toString() {
+    return '''
+spreadsheets: ${spreadsheets}
+    ''';
+  }
+}
