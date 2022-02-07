@@ -8,16 +8,6 @@ abstract class _TabsStore with Store {
   int index = 0;
 
   @action
-  void nextPage() {
-    index += 1;
-  }
-
-  @action
-  void previousPage() {
-    if (index > 0) index -= 1;
-  }
-
-  @action
   void setIndex(int value) {
     index = value;
   }

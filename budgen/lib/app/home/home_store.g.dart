@@ -24,11 +24,26 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
-  final _$onInitAsyncAction = AsyncAction('_HomeStore.onInit');
+  final _$isLoadingAtom = Atom(name: '_HomeStore.isLoading');
 
   @override
-  Future<void> onInit() {
-    return _$onInitAsyncAction.run(() => super.onInit());
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
+  }
+
+  @override
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
+    });
+  }
+
+  final _$addMockAsyncAction = AsyncAction('_HomeStore.addMock');
+
+  @override
+  Future<void> addMock() {
+    return _$addMockAsyncAction.run(() => super.addMock());
   }
 
   final _$newProjectAsyncAction = AsyncAction('_HomeStore.newProject');
@@ -41,7 +56,8 @@ mixin _$HomeStore on _HomeStore, Store {
   @override
   String toString() {
     return '''
-countItemsList: ${countItemsList}
+countItemsList: ${countItemsList},
+isLoading: ${isLoading}
     ''';
   }
 }

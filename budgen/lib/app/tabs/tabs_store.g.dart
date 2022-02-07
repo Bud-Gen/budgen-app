@@ -27,28 +27,6 @@ mixin _$TabsStore on _TabsStore, Store {
   final _$_TabsStoreActionController = ActionController(name: '_TabsStore');
 
   @override
-  void nextPage() {
-    final _$actionInfo =
-        _$_TabsStoreActionController.startAction(name: '_TabsStore.nextPage');
-    try {
-      return super.nextPage();
-    } finally {
-      _$_TabsStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void previousPage() {
-    final _$actionInfo = _$_TabsStoreActionController.startAction(
-        name: '_TabsStore.previousPage');
-    try {
-      return super.previousPage();
-    } finally {
-      _$_TabsStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void setIndex(int value) {
     final _$actionInfo =
         _$_TabsStoreActionController.startAction(name: '_TabsStore.setIndex');

@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:googleapis/calendar/v3.dart';
+import 'package:budgen/domain/usecases/mock_data.dart';
 import 'package:mobx/mobx.dart';
 
 part 'home_store.g.dart';
@@ -10,8 +9,17 @@ abstract class _HomeStore with Store {
   @observable
   int countItemsList = 0;
 
+  @observable
+  bool isLoading = false;
+
   @action
-  Future<void> onInit() async {}
+  Future<void> addMock() async {
+    MockData mockData = MockData();
+    isLoading = true;
+    await mockData.call();
+
+    isLoading = false;
+  }
 
   @action
   Future<void> newProject() async {}
