@@ -54,6 +54,7 @@ abstract class _FavoriteStore with Store {
     await _addItem.call(item: item, project: currentProject, qtd: 1);
   }
 
+  @action
   Future<void> addWorkerToProject(Worker worker) async {
     await _addWorker.call(project: currentProject, worker: worker, qtd: 1);
   }

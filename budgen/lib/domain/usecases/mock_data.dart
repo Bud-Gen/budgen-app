@@ -1,12 +1,14 @@
 import 'package:budgen/domain/entities/item.dart';
 import 'package:budgen/domain/entities/project.dart';
 import 'package:budgen/domain/entities/worker.dart';
+import 'package:budgen/domain/usecases/MOCK.dart';
 import 'package:budgen/domain/usecases/item/insert_item.dart';
 import 'package:budgen/domain/usecases/product/insert_products.dart';
 import 'package:budgen/domain/usecases/project/insert_project.dart';
 import 'package:budgen/domain/usecases/worker/insert_worker.dart';
 
 class MockData {
+  InsertProducts insertProducts = InsertProducts();
   InsertProject insertProject = InsertProject();
   InsertWorker insertWorker = InsertWorker();
   InsertItem insertItem = InsertItem();
@@ -88,11 +90,12 @@ class MockData {
   );
 
   Future call() async {
-    await insertWorker.call(worker);
-    await insertWorker.call(worker2);
-    await insertItem.call(item);
-    await insertItem.call(item2);
+    // await insertWorker.call(worker);
+    // await insertWorker.call(worker2);
+    // await insertItem.call(item);
+    // await insertItem.call(item2);
 
-    await insertProject.call(project);
+    // await insertProject.call(project);
+    // await insertProducts.fromJson(MOCK_JSON);
   }
 }

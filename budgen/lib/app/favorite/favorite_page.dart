@@ -1,7 +1,7 @@
 import 'package:budgen/app/favorite/favorite_store.dart';
-import 'package:budgen/app/favorite/widgets/favorite_items_list.dart';
-import 'package:budgen/app/favorite/widgets/favorite_workers_list.dart';
-import 'package:budgen/app/favorite/widgets/type_button.dart';
+import 'package:budgen/utils/widgets/items_list.dart';
+import 'package:budgen/utils/widgets/workers_list.dart';
+import 'package:budgen/utils/widgets/type_button.dart';
 import 'package:budgen/domain/entities/item.dart';
 import 'package:budgen/domain/entities/worker.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
@@ -41,7 +41,7 @@ class FavoritePage extends StatelessWidget {
           Observer(
             builder: (_) {
               if (store.showItems) {
-                return FavoriteItemsList(
+                return ItemsList(
                   existsProject: store.currentProject != null,
                   onPressedAdd: (Item item) {
                     store.addItemToProject(item);
@@ -54,7 +54,7 @@ class FavoritePage extends StatelessWidget {
                       store.changeFavoriteItem(item),
                 );
               } else {
-                return FavoriteWorkersList(
+                return WorkersList(
                   existsProject: store.currentProject != null,
                   onPressedAdd: (Worker worker) {
                     store.addWorkerToProject(worker);

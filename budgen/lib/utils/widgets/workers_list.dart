@@ -3,13 +3,13 @@ import 'package:budgen/utils/widgets/empty_text.dart';
 import 'package:budgen/utils/widgets/worker_list_tile.dart';
 import 'package:flutter/material.dart';
 
-class FavoriteWorkersList extends StatelessWidget {
+class WorkersList extends StatelessWidget {
   final List<Worker> workers;
   final Function onPressedFavorite;
   final Function onPressedAdd;
   final bool existsProject;
 
-  const FavoriteWorkersList({
+  const WorkersList({
     @required this.workers,
     this.onPressedFavorite,
     this.onPressedAdd,

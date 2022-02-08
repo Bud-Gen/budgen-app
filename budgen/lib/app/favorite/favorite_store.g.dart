@@ -93,6 +93,15 @@ mixin _$FavoriteStore on _FavoriteStore, Store {
         .run(() => super.addItemToProject(item));
   }
 
+  final _$addWorkerToProjectAsyncAction =
+      AsyncAction('_FavoriteStore.addWorkerToProject');
+
+  @override
+  Future<void> addWorkerToProject(Worker worker) {
+    return _$addWorkerToProjectAsyncAction
+        .run(() => super.addWorkerToProject(worker));
+  }
+
   final _$changeFavoriteItemAsyncAction =
       AsyncAction('_FavoriteStore.changeFavoriteItem');
 
