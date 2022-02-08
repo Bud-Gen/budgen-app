@@ -39,6 +39,21 @@ mixin _$FavoriteStore on _FavoriteStore, Store {
     });
   }
 
+  final _$showItemsAtom = Atom(name: '_FavoriteStore.showItems');
+
+  @override
+  bool get showItems {
+    _$showItemsAtom.reportRead();
+    return super.showItems;
+  }
+
+  @override
+  set showItems(bool value) {
+    _$showItemsAtom.reportWrite(value, super.showItems, () {
+      super.showItems = value;
+    });
+  }
+
   final _$isLoadingAtom = Atom(name: '_FavoriteStore.isLoading');
 
   @override
@@ -54,18 +69,78 @@ mixin _$FavoriteStore on _FavoriteStore, Store {
     });
   }
 
-  final _$_setWorkersAsyncAction = AsyncAction('_FavoriteStore._setWorkers');
+  final _$currentProjectAtom = Atom(name: '_FavoriteStore.currentProject');
 
   @override
-  Future<void> _setWorkers() {
-    return _$_setWorkersAsyncAction.run(() => super._setWorkers());
+  Project get currentProject {
+    _$currentProjectAtom.reportRead();
+    return super.currentProject;
   }
 
-  final _$_setItemsAsyncAction = AsyncAction('_FavoriteStore._setItems');
+  @override
+  set currentProject(Project value) {
+    _$currentProjectAtom.reportWrite(value, super.currentProject, () {
+      super.currentProject = value;
+    });
+  }
+
+  final _$addItemToProjectAsyncAction =
+      AsyncAction('_FavoriteStore.addItemToProject');
 
   @override
-  Future<void> _setItems() {
-    return _$_setItemsAsyncAction.run(() => super._setItems());
+  Future<void> addItemToProject(Item item) {
+    return _$addItemToProjectAsyncAction
+        .run(() => super.addItemToProject(item));
+  }
+
+  final _$changeFavoriteItemAsyncAction =
+      AsyncAction('_FavoriteStore.changeFavoriteItem');
+
+  @override
+  Future<void> changeFavoriteItem(Item item) {
+    return _$changeFavoriteItemAsyncAction
+        .run(() => super.changeFavoriteItem(item));
+  }
+
+  final _$changeFavoriteWorkerAsyncAction =
+      AsyncAction('_FavoriteStore.changeFavoriteWorker');
+
+  @override
+  Future<void> changeFavoriteWorker(Worker worker) {
+    return _$changeFavoriteWorkerAsyncAction
+        .run(() => super.changeFavoriteWorker(worker));
+  }
+
+  final _$_syncAsyncAction = AsyncAction('_FavoriteStore._sync');
+
+  @override
+  Future<void> _sync() {
+    return _$_syncAsyncAction.run(() => super._sync());
+  }
+
+  final _$_FavoriteStoreActionController =
+      ActionController(name: '_FavoriteStore');
+
+  @override
+  void showWorkersList() {
+    final _$actionInfo = _$_FavoriteStoreActionController.startAction(
+        name: '_FavoriteStore.showWorkersList');
+    try {
+      return super.showWorkersList();
+    } finally {
+      _$_FavoriteStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void showItemsList() {
+    final _$actionInfo = _$_FavoriteStoreActionController.startAction(
+        name: '_FavoriteStore.showItemsList');
+    try {
+      return super.showItemsList();
+    } finally {
+      _$_FavoriteStoreActionController.endAction(_$actionInfo);
+    }
   }
 
   @override
@@ -73,7 +148,9 @@ mixin _$FavoriteStore on _FavoriteStore, Store {
     return '''
 workers: ${workers},
 items: ${items},
-isLoading: ${isLoading}
+showItems: ${showItems},
+isLoading: ${isLoading},
+currentProject: ${currentProject}
     ''';
   }
 }

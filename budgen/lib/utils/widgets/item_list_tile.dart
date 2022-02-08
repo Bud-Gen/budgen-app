@@ -1,15 +1,15 @@
-import 'package:budgen/domain/entities/worker.dart';
+import 'package:budgen/domain/entities/item.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:flutter/material.dart';
 
-class WorkerListTile extends StatelessWidget {
-  final Worker worker;
+class ItemListTile extends StatelessWidget {
+  final Item item;
   final Function onPressedFavorite;
   final Function onPressedAdd;
   final bool existsProject;
 
-  const WorkerListTile({
-    @required this.worker,
+  const ItemListTile({
+    @required this.item,
     @required this.onPressedFavorite,
     this.onPressedAdd,
     this.existsProject,
@@ -18,12 +18,11 @@ class WorkerListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ColorPalette colorPalette = ColorPalette();
-
     return Card(
       child: ListTile(
-        leading: Icon(Icons.person),
-        title: Text(worker?.name ?? "s/n"),
-        subtitle: Text(worker?.description ?? "s/n"),
+        leading: Icon(Icons.category_rounded),
+        title: Text(item?.name ?? "s/n"),
+        subtitle: Text(item?.description ?? "s/n"),
         trailing: Container(
           width: 100,
           height: 100,
@@ -40,7 +39,7 @@ class WorkerListTile extends StatelessWidget {
               IconButton(
                 icon: Icon(
                   Icons.favorite,
-                  color: worker.isFavorite
+                  color: item.isFavorite
                       ? colorPalette.primaryCollor
                       : Colors.grey,
                 ),

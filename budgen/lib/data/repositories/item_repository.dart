@@ -28,6 +28,18 @@ class ItemRepository {
     return items;
   }
 
+  Future<List<Item>> getFavoriteItems() async {
+    List<Item> items = [];
+    Database _database = await LocalDatabase.instance.database;
+    final itemsData = await _database.rawQuery(GET_FAVORITE_ITEMS);
+
+    itemsData.forEach((item) {
+      items.add(Item.fromMap(item));
+    });
+
+    return items;
+  }
+
   Future<Item> getItemById(String id) async {
     Database _database = await LocalDatabase.instance.database;
 

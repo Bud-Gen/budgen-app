@@ -8,6 +8,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeStore store = HomeStore();
+    store.onInit();
 
     return Scaffold(
       appBar: AppBar(
@@ -18,12 +19,30 @@ class HomePage extends StatelessWidget {
           Observer(builder: (_) {
             if (store.isLoading) {
               return CircularProgressIndicator();
-            } else {
-              return Center(
-                child: Text("Carregado"),
-              );
             }
+            return SizedBox(
+              width: 0,
+              height: 0,
+            );
           }),
+          Observer(builder: (_) {
+            if (store.currentProject == null)
+              return Center(
+                child: Text("vazio"),
+              );
+
+            return Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                children: [
+                  Text(store.currentProject.name),
+                  Text(store.currentProject?.workers?.length.toString()),
+                  Text(store.currentProject?.items?.length.toString()),
+                ],
+              ),
+            );
+          })
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(

@@ -93,7 +93,7 @@ class ProjectRepository {
     return Project.fromMap(projectData.first);
   }
 
-  Future<Project> getUnfinishedProject() async {
+  Future<Project> getCurrentProject() async {
     List<Project> projects = [];
     Database _database = await LocalDatabase.instance.database;
     final projectsData = await _database.rawQuery(GET_UNFINISHED_PROJECT);
@@ -102,7 +102,9 @@ class ProjectRepository {
       projects.add(Project.fromMap(project));
     });
 
-    return projects.first;
+    if (projects.isEmpty) return null;
+
+    return projects?.first;
   }
 
   Future<bool> finishProject(Project project) async {

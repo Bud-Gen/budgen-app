@@ -1,5 +1,9 @@
 import 'package:budgen/app/favorite/favorite_store.dart';
+import 'package:budgen/app/favorite/widgets/favorite_items_list.dart';
 import 'package:budgen/app/favorite/widgets/favorite_workers_list.dart';
+import 'package:budgen/app/favorite/widgets/type_button.dart';
+import 'package:budgen/domain/entities/item.dart';
+import 'package:budgen/domain/entities/worker.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -28,13 +32,53 @@ class FavoritePage extends StatelessWidget {
             ),
           ),
           Observer(builder: (_) {
-            if (store.workers != null)
-              return FavoriteWorkersList(workers: store.workers);
-            else
-              return Text("vazio");
+            return TypeButton(
+              showItems: store.showItems,
+              onPressedShowItem: () => store.showItemsList(),
+              onPressedShowWorker: () => store.showWorkersList(),
+            );
           }),
+          Observer(
+            builder: (_) {
+              if (store.showItems) {
+                return FavoriteItemsList(
+                  existsProject: store.currentProject != null,
+                  onPressedAdd: (Item item) {
+                    store.addItemToProject(item);
+                    showSnack(
+                        context: context,
+                        content: "Item adicionado ao projeto");
+                  },
+                  items: store.items ?? [],
+                  onPressedFavorite: (Item item) =>
+                      store.changeFavoriteItem(item),
+                );
+              } else {
+                return FavoriteWorkersList(
+                  existsProject: store.currentProject != null,
+                  onPressedAdd: (Worker worker) {
+                    store.addWorkerToProject(worker);
+                    showSnack(
+                        context: context,
+                        content: "Serviço adicionado ao projeto");
+                  },
+                  workers: store.workers ?? [],
+                  onPressedFavorite: (Worker worker) =>
+                      store.changeFavoriteWorker(worker),
+                );
+              }
+            },
+          ),
         ],
       ),
     );
+  }
+
+  void showSnack({
+    @required BuildContext context,
+    @required String content,
+  }) {
+    final snack = SnackBar(content: Text(content));
+    Scaffold.of(context).showSnackBar(snack);
   }
 }

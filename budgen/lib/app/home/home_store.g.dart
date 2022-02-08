@@ -9,18 +9,18 @@ part of 'home_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeStore on _HomeStore, Store {
-  final _$countItemsListAtom = Atom(name: '_HomeStore.countItemsList');
+  final _$currentProjectAtom = Atom(name: '_HomeStore.currentProject');
 
   @override
-  int get countItemsList {
-    _$countItemsListAtom.reportRead();
-    return super.countItemsList;
+  Project get currentProject {
+    _$currentProjectAtom.reportRead();
+    return super.currentProject;
   }
 
   @override
-  set countItemsList(int value) {
-    _$countItemsListAtom.reportWrite(value, super.countItemsList, () {
-      super.countItemsList = value;
+  set currentProject(Project value) {
+    _$currentProjectAtom.reportWrite(value, super.currentProject, () {
+      super.currentProject = value;
     });
   }
 
@@ -46,17 +46,17 @@ mixin _$HomeStore on _HomeStore, Store {
     return _$addMockAsyncAction.run(() => super.addMock());
   }
 
-  final _$newProjectAsyncAction = AsyncAction('_HomeStore.newProject');
+  final _$onInitAsyncAction = AsyncAction('_HomeStore.onInit');
 
   @override
-  Future<void> newProject() {
-    return _$newProjectAsyncAction.run(() => super.newProject());
+  Future<void> onInit() {
+    return _$onInitAsyncAction.run(() => super.onInit());
   }
 
   @override
   String toString() {
     return '''
-countItemsList: ${countItemsList},
+currentProject: ${currentProject},
 isLoading: ${isLoading}
     ''';
   }

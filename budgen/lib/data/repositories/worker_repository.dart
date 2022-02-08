@@ -30,6 +30,19 @@ class WorkerRepository {
     return workers;
   }
 
+  Future<List<Worker>> getFavoriteWorkers() async {
+    List<Worker> workers = [];
+
+    Database _database = await LocalDatabase.instance.database;
+    final workersData = await _database.rawQuery(GET_FAVORITE_WORKERS);
+
+    workersData.forEach((worker) {
+      workers.add(Worker.fromMap(worker));
+    });
+
+    return workers;
+  }
+
   Future<Worker> getWorkerById(String id) async {
     Database _database = await LocalDatabase.instance.database;
 
