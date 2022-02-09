@@ -4,9 +4,7 @@ import 'package:budgen/domain/entities/project.dart';
 class RenameProject {
   ProjectRepository _repository = ProjectRepository();
 
-  Future<Project> call(String id, String newName) async {
-    Project project = await _repository.getProjectById(id);
-
+  Future<Project> call(Project project, String newName) async {
     if (project != null) {
       Project renamedProject = Project(
         id: project.id,

@@ -12,6 +12,7 @@ class AddItem {
     @required int qtd,
   }) async {
     Map<String, dynamic> items = project?.items ?? <String, dynamic>{};
+    double newPrice = project?.price ?? 0;
 
     if (items.containsKey(item.id)) {
       int itemQtd = items[item.id] as int;
@@ -21,6 +22,8 @@ class AddItem {
       items[item.id] = qtd;
     }
 
+    newPrice += item.price * qtd;
+
     Project updatedProject = new Project(
       id: project.id,
       name: project.name,
@@ -28,7 +31,7 @@ class AddItem {
       workers: project.workers,
       email: project.email,
       isFinished: project.isFinished,
-      price: project.price,
+      price: newPrice,
       discount: project.discount,
       createdAt: project.createdAt,
       createdBy: project.createdBy,

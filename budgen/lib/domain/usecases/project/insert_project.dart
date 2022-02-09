@@ -1,7 +1,5 @@
-import 'package:budgen/data/remote/google_auth.dart';
 import 'package:budgen/data/repositories/project_repository.dart';
 import 'package:budgen/domain/entities/project.dart';
-import 'package:budgen/domain/entities/user.dart';
 import 'package:uuid/uuid.dart';
 
 class InsertProject {
@@ -9,25 +7,25 @@ class InsertProject {
 
   Future<bool> call(Project project) => _repository.insertProject(project);
 
-  Future<bool> newProject() async {
+  Future<void> withName(String projectName) async {
     // GoogleAuth auth = new GoogleAuth();
     // final UserCredentials userGoogle = await auth.getGoogleUser();
-    //TODO: adicionar isso aqui depois 
+    //TODO: adicionar isso aqui depois
 
     Uuid _uuid = Uuid();
 
     Project newProject = Project(
       id: _uuid.v1(),
-      name: 'Novo Projeto',
-      email: "bia@bia.com",
+      name: projectName ?? "Novo Projeto",
+      email: "",
       isFinished: false,
       price: 0,
       discount: 0,
       createdAt: DateTime.now(),
-      createdBy: "bia",
+      createdBy: "", //TODO inserir isso com o google auth
       deletedBy: null,
     );
 
-    return await call(newProject);
+    await _repository.insertProject(newProject);
   }
 }

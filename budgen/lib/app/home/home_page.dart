@@ -1,55 +1,62 @@
 import 'package:budgen/app/home/home_store.dart';
+import 'package:budgen/app/home/widgets/add_project_button.dart';
+import 'package:budgen/app/home/widgets/edit_name_project_button.dart';
+import 'package:budgen/app/home/widgets/finish_project_button.dart';
+import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage() : super();
 
   @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
   Widget build(BuildContext context) {
     HomeStore store = HomeStore();
+    ColorPalette colorPalette = ColorPalette();
     store.onInit();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home"),
+        backgroundColor: colorPalette.primaryCollor,
+        title:
+            Observer(builder: (_) => Text(store?.currentProject?.name ?? "")),
+        actions: [
+          Observer(
+            builder: (_) => (store.existsProject)
+                ? EditNameProjectButton(
+                    currentProjectName: store.currentProject.name,
+                    editProjectName: (String value) =>
+                        store.editProjectName(value),
+                    renameProject: () => store.renameProject(),
+                  )
+                : SizedBox(),
+          ),
+        ],
       ),
       body: Column(
         children: [
           Observer(builder: (_) {
-            if (store.isLoading) {
-              return CircularProgressIndicator();
-            }
-            return SizedBox(
-              width: 0,
-              height: 0,
-            );
+            // return Text(store.projectEmail ?? "");
+            return Text(store?.currentProject?.name ?? "");
           }),
-          Observer(builder: (_) {
-            if (store.currentProject == null)
-              return Center(
-                child: Text("vazio"),
-              );
-
-            return Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                children: [
-                  Text(store.currentProject.name),
-                  Text(store.currentProject?.workers?.length.toString()),
-                  Text(store.currentProject?.items?.length.toString()),
-                ],
-              ),
-            );
-          })
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () async => store.addMock(),
-        label: Text(
-          "add mock",
-        ),
+      floatingActionButton: Observer(
+        builder: (_) => !store.existsProject
+            ? AddProjectButton(
+                addProjectName: (String value) => store.editProjectName(value),
+                newProject: () => store.addNewProject(),
+              )
+            : FinishProjectButton(
+                editEmailProject: (String value) =>
+                    store.editEmailProject(value),
+                finishProject: () => store.finishProject(),
+              ),
       ),
     );
   }

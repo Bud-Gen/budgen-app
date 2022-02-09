@@ -12,6 +12,7 @@ class AddWorker {
     @required int qtd,
   }) async {
     Map<String, dynamic> workers = project?.workers ?? <String, dynamic>{};
+    double newPrice = project?.price ?? 0;
 
     if (workers.containsKey(worker.id)) {
       int workersQtd = workers[worker.id] as int;
@@ -20,6 +21,7 @@ class AddWorker {
     } else {
       workers[worker.id] = qtd;
     }
+    newPrice += worker.price * qtd;
 
     Project updatedProject = new Project(
       id: project.id,
@@ -28,7 +30,7 @@ class AddWorker {
       workers: workers,
       email: project.email,
       isFinished: project.isFinished,
-      price: project.price,
+      price: newPrice,
       discount: project.discount,
       createdAt: project.createdAt,
       createdBy: project.createdBy,
