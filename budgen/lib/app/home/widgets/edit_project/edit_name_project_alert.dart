@@ -1,4 +1,3 @@
-import 'package:budgen/app/home/widgets/finish_project_alert.dart';
 import 'package:flutter/material.dart';
 
 class EditNameProjectAlert extends StatelessWidget {

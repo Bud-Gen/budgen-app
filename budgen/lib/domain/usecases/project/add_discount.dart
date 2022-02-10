@@ -4,27 +4,21 @@ import 'package:budgen/domain/entities/project.dart';
 class AddDiscount {
   ProjectRepository _repository = ProjectRepository();
 
-  Future<Project> call(String id, double discount) async {
-    Project project = await _repository.getProjectById(id);
+  Future<void> call(Project project, double discount) async {
+    Project discountedProject = new Project(
+      id: project.id,
+      name: project.name,
+      email: project.email,
+      items: project.items,
+      workers: project.workers,
+      isFinished: project.isFinished,
+      price: project.price,
+      discount: discount,
+      createdAt: project.createdAt,
+      createdBy: project.createdBy,
+      deletedBy: project.deletedBy,
+    );
 
-    if (project != null) {
-      Project discountedProject = new Project(
-        id: project.id,
-        name: project.name,
-        email: project.email,
-        items: project.items,
-        workers: project.workers,
-        isFinished: project.isFinished,
-        price: project.price,
-        discount: discount,
-        createdAt: project.createdAt,
-        createdBy: project.createdBy,
-        deletedBy: project.deletedBy,
-      );
-
-      _repository.updateProject(project);
-
-      return discountedProject;
-    }
+    await _repository.updateProject(discountedProject);
   }
 }

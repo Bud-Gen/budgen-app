@@ -84,6 +84,36 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
+  final _$discountAtom = Atom(name: '_HomeStore.discount');
+
+  @override
+  double get discount {
+    _$discountAtom.reportRead();
+    return super.discount;
+  }
+
+  @override
+  set discount(double value) {
+    _$discountAtom.reportWrite(value, super.discount, () {
+      super.discount = value;
+    });
+  }
+
+  final _$errorMessageAtom = Atom(name: '_HomeStore.errorMessage');
+
+  @override
+  String get errorMessage {
+    _$errorMessageAtom.reportRead();
+    return super.errorMessage;
+  }
+
+  @override
+  set errorMessage(String value) {
+    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
+      super.errorMessage = value;
+    });
+  }
+
   final _$addMockAsyncAction = AsyncAction('_HomeStore.addMock');
 
   @override
@@ -119,7 +149,36 @@ mixin _$HomeStore on _HomeStore, Store {
     return _$finishProjectAsyncAction.run(() => super.finishProject());
   }
 
+  final _$addDiscountAsyncAction = AsyncAction('_HomeStore.addDiscount');
+
+  @override
+  Future<void> addDiscount() {
+    return _$addDiscountAsyncAction.run(() => super.addDiscount());
+  }
+
   final _$_HomeStoreActionController = ActionController(name: '_HomeStore');
+
+  @override
+  dynamic removeError() {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.removeError');
+    try {
+      return super.removeError();
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void editDiscount(String newDiscount) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.editDiscount');
+    try {
+      return super.editDiscount(newDiscount);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void editProjectName(String newName) {
@@ -150,7 +209,9 @@ currentProject: ${currentProject},
 existsProject: ${existsProject},
 projectName: ${projectName},
 projectEmail: ${projectEmail},
-isLoading: ${isLoading}
+isLoading: ${isLoading},
+discount: ${discount},
+errorMessage: ${errorMessage}
     ''';
   }
 }

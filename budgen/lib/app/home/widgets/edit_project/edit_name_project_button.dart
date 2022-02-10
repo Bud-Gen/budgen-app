@@ -1,4 +1,4 @@
-import 'package:budgen/app/home/widgets/edit_name_project_alert.dart';
+import 'package:budgen/app/home/widgets/edit_project/edit_name_project_alert.dart';
 import 'package:flutter/material.dart';
 
 class EditNameProjectButton extends StatelessWidget {

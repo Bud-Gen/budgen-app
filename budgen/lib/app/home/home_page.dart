@@ -1,7 +1,8 @@
 import 'package:budgen/app/home/home_store.dart';
-import 'package:budgen/app/home/widgets/add_project_button.dart';
-import 'package:budgen/app/home/widgets/edit_name_project_button.dart';
-import 'package:budgen/app/home/widgets/finish_project_button.dart';
+import 'package:budgen/app/home/widgets/add_project/add_project_button.dart';
+import 'package:budgen/app/home/widgets/details_project/details_project.dart';
+import 'package:budgen/app/home/widgets/edit_project/edit_name_project_button.dart';
+import 'package:budgen/app/home/widgets/finish_project/finish_project_button.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -41,8 +42,11 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           Observer(builder: (_) {
-            // return Text(store.projectEmail ?? "");
-            return Text(store?.currentProject?.name ?? "");
+            return DetailsProject(
+              project: store.currentProject,
+              addDiscount: () => store.addDiscount(),
+              addDiscountValue: (String value) => store.editDiscount(value),
+            );
           }),
         ],
       ),

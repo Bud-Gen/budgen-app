@@ -1,4 +1,6 @@
 import 'package:budgen/domain/entities/project.dart';
+import 'package:budgen/domain/usecases/mock_data.dart';
+import 'package:budgen/domain/usecases/project/add_discount.dart';
 import 'package:budgen/domain/usecases/project/finish_project.dart';
 import 'package:budgen/domain/usecases/project/get_current_project.dart';
 import 'package:budgen/domain/usecases/project/insert_project.dart';
@@ -14,6 +16,7 @@ abstract class _HomeStore with Store {
   RenameProject _renameProject = RenameProject();
   FinishProject _finishProject = FinishProject();
   InsertProject _insertProject = InsertProject();
+  AddDiscount _addDiscount = AddDiscount();
 
   @observable
   Project currentProject;
@@ -30,13 +33,19 @@ abstract class _HomeStore with Store {
   @observable
   bool isLoading = false;
 
+  @observable
+  double discount = 0;
+
+  @observable
+  String errorMessage;
+
   @action
   Future<void> addMock() async {
-    // MockData mockData = MockData();
-    // isLoading = true;
-    // await mockData.call();
+    MockData mockData = MockData();
+    isLoading = true;
+    await mockData.call();
 
-    // isLoading = false;
+    isLoading = false;
   }
 
   @action
@@ -71,6 +80,28 @@ abstract class _HomeStore with Store {
     if (currentProject != null) existsProject = true;
     isLoading = false;
   }
+
+  @action
+  Future<void> addDiscount() async {
+    if (discount > currentProject.price) {
+      errorMessage =
+          "Não é possível adicionar um desconto maior que o valor do projeto";
+      return;
+    }
+    if (discount == 0 || currentProject == null) return;
+    isLoading = true;
+    await _addDiscount.call(currentProject, discount);
+    isLoading = false;
+  }
+
+  @action
+  removeError() {
+    errorMessage = null;
+  }
+
+  @action
+  void editDiscount(String newDiscount) =>
+      discount = double.tryParse(newDiscount);
 
   @action
   void editProjectName(String newName) => projectName = newName;

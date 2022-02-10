@@ -96,6 +96,6 @@ class MockData {
     // await insertItem.call(item2);
 
     // await insertProject.call(project);
-    // await insertProducts.fromJson(MOCK_JSON);
+    await insertProducts.fromJson(MOCK_JSON);
   }
 }
