@@ -5,6 +5,7 @@ class AddDiscount {
   ProjectRepository _repository = ProjectRepository();
 
   Future<void> call(Project project, double discount) async {
+    
     Project discountedProject = new Project(
       id: project.id,
       name: project.name,

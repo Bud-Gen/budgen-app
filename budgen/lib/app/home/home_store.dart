@@ -91,6 +91,7 @@ abstract class _HomeStore with Store {
     if (discount == 0 || currentProject == null) return;
     isLoading = true;
     await _addDiscount.call(currentProject, discount);
+    await _sync();
     isLoading = false;
   }
 
