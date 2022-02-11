@@ -39,6 +39,36 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
+  final _$workersAtom = Atom(name: '_HomeStore.workers');
+
+  @override
+  List<Worker> get workers {
+    _$workersAtom.reportRead();
+    return super.workers;
+  }
+
+  @override
+  set workers(List<Worker> value) {
+    _$workersAtom.reportWrite(value, super.workers, () {
+      super.workers = value;
+    });
+  }
+
+  final _$itemsAtom = Atom(name: '_HomeStore.items');
+
+  @override
+  List<Item> get items {
+    _$itemsAtom.reportRead();
+    return super.items;
+  }
+
+  @override
+  set items(List<Item> value) {
+    _$itemsAtom.reportWrite(value, super.items, () {
+      super.items = value;
+    });
+  }
+
   final _$projectNameAtom = Atom(name: '_HomeStore.projectName');
 
   @override
@@ -156,6 +186,15 @@ mixin _$HomeStore on _HomeStore, Store {
     return _$addDiscountAsyncAction.run(() => super.addDiscount());
   }
 
+  final _$alterItemQuantityAsyncAction =
+      AsyncAction('_HomeStore.alterItemQuantity');
+
+  @override
+  Future<void> alterItemQuantity(int value, Item item) {
+    return _$alterItemQuantityAsyncAction
+        .run(() => super.alterItemQuantity(value, item));
+  }
+
   final _$_HomeStoreActionController = ActionController(name: '_HomeStore');
 
   @override
@@ -207,6 +246,8 @@ mixin _$HomeStore on _HomeStore, Store {
     return '''
 currentProject: ${currentProject},
 existsProject: ${existsProject},
+workers: ${workers},
+items: ${items},
 projectName: ${projectName},
 projectEmail: ${projectEmail},
 isLoading: ${isLoading},

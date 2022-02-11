@@ -1,8 +1,13 @@
+import 'package:budgen/domain/entities/item.dart';
 import 'package:budgen/domain/entities/project.dart';
+import 'package:budgen/domain/entities/worker.dart';
 import 'package:budgen/domain/usecases/mock_data.dart';
 import 'package:budgen/domain/usecases/project/add_discount.dart';
+import 'package:budgen/domain/usecases/project/alter_quantity.dart';
 import 'package:budgen/domain/usecases/project/finish_project.dart';
 import 'package:budgen/domain/usecases/project/get_current_project.dart';
+import 'package:budgen/domain/usecases/project/get_items_project.dart';
+import 'package:budgen/domain/usecases/project/get_workers_project.dart';
 import 'package:budgen/domain/usecases/project/insert_project.dart';
 import 'package:budgen/domain/usecases/project/rename_project.dart';
 import 'package:mobx/mobx.dart';
@@ -17,12 +22,21 @@ abstract class _HomeStore with Store {
   FinishProject _finishProject = FinishProject();
   InsertProject _insertProject = InsertProject();
   AddDiscount _addDiscount = AddDiscount();
+  GetItemsProject _getItemsProject = GetItemsProject();
+  GetWorkersProject _getWorkersProject = GetWorkersProject();
+  AlterQuantity _alterQuantity = AlterQuantity();
 
   @observable
   Project currentProject;
 
   @observable
   bool existsProject = false;
+
+  @observable
+  List<Worker> workers;
+
+  @observable
+  List<Item> items;
 
   @observable
   String projectName;
@@ -71,13 +85,19 @@ abstract class _HomeStore with Store {
     await _finishProject.call(currentProject, projectEmail);
     currentProject = null;
     existsProject = false;
+    workers = null;
+    items = null;
   }
 
   Future<void> _sync() async {
     currentProject = null;
     isLoading = true;
     currentProject = await _getCurrentProject.call();
+
     if (currentProject != null) existsProject = true;
+
+    workers = await _getWorkersProject.call(currentProject);
+    items = await _getItemsProject.call(currentProject);
     isLoading = false;
   }
 
@@ -100,6 +120,16 @@ abstract class _HomeStore with Store {
     errorMessage = null;
   }
 
+  @action // replicar para work
+  Future<void> alterItemQuantity(int value, Item item) async {
+    final qtd = (currentProject.items[item.id] as int);
+
+    if (qtd == 1 && value < 0) return;
+
+    await _alterQuantity.item(item, currentProject, value);
+    await _sync();
+  }
+
   @action
   void editDiscount(String newDiscount) =>
       discount = double.tryParse(newDiscount);
@@ -109,4 +139,6 @@ abstract class _HomeStore with Store {
 
   @action
   void editEmailProject(String email) => projectEmail = email;
+
+  bool get showProducts => (!isLoading && currentProject != null);
 }
