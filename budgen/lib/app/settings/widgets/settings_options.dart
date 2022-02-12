@@ -1,3 +1,4 @@
+import 'package:budgen/app/project/finished_projects/finished_projects_page.dart';
 import 'package:budgen/app/settings/widgets/avatar.dart';
 import 'package:budgen/app/settings/widgets/settings_tile.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,8 @@ class SettingsOptions extends StatelessWidget {
         SettingsTile(
           iconData: Icons.add_business,
           title: "Projetos Finalizados",
-          onTap: () => print("pagina de projetos finalizados"),
+          onTap: () => Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FinishedProjectsPage())),
         ),
         SettingsTile(
           iconData: Icons.add_to_drive,

@@ -29,24 +29,29 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colorPalette.primaryCollor,
-        title:
-            Observer(builder: (_) => Text(store?.currentProject?.name ?? "")),
+        title: Observer(builder: (_) {
+          return Text((!store.isLoading && store.existsProject)
+              ? store?.currentProject?.name
+              : "");
+        }),
         actions: [
-          Observer(
-            builder: (_) => (store.existsProject)
-                ? EditNameProjectButton(
-                    currentProjectName: store.currentProject.name,
-                    editProjectName: (String value) =>
-                        store.editProjectName(value),
-                    renameProject: () => store.renameProject(),
-                  )
-                : SizedBox(),
-          ),
+          Observer(builder: (_) {
+            if (store.isLoading && !store.existsProject)
+              return SizedBox(width: 0);
+
+            return EditNameProjectButton(
+              currentProjectName: store.currentProject?.name,
+              editProjectName: (String value) => store.editProjectName(value),
+              renameProject: () => store.renameProject(),
+            );
+          }),
         ],
       ),
       body: Column(
         children: [
           Observer(builder: (_) {
+            if (store.isLoading) return SizedBox(width: 0);
+
             return DetailsProject(
               project: store.currentProject,
               addDiscount: () => store.addDiscount(),

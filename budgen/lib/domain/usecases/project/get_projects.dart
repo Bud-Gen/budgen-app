@@ -6,6 +6,6 @@ class GetProjects {
 
   Future<List<Project>> call() async => await _repository.getAllProjects();
 
-  Future<List<Project>> finalized() async =>
+  Future<List<Project>> finished() async =>
       await _repository.getFinishedProjects();
 }
