@@ -67,8 +67,11 @@ class _HomePageState extends State<HomePage> {
                               store.alterItemQuantity(value, item),
                           items: store.items,
                           qtdItems: store.currentProject.items,
+                          removeItem: (Item item) => store.removeItem(item),
                         ),
                         ProjectWorkersList(
+                          removeWorker: (Worker worker) =>
+                              store.removeWorker(worker),
                           qtdWorkers: store.currentProject.workers,
                           workers: store.workers,
                           alterWorkerQuantity: (int value, Worker worker) =>

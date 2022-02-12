@@ -1,35 +1,31 @@
 import 'package:budgen/data/repositories/project_repository.dart';
 import 'package:budgen/domain/entities/project.dart';
+import 'package:budgen/domain/entities/worker.dart';
 
 class RemoveWorker {
   ProjectRepository _repository = ProjectRepository();
 
-  Future<Project> call(String id, String workerId) async {
-    Project project = await _repository.getProjectById(id);
+  Future<void> call(Project project, Worker worker) async {
+    if (project == null || worker == null) return;
 
-    if (project != null) {
-      Map<String, dynamic> workers = project.workers;
-      workers.remove(workerId);
+    Map<String, dynamic> workers = project.workers;
+    final newPrice = project.price - worker.price;
+    workers.remove(worker.id);
 
-      Project updatedProject = new Project(
-        id: project.id,
-        name: project.name,
-        items: project.items,
-        workers: workers,
-        email: project.email,
-        isFinished: project.isFinished,
-        price: project.price,
-        discount: project.discount,
-        createdAt: project.createdAt,
-        createdBy: project.createdBy,
-        deletedBy: project.deletedBy,
-      );
+    Project updatedProject = new Project(
+      id: project.id,
+      name: project.name,
+      items: project.items,
+      workers: workers,
+      email: project.email,
+      isFinished: project.isFinished,
+      price: newPrice,
+      discount: project.discount,
+      createdAt: project.createdAt,
+      createdBy: project.createdBy,
+      deletedBy: project.deletedBy,
+    );
 
-      _repository.updateProject(updatedProject);
-
-      return updatedProject;
-    }
-
-    throw new ArgumentError('o id não corresponde a nenhum projeto.');
+    await _repository.updateProject(updatedProject);
   }
 }

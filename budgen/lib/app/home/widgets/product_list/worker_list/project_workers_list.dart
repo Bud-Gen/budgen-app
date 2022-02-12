@@ -6,11 +6,13 @@ class ProjectWorkersList extends StatelessWidget {
   final List<Worker> workers;
   final Map<String, dynamic> qtdWorkers;
   final void Function(int, Worker) alterWorkerQuantity;
+  final void Function(Worker) removeWorker;
 
   const ProjectWorkersList({
     @required this.workers,
     @required this.qtdWorkers,
     @required this.alterWorkerQuantity,
+    @required this.removeWorker,
   }) : super();
 
   @override
@@ -24,6 +26,7 @@ class ProjectWorkersList extends StatelessWidget {
           ),
           for (Worker worker in workers) ...[
             ProjectWorkersTile(
+              removeWorker: (Worker worker) => removeWorker(worker),
               worker: worker,
               qtd: qtdWorkers[worker.id]?.toString() ?? 0,
               alterValue: (

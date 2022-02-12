@@ -6,11 +6,13 @@ class ProjectItemsList extends StatelessWidget {
   final List<Item> items;
   final Map<String, dynamic> qtdItems;
   final void Function(int, Item) alterItemQuantity;
+  final void Function(Item item) removeItem;
 
   const ProjectItemsList({
     @required this.items,
     @required this.qtdItems,
     @required this.alterItemQuantity,
+    @required this.removeItem,
   }) : super();
 
   @override
@@ -24,6 +26,7 @@ class ProjectItemsList extends StatelessWidget {
           ),
           for (Item item in items) ...[
             ProjectItemsTile(
+              removeItem: (Item item) => removeItem(item),
               item: item,
               qtd: qtdItems[item.id].toString(),
               alterValue: (int value, Item item) =>

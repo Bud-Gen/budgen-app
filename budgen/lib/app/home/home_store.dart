@@ -10,6 +10,8 @@ import 'package:budgen/domain/usecases/project/get_current_project.dart';
 import 'package:budgen/domain/usecases/project/get_items_project.dart';
 import 'package:budgen/domain/usecases/project/get_workers_project.dart';
 import 'package:budgen/domain/usecases/project/insert_project.dart';
+import 'package:budgen/domain/usecases/project/remove_item.dart';
+import 'package:budgen/domain/usecases/project/remove_worker.dart';
 import 'package:budgen/domain/usecases/project/rename_project.dart';
 import 'package:mobx/mobx.dart';
 
@@ -26,6 +28,8 @@ abstract class _HomeStore with Store {
   GetItemsProject _getItemsProject = GetItemsProject();
   GetWorkersProject _getWorkersProject = GetWorkersProject();
   AlterQuantity _alterQuantity = AlterQuantity();
+  RemoveItem _removeItem = RemoveItem();
+  RemoveWorker _removeWorker = RemoveWorker();
 
   @observable
   Project currentProject;
@@ -117,11 +121,6 @@ abstract class _HomeStore with Store {
   }
 
   @action
-  removeError() {
-    errorMessage = null;
-  }
-
-  @action
   Future<void> alterItemQuantity(int value, Item item) async {
     final qtd = (currentProject.items[item.id] as int);
 
@@ -137,6 +136,18 @@ abstract class _HomeStore with Store {
     if (qtd == 1 && value < 0) return;
 
     await _alterQuantity.worker(worker, currentProject, value);
+    await _sync();
+  }
+
+  @action
+  Future<void> removeItem(Item item) async {
+    await _removeItem.call(currentProject, item);
+    await _sync();
+  }
+
+  @action
+  Future<void> removeWorker(Worker worker) async {
+    await _removeWorker.call(currentProject, worker);
     await _sync();
   }
 

@@ -6,11 +6,12 @@ class ProjectWorkersTile extends StatelessWidget {
   final Worker worker;
   final String qtd;
   final void Function(int, Worker) alterValue;
+  final void Function(Worker) removeWorker;
 
   const ProjectWorkersTile({
     @required this.worker,
     @required this.qtd,
-    @required this.alterValue,
+    @required this.alterValue, this.removeWorker,
   }) : super();
 
   @override
@@ -20,7 +21,12 @@ class ProjectWorkersTile extends StatelessWidget {
         leading: Icon(Icons.person),
         title: Text(worker.name),
         subtitle: Text(worker?.description ?? "S/N"),
-        trailing: SlicerButton(alterValue, worker, qtd),
+        trailing: SlicerButton(
+          alterValue: alterValue,
+          product: worker,
+          qtd: qtd,
+          removeProduct: removeWorker,
+        ),
       ),
     );
   }

@@ -195,18 +195,21 @@ mixin _$HomeStore on _HomeStore, Store {
         .run(() => super.alterItemQuantity(value, item));
   }
 
-  final _$_HomeStoreActionController = ActionController(name: '_HomeStore');
+  final _$removeItemAsyncAction = AsyncAction('_HomeStore.removeItem');
 
   @override
-  dynamic removeError() {
-    final _$actionInfo = _$_HomeStoreActionController.startAction(
-        name: '_HomeStore.removeError');
-    try {
-      return super.removeError();
-    } finally {
-      _$_HomeStoreActionController.endAction(_$actionInfo);
-    }
+  Future<void> removeItem(Item item) {
+    return _$removeItemAsyncAction.run(() => super.removeItem(item));
   }
+
+  final _$removeWorkerAsyncAction = AsyncAction('_HomeStore.removeWorker');
+
+  @override
+  Future<void> removeWorker(Worker worker) {
+    return _$removeWorkerAsyncAction.run(() => super.removeWorker(worker));
+  }
+
+  final _$_HomeStoreActionController = ActionController(name: '_HomeStore');
 
   @override
   void editDiscount(String newDiscount) {
