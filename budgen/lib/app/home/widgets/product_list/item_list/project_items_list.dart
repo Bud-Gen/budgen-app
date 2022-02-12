@@ -17,6 +17,8 @@ class ProjectItemsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (items == null || items.isEmpty) return SizedBox(width: 0, height: 0);
+
     return Container(
       child: Column(
         children: [

@@ -9,7 +9,11 @@ class RemoveWorker {
     if (project == null || worker == null) return;
 
     Map<String, dynamic> workers = project.workers;
-    final newPrice = project.price - worker.price;
+    final newPrice = (project.price - worker.price) < 0.0
+        ? 0.0
+        : (project.price - worker.price);
+    final double newDiscount =
+        newPrice - project.discount <= 0.0 ? 0.0 : project.discount;
     workers.remove(worker.id);
 
     Project updatedProject = new Project(
@@ -20,7 +24,7 @@ class RemoveWorker {
       email: project.email,
       isFinished: project.isFinished,
       price: newPrice,
-      discount: project.discount,
+      discount: newDiscount,
       createdAt: project.createdAt,
       createdBy: project.createdBy,
       deletedBy: project.deletedBy,

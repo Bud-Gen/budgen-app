@@ -17,6 +17,9 @@ class ProjectWorkersList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (workers == null || workers.isEmpty)
+      return SizedBox(width: 0, height: 0);
+
     return Container(
       child: Column(
         children: [

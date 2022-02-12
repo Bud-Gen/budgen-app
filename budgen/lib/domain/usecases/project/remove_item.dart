@@ -10,10 +10,10 @@ class RemoveItem {
 
     Map<String, dynamic> items = project.items;
 
-    final newPrice =
-        (project.price - item.price) < 0 ? 0 : (project.price - item.price);
-    final newDiscount =
-        newPrice - project.discount <= 0 ? 0.0 : project.discount;
+    final double newPrice =
+        (project.price - item.price) < 0.0 ? 0.0 : (project.price - item.price);
+    final double newDiscount =
+        newPrice - project.discount <= 0.0 ? 0.0 : project.discount;
     items.remove(item.id);
 
     Project updatedProject = new Project(

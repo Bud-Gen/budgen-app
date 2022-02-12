@@ -46,8 +46,9 @@ class FavoritePage extends StatelessWidget {
                   onPressedAdd: (Item item) {
                     store.addItemToProject(item);
                     showSnack(
-                        context: context,
-                        content: "Item adicionado ao projeto");
+                      context: context,
+                      content: "Item adicionado ao projeto",
+                    );
                   },
                   items: store.items ?? [],
                   onPressedFavorite: (Item item) =>
