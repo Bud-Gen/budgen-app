@@ -1,4 +1,5 @@
 import 'package:budgen/domain/entities/item.dart';
+import 'package:budgen/utils/widgets/slicer_button.dart';
 import 'package:flutter/material.dart';
 
 class ProjectItemsTile extends StatelessWidget {
@@ -14,38 +15,13 @@ class ProjectItemsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final value = int.tryParse(qtd);
-    const int decrease = -1;
-    const int add = 1;
-
     return Card(
-        child: ListTile(
-      leading: Icon(Icons.category_rounded),
-      title: Text(item.name),
-      subtitle: Text(item?.description ?? "S/N"),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          IconButton(
-            icon: Icon(Icons.add_circle),
-            onPressed: () {
-              alterValue(add, item);
-            },
-          ),
-          Card(
-            child: Padding(
-              padding: EdgeInsets.all(15),
-              child: Text(qtd),
-            ),
-          ),
-          IconButton(
-            icon: Icon(Icons.do_disturb_on_rounded),
-            onPressed: () {
-              alterValue(decrease, item);
-            },
-          ),
-        ],
+      child: ListTile(
+        leading: Icon(Icons.category_rounded),
+        title: Text(item.name),
+        subtitle: Text(item?.description ?? "S/N"),
+        trailing: SlicerButton(alterValue, item, qtd),
       ),
-    ));
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:budgen/domain/entities/item.dart';
+import 'package:budgen/domain/entities/product.dart';
 import 'package:budgen/domain/entities/project.dart';
 import 'package:budgen/domain/entities/worker.dart';
 import 'package:budgen/domain/usecases/mock_data.dart';
@@ -120,13 +121,22 @@ abstract class _HomeStore with Store {
     errorMessage = null;
   }
 
-  @action // replicar para work
+  @action
   Future<void> alterItemQuantity(int value, Item item) async {
     final qtd = (currentProject.items[item.id] as int);
 
     if (qtd == 1 && value < 0) return;
 
     await _alterQuantity.item(item, currentProject, value);
+    await _sync();
+  }
+
+  Future<void> alterWorkerQuantity(int value, Worker worker) async {
+    final qtd = (currentProject.workers[worker.id] as int);
+
+    if (qtd == 1 && value < 0) return;
+
+    await _alterQuantity.worker(worker, currentProject, value);
     await _sync();
   }
 
@@ -141,4 +151,5 @@ abstract class _HomeStore with Store {
   void editEmailProject(String email) => projectEmail = email;
 
   bool get showProducts => (!isLoading && currentProject != null);
+  bool get isProjectEmpty => (items.isEmpty & workers.isEmpty);
 }

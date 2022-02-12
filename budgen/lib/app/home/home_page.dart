@@ -3,7 +3,9 @@ import 'package:budgen/app/home/widgets/add_project/add_project_button.dart';
 import 'package:budgen/app/home/widgets/details_project/details_project.dart';
 import 'package:budgen/app/home/widgets/edit_project/edit_name_project_button.dart';
 import 'package:budgen/app/home/widgets/finish_project/finish_project_button.dart';
+import 'package:budgen/app/home/widgets/product_list/empty_products_advice.dart';
 import 'package:budgen/app/home/widgets/product_list/item_list/project_items_list.dart';
+import 'package:budgen/app/home/widgets/product_list/worker_list/project_workers_list.dart';
 import 'package:budgen/domain/entities/item.dart';
 import 'package:budgen/domain/entities/worker.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
@@ -53,41 +55,29 @@ class _HomePageState extends State<HomePage> {
           }),
           Observer(
             builder: (_) {
-              if (store.showProducts)
-                return Expanded(
-                  child: ListView(
-                    children: [
-                      ProjectItemsList(
-                        alterItemQuantity: (int value, Item item) =>
-                            store.alterItemQuantity(value, item),
-                        items: store.items,
-                        qtdItems: store.currentProject.items,
-                      ),
-                      // Container( //TODO: vai virar a lista de serviços
-                      //   height: 400,
-                      //   color: Colors.green,
-                      //   child: Column(
-                      //     children: [
-                      //       Text("Serviços"),
-                      //       for (Worker worker in store.workers) ...[
-                      //         Card(
-                      //           child: ListTile(
-                      //             leading: Icon(Icons.person),
-                      //             title: Text(worker.name),
-                      //           ),
-                      //         )
-                      //       ]
-                      //     ],
-                      //   ),
-                      // ),
-                      // Container(
-                      //   height: 400,
-                      //   color: Colors.yellow,
-                      // ),
-                    ],
-                  ),
-                );
-              else {
+              if (store.showProducts) {
+                if (store.isProjectEmpty)
+                  return EmptyProductsAdvice();
+                else
+                  return Expanded(
+                    child: ListView(
+                      children: [
+                        ProjectItemsList(
+                          alterItemQuantity: (int value, Item item) =>
+                              store.alterItemQuantity(value, item),
+                          items: store.items,
+                          qtdItems: store.currentProject.items,
+                        ),
+                        ProjectWorkersList(
+                          qtdWorkers: store.currentProject.workers,
+                          workers: store.workers,
+                          alterWorkerQuantity: (int value, Worker worker) =>
+                              store.alterWorkerQuantity(value, worker),
+                        ),
+                      ],
+                    ),
+                  );
+              } else {
                 return SizedBox(height: 0);
               }
             },

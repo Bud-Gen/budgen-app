@@ -1,6 +1,5 @@
 import 'package:budgen/app/home/widgets/product_list/item_list/project_items_tile.dart';
 import 'package:budgen/domain/entities/item.dart';
-import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:flutter/material.dart';
 
 class ProjectItemsList extends StatelessWidget {
@@ -16,9 +15,7 @@ class ProjectItemsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ColorPalette colorPalette = ColorPalette();
     return Container(
-      color: colorPalette.primaryCollor,
       child: Column(
         children: [
           Text(

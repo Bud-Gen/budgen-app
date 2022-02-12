@@ -10,6 +10,8 @@ class RenameProject {
         id: project.id,
         name: newName,
         email: project.email,
+        items: project.items,
+        workers: project.workers,
         isFinished: project.isFinished,
         price: project.price,
         discount: project.discount,
