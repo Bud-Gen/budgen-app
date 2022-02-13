@@ -1,3 +1,4 @@
+import 'package:budgen/app/project/details_project/details_project_page.dart';
 import 'package:budgen/domain/entities/project.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,12 @@ class FinishedProjectsList extends StatelessWidget {
           for (Project project in projects) ...[
             Card(
               child: ListTile(
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    settings: RouteSettings(name: "/page"),
+                    builder: (context) => DetailsProjectPage(project: project),
+                  ),
+                ),
                 leading: Icon(
                   Icons.insert_chart,
                   size: 45,

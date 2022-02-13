@@ -1,6 +1,5 @@
 import 'package:budgen/app/home/home_store.dart';
 import 'package:budgen/app/home/widgets/add_project/add_project_button.dart';
-import 'package:budgen/app/home/widgets/details_project/details_project.dart';
 import 'package:budgen/app/home/widgets/edit_project/edit_name_project_button.dart';
 import 'package:budgen/app/home/widgets/finish_project/finish_project_button.dart';
 import 'package:budgen/app/home/widgets/product_list/empty_products_advice.dart';
@@ -9,6 +8,7 @@ import 'package:budgen/app/home/widgets/product_list/worker_list/project_workers
 import 'package:budgen/domain/entities/item.dart';
 import 'package:budgen/domain/entities/worker.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
+import 'package:budgen/utils/widgets/details_project/details_project.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
