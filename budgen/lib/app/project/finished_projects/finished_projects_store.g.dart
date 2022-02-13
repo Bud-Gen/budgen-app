@@ -24,6 +24,22 @@ mixin _$FinishedProjectsStore on _FinishedProjectsStore, Store {
     });
   }
 
+  final _$currentProjectAtom =
+      Atom(name: '_FinishedProjectsStore.currentProject');
+
+  @override
+  Project get currentProject {
+    _$currentProjectAtom.reportRead();
+    return super.currentProject;
+  }
+
+  @override
+  set currentProject(Project value) {
+    _$currentProjectAtom.reportWrite(value, super.currentProject, () {
+      super.currentProject = value;
+    });
+  }
+
   final _$isLoadingAtom = Atom(name: '_FinishedProjectsStore.isLoading');
 
   @override
@@ -39,6 +55,29 @@ mixin _$FinishedProjectsStore on _FinishedProjectsStore, Store {
     });
   }
 
+  final _$onInitAsyncAction = AsyncAction('_FinishedProjectsStore.onInit');
+
+  @override
+  Future<void> onInit() {
+    return _$onInitAsyncAction.run(() => super.onInit());
+  }
+
+  final _$copyProjectAsyncAction =
+      AsyncAction('_FinishedProjectsStore.copyProject');
+
+  @override
+  Future<void> copyProject(Project project) {
+    return _$copyProjectAsyncAction.run(() => super.copyProject(project));
+  }
+
+  final _$deleteProjectAsyncAction =
+      AsyncAction('_FinishedProjectsStore.deleteProject');
+
+  @override
+  Future<void> deleteProject(Project project) {
+    return _$deleteProjectAsyncAction.run(() => super.deleteProject(project));
+  }
+
   final _$_syncAsyncAction = AsyncAction('_FinishedProjectsStore._sync');
 
   @override
@@ -50,6 +89,7 @@ mixin _$FinishedProjectsStore on _FinishedProjectsStore, Store {
   String toString() {
     return '''
 projects: ${projects},
+currentProject: ${currentProject},
 isLoading: ${isLoading}
     ''';
   }
