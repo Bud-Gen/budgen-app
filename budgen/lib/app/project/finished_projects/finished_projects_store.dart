@@ -34,6 +34,7 @@ abstract class _FinishedProjectsStore with Store {
   @action
   Future<void> copyProject(Project project) async {
     await _copyProject.call(project);
+    await _sync();
   }
 
   @action
