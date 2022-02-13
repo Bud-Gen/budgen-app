@@ -79,7 +79,10 @@ class FavoritePage extends StatelessWidget {
     @required BuildContext context,
     @required String content,
   }) {
-    final snack = SnackBar(content: Text(content));
+    final snack = SnackBar(
+      content: Text(content),
+      duration: Duration(milliseconds: 500),
+    );
     Scaffold.of(context).showSnackBar(snack);
   }
 }
