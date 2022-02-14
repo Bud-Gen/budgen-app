@@ -4,8 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleAuth {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn(
-      scopes: ['email', 'https://www.googleapis.com/auth/drive.readonly']);
+  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
 
   Future<bool> signInWithGoogle() async {
     try {
@@ -26,9 +25,15 @@ class GoogleAuth {
     }
   }
 
-  Future<void> signOutFromGoogle() async {
-    await _googleSignIn.signOut();
-    await _auth.signOut();
+  Future<bool> signOutFromGoogle() async {
+    bool res = false;
+
+    try {
+      await _googleSignIn.signOut();
+      await _auth.signOut();
+      res = true;
+    } catch (e) {}
+    return res;
   }
 
   Future<Map<String, String>> getAuthHeaders() async {

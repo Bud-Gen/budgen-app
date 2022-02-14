@@ -4,16 +4,14 @@ import 'package:budgen/app/settings/widgets/settings_options.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:mobx/mobx.dart';
 
 class SettingsPage extends StatelessWidget {
-  const SettingsPage() : super();
+  final store = SettingsStore();
+  final ColorPalette colorPalette = ColorPalette();
 
   @override
   Widget build(BuildContext context) {
-    final ColorPalette colorPalette = ColorPalette();
-    final store = SettingsStore();
-
+    store.pageContext = context;
     store.onInit();
 
     return Scaffold(
@@ -24,7 +22,7 @@ class SettingsPage extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SettingsOptions(),
+            SettingsOptions(onLogout: store.onLogout,),
             Observer(
               builder: (_) => AppVersionText(
                 version: store.versionNumber,
