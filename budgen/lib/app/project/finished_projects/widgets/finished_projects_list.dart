@@ -40,7 +40,7 @@ class FinishedProjectsList extends StatelessWidget {
                 ),
                 title: Text(project.name),
                 subtitle: Text(
-                    (project?.price - project?.discount).toStringAsFixed(2)),
+                    (project.price - project?.discount).toStringAsFixed(2)),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [

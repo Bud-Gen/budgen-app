@@ -1,5 +1,4 @@
 import 'package:budgen/domain/entities/item.dart';
-import 'package:budgen/domain/entities/product.dart';
 import 'package:budgen/domain/entities/project.dart';
 import 'package:budgen/domain/entities/worker.dart';
 import 'package:budgen/domain/usecases/mock_data.dart';

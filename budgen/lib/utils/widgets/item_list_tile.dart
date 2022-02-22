@@ -1,3 +1,4 @@
+import 'package:budgen/app/product/items/details/details_item_page.dart';
 import 'package:budgen/domain/entities/item.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,8 @@ class ItemListTile extends StatelessWidget {
     ColorPalette colorPalette = ColorPalette();
     return Card(
       child: ListTile(
+        onTap: () => Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => DetailsItemPage(item: item))),
         leading: Icon(Icons.category_rounded),
         title: Text(item?.name ?? "s/n"),
         subtitle: Text(item?.description ?? "s/n"),

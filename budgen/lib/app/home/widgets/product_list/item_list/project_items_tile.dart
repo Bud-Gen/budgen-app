@@ -1,5 +1,4 @@
 import 'package:budgen/domain/entities/item.dart';
-import 'package:budgen/domain/entities/product.dart';
 import 'package:budgen/utils/widgets/slicer_button.dart';
 import 'package:flutter/material.dart';
 

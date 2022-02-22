@@ -33,7 +33,7 @@ class Item extends Product {
         name: json['name'],
         code: json['code'],
         description: json['description'],
-        imageUrl: json['url'],
+        imageUrl: json['imageUrl'],
         price: json['price'],
         path: json['path'],
         isFavorite: json['isFavorite'] == 1 ? true : false,

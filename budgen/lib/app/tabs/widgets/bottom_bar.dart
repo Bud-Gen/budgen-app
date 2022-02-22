@@ -1,5 +1,4 @@
 import 'package:budgen/app/tabs/widgets/bottom_bar_button.dart';
-import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:flutter/material.dart';
 
 class BottomBar extends StatelessWidget {
@@ -13,8 +12,6 @@ class BottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ColorPalette colorPalette = ColorPalette();
-
     return BottomAppBar(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

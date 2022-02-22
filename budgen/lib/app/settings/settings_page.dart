@@ -4,7 +4,6 @@ import 'package:budgen/app/settings/widgets/settings_options.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:mobx/mobx.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage() : super();

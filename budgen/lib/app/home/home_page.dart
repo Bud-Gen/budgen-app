@@ -58,6 +58,8 @@ class _HomePageState extends State<HomePage> {
               addDiscountValue: (String value) => store.editDiscount(value),
             );
           }),
+          TextButton(onPressed: () => store.addMock(), child: Text("mock")),
+          //TODO: remover
           Observer(
             builder: (_) {
               if (store.showProducts) {
