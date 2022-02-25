@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: colorPalette.primaryCollor,
         title: Observer(builder: (_) {
           return Text((!store.isLoading && store.existsProject)
-              ? store?.currentProject?.name
+              ? store.currentProject!.name
               : "");
         }),
         actions: [
@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
               return SizedBox(width: 0);
 
             return EditNameProjectButton(
-              currentProjectName: store.currentProject?.name,
+              currentProjectName: store.currentProject!.name,
               editProjectName: (String value) => store.editProjectName(value),
               renameProject: () => store.renameProject(),
             );
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
             if (store.isLoading) return SizedBox(width: 0);
 
             return DetailsProject(
-              project: store.currentProject,
+              project: store.currentProject!,
               addDiscount: () => store.addDiscount(),
               addDiscountValue: (String value) => store.editDiscount(value),
             );
@@ -63,28 +63,29 @@ class _HomePageState extends State<HomePage> {
               if (store.showProducts) {
                 if (store.isProjectEmpty)
                   return EmptyProductsAdvice();
-                else
+                else {
                   return Expanded(
                     child: ListView(
                       children: [
                         ProjectItemsList(
                           alterItemQuantity: (int value, Item item) =>
                               store.alterItemQuantity(value, item),
-                          items: store.items,
-                          qtdItems: store.currentProject.items,
+                          items: store.items!,
+                          qtdItems: store.currentProject!.items!,
                           removeItem: (Item item) => store.removeItem(item),
                         ),
                         ProjectWorkersList(
                           removeWorker: (Worker worker) =>
                               store.removeWorker(worker),
-                          qtdWorkers: store.currentProject.workers,
-                          workers: store.workers,
+                          qtdWorkers: store.currentProject!.workers!,
+                          workers: store.workers!,
                           alterWorkerQuantity: (int value, Worker worker) =>
                               store.alterWorkerQuantity(value, worker),
                         ),
                       ],
                     ),
                   );
+                }
               } else {
                 return SizedBox(height: 0);
               }

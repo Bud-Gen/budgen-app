@@ -5,8 +5,8 @@ class AddNameProjectAlert extends StatelessWidget {
   final Function addProject;
 
   const AddNameProjectAlert({
-    this.addProjectName,
-    this.addProject,
+    required this.addProjectName,
+    required this.addProject,
   }) : super();
 
   @override

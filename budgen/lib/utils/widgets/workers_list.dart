@@ -10,10 +10,10 @@ class WorkersList extends StatelessWidget {
   final bool existsProject;
 
   const WorkersList({
-    @required this.workers,
-    this.onPressedFavorite,
-    this.onPressedAdd,
-    this.existsProject,
+    required this.workers,
+    required this.onPressedFavorite,
+    required this.onPressedAdd,
+    required this.existsProject,
   }) : super();
 
   @override
@@ -23,7 +23,7 @@ class WorkersList extends StatelessWidget {
     return Expanded(
       child: SizedBox(
         child: ListView.builder(
-          itemCount: workers.length ?? 0,
+          itemCount: workers.length,
           itemBuilder: (_, int index) {
             Worker worker = workers[index];
 

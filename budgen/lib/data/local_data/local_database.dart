@@ -4,15 +4,16 @@ import 'package:sqflite/sqflite.dart' as sql;
 
 class LocalDatabase {
   LocalDatabase._privateConstructor();
+
   static final LocalDatabase instance = LocalDatabase._privateConstructor();
 
   factory LocalDatabase() {
     return instance;
   }
 
-  static sql.Database _database;
+  static sql.Database? _database;
 
-  Future<sql.Database> get database async {
+  Future<sql.Database?> get database async {
     if (_database != null) return _database;
 
     _database = await _initDatabase();

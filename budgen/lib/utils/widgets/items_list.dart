@@ -10,10 +10,10 @@ class ItemsList extends StatelessWidget {
   final bool existsProject;
 
   const ItemsList({
-    @required this.items,
-    this.onPressedFavorite,
-    this.onPressedAdd,
-    this.existsProject,
+    required this.items,
+    required this.onPressedFavorite,
+    required this.onPressedAdd,
+    required this.existsProject,
   }) : super();
 
   @override
@@ -23,7 +23,7 @@ class ItemsList extends StatelessWidget {
     return Expanded(
       child: SizedBox(
         child: ListView.builder(
-          itemCount: items.length ?? 0,
+          itemCount: items.length,
           itemBuilder: (_, int index) {
             Item item = items[index];
 

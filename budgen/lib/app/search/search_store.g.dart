@@ -9,31 +9,31 @@ part of 'search_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$SearchStore on _SearchStore, Store {
-  Computed<List<Item>> _$filteredItemsListComputed;
+  Computed<List<Item>?>? _$filteredItemsListComputed;
 
   @override
-  List<Item> get filteredItemsList => (_$filteredItemsListComputed ??=
-          Computed<List<Item>>(() => super.filteredItemsList,
+  List<Item>? get filteredItemsList => (_$filteredItemsListComputed ??=
+          Computed<List<Item>?>(() => super.filteredItemsList,
               name: '_SearchStore.filteredItemsList'))
       .value;
-  Computed<List<Worker>> _$filteredWorkersListComputed;
+  Computed<List<Worker>?>? _$filteredWorkersListComputed;
 
   @override
-  List<Worker> get filteredWorkersList => (_$filteredWorkersListComputed ??=
-          Computed<List<Worker>>(() => super.filteredWorkersList,
+  List<Worker>? get filteredWorkersList => (_$filteredWorkersListComputed ??=
+          Computed<List<Worker>?>(() => super.filteredWorkersList,
               name: '_SearchStore.filteredWorkersList'))
       .value;
 
   final _$workersAtom = Atom(name: '_SearchStore.workers');
 
   @override
-  List<Worker> get workers {
+  List<Worker>? get workers {
     _$workersAtom.reportRead();
     return super.workers;
   }
 
   @override
-  set workers(List<Worker> value) {
+  set workers(List<Worker>? value) {
     _$workersAtom.reportWrite(value, super.workers, () {
       super.workers = value;
     });
@@ -42,13 +42,13 @@ mixin _$SearchStore on _SearchStore, Store {
   final _$itemsAtom = Atom(name: '_SearchStore.items');
 
   @override
-  List<Item> get items {
+  List<Item>? get items {
     _$itemsAtom.reportRead();
     return super.items;
   }
 
   @override
-  set items(List<Item> value) {
+  set items(List<Item>? value) {
     _$itemsAtom.reportWrite(value, super.items, () {
       super.items = value;
     });
@@ -57,13 +57,13 @@ mixin _$SearchStore on _SearchStore, Store {
   final _$currentProjectAtom = Atom(name: '_SearchStore.currentProject');
 
   @override
-  Project get currentProject {
+  Project? get currentProject {
     _$currentProjectAtom.reportRead();
     return super.currentProject;
   }
 
   @override
-  set currentProject(Project value) {
+  set currentProject(Project? value) {
     _$currentProjectAtom.reportWrite(value, super.currentProject, () {
       super.currentProject = value;
     });

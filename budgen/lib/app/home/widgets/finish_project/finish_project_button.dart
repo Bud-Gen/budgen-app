@@ -7,8 +7,8 @@ class FinishProjectButton extends StatelessWidget {
   final Function finishProject;
 
   const FinishProjectButton({
-    this.editEmailProject,
-    this.finishProject,
+    required this.editEmailProject,
+    required this.finishProject,
   }) : super();
 
   @override

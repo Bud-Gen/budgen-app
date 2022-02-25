@@ -9,10 +9,10 @@ class ProjectItemsList extends StatelessWidget {
   final void Function(Item item) removeItem;
 
   const ProjectItemsList({
-    @required this.items,
-    @required this.qtdItems,
-    @required this.alterItemQuantity,
-    @required this.removeItem,
+    required this.items,
+    required this.qtdItems,
+    required this.alterItemQuantity,
+    required this.removeItem,
   }) : super();
 
   @override

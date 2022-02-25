@@ -9,9 +9,9 @@ class AddDiscountButton extends StatelessWidget {
   final Project project;
 
   const AddDiscountButton({
-    @required this.addDiscountValue,
-    @required this.addDiscount,
-    @required this.project,
+    required this.addDiscountValue,
+    required this.addDiscount,
+    required this.project,
   }) : super();
 
   @override

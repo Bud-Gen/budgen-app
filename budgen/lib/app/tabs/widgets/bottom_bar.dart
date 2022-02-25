@@ -7,14 +7,12 @@ class BottomBar extends StatelessWidget {
   final Function setIndex;
 
   const BottomBar({
-    @required this.index,
-    @required this.setIndex,
+    required this.index,
+    required this.setIndex,
   }) : super();
 
   @override
   Widget build(BuildContext context) {
-    final ColorPalette colorPalette = ColorPalette();
-
     return BottomAppBar(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

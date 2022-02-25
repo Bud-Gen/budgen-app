@@ -1,5 +1,4 @@
 import 'package:budgen/domain/entities/item.dart';
-import 'package:budgen/domain/entities/product.dart';
 import 'package:budgen/domain/entities/project.dart';
 import 'package:budgen/domain/entities/worker.dart';
 import 'package:budgen/domain/usecases/mock_data.dart';
@@ -32,19 +31,19 @@ abstract class _HomeStore with Store {
   RemoveWorker _removeWorker = RemoveWorker();
 
   @observable
-  Project currentProject;
+  Project? currentProject;
 
   @observable
   bool existsProject = false;
 
   @observable
-  List<Worker> workers;
+  List<Worker>? workers;
 
   @observable
-  List<Item> items;
+  List<Item>? items;
 
   @observable
-  String projectName;
+  String? projectName;
 
   @observable
   String projectEmail = "";
@@ -56,7 +55,7 @@ abstract class _HomeStore with Store {
   double discount = 0;
 
   @observable
-  String errorMessage;
+  String? errorMessage;
 
   @action
   Future<void> addMock() async {
@@ -74,20 +73,20 @@ abstract class _HomeStore with Store {
 
   @action
   Future<void> renameProject() async {
-    if (projectName.isEmpty) return;
-    await _renameProject.call(currentProject, projectName);
+    if (projectName!.isEmpty) return;
+    await _renameProject.call(currentProject!, projectName!);
     await _sync();
   }
 
   @action
   Future<void> addNewProject() async {
-    await _insertProject.withName(projectName);
+    await _insertProject.withName(projectName!);
     await _sync();
   }
 
   @action
   Future<void> finishProject() async {
-    await _finishProject.call(currentProject, projectEmail);
+    await _finishProject.call(currentProject!, projectEmail);
     currentProject = null;
     existsProject = false;
     workers = null;
@@ -101,59 +100,59 @@ abstract class _HomeStore with Store {
 
     if (currentProject != null) existsProject = true;
 
-    workers = await _getWorkersProject.call(currentProject);
-    items = await _getItemsProject.call(currentProject);
+    workers = await _getWorkersProject.call(currentProject!);
+    items = await _getItemsProject.call(currentProject!);
     isLoading = false;
   }
 
   @action
   Future<void> addDiscount() async {
-    if (discount > currentProject.price) {
+    if (discount > currentProject!.price) {
       errorMessage =
           "Não é possível adicionar um desconto maior que o valor do projeto";
       return;
     }
     if (discount == 0 || currentProject == null) return;
     isLoading = true;
-    await _addDiscount.call(currentProject, discount);
+    await _addDiscount.call(currentProject!, discount);
     await _sync();
     isLoading = false;
   }
 
   @action
   Future<void> alterItemQuantity(int value, Item item) async {
-    final qtd = (currentProject.items[item.id] as int);
+    final qtd = (currentProject!.items![item.id] as int);
 
     if (qtd == 1 && value < 0) return;
 
-    await _alterQuantity.item(item, currentProject, value);
+    await _alterQuantity.item(item, currentProject!, value);
     await _sync();
   }
 
   Future<void> alterWorkerQuantity(int value, Worker worker) async {
-    final qtd = (currentProject.workers[worker.id] as int);
+    final qtd = (currentProject!.workers![worker.id] as int);
 
     if (qtd == 1 && value < 0) return;
 
-    await _alterQuantity.worker(worker, currentProject, value);
+    await _alterQuantity.worker(worker, currentProject!, value);
     await _sync();
   }
 
   @action
   Future<void> removeItem(Item item) async {
-    await _removeItem.call(currentProject, item);
+    await _removeItem.call(currentProject!, item);
     await _sync();
   }
 
   @action
   Future<void> removeWorker(Worker worker) async {
-    await _removeWorker.call(currentProject, worker);
+    await _removeWorker.call(currentProject!, worker);
     await _sync();
   }
 
   @action
   void editDiscount(String newDiscount) =>
-      discount = double.tryParse(newDiscount);
+      discount = double.tryParse(newDiscount)!;
 
   @action
   void editProjectName(String newName) => projectName = newName;
@@ -162,5 +161,5 @@ abstract class _HomeStore with Store {
   void editEmailProject(String email) => projectEmail = email;
 
   bool get showProducts => (!isLoading && currentProject != null);
-  bool get isProjectEmpty => (items.isEmpty & workers.isEmpty);
+  bool get isProjectEmpty => (items!.isEmpty & workers!.isEmpty);
 }

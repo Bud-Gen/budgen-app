@@ -6,8 +6,8 @@ class DetailsProducts extends StatelessWidget {
   final int workersQtd;
 
   const DetailsProducts({
-    @required this.itemsQtd,
-    @required this.workersQtd,
+    required this.itemsQtd,
+    required this.workersQtd,
   }) : super();
 
   @override

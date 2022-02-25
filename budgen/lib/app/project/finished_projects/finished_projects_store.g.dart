@@ -12,13 +12,13 @@ mixin _$FinishedProjectsStore on _FinishedProjectsStore, Store {
   final _$projectsAtom = Atom(name: '_FinishedProjectsStore.projects');
 
   @override
-  List<Project> get projects {
+  List<Project>? get projects {
     _$projectsAtom.reportRead();
     return super.projects;
   }
 
   @override
-  set projects(List<Project> value) {
+  set projects(List<Project>? value) {
     _$projectsAtom.reportWrite(value, super.projects, () {
       super.projects = value;
     });
@@ -28,13 +28,13 @@ mixin _$FinishedProjectsStore on _FinishedProjectsStore, Store {
       Atom(name: '_FinishedProjectsStore.currentProject');
 
   @override
-  Project get currentProject {
+  Project? get currentProject {
     _$currentProjectAtom.reportRead();
     return super.currentProject;
   }
 
   @override
-  set currentProject(Project value) {
+  set currentProject(Project? value) {
     _$currentProjectAtom.reportWrite(value, super.currentProject, () {
       super.currentProject = value;
     });
@@ -43,13 +43,13 @@ mixin _$FinishedProjectsStore on _FinishedProjectsStore, Store {
   final _$isLoadingAtom = Atom(name: '_FinishedProjectsStore.isLoading');
 
   @override
-  bool get isLoading {
+  bool? get isLoading {
     _$isLoadingAtom.reportRead();
     return super.isLoading;
   }
 
   @override
-  set isLoading(bool value) {
+  set isLoading(bool? value) {
     _$isLoadingAtom.reportWrite(value, super.isLoading, () {
       super.isLoading = value;
     });

@@ -17,13 +17,13 @@ abstract class _FinishedProjectsStore with Store {
   CopyProject _copyProject = CopyProject();
 
   @observable
-  List<Project> projects;
+  List<Project>? projects;
 
   @observable
-  Project currentProject;
+  Project? currentProject;
 
   @observable
-  bool isLoading;
+  bool? isLoading;
 
   ///functions
   @action

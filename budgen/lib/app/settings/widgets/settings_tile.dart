@@ -6,9 +6,9 @@ class SettingsTile extends StatelessWidget {
   final String title;
 
   const SettingsTile({
-    @required this.iconData,
-    @required this.onTap,
-    @required this.title,
+    required this.iconData,
+    required this.onTap,
+    required this.title,
   }) : super();
 
   @override

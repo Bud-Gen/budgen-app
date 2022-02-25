@@ -7,7 +7,7 @@ class InsertProject {
 
   Future<bool> call(Project project) => _repository.insertProject(project);
 
-  Future<void> withName(String projectName) async {
+  Future<void> withName(String? projectName) async {
     // GoogleAuth auth = new GoogleAuth();
     // final UserCredentials userGoogle = await auth.getGoogleUser();
     //TODO: adicionar isso aqui depois

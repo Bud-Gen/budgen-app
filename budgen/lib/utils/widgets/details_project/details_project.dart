@@ -15,9 +15,9 @@ class DetailsProject extends StatelessWidget {
   final Function addDiscountValue;
 
   const DetailsProject({
-    @required this.project,
-    @required this.addDiscount,
-    @required this.addDiscountValue,
+    required this.project,
+    required this.addDiscount,
+    required this.addDiscountValue,
   }) : super();
 
   @override

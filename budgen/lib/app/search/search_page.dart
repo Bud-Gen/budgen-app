@@ -90,8 +90,8 @@ class SearchPage extends StatelessWidget {
   }
 
   void showSnack({
-    @required BuildContext context,
-    @required String content,
+    required BuildContext context,
+    required String content,
   }) {
     final snack = SnackBar(
       content: Text(content),

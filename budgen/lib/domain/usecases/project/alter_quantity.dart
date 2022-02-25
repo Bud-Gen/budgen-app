@@ -9,12 +9,12 @@ class AlterQuantity {
   Future<void> item(Item item, Project project, int value) async {
     if (item == null || project == null) return;
 
-    final int oldQtd = project.items[item.id] as int;
+    final int oldQtd = project.items![item.id] as int;
     final newQtd = oldQtd + value;
     final newPrice =
-        (project.price - (item.price * oldQtd)) + (newQtd * item.price);
+        (project.price - (item.price! * oldQtd)) + (newQtd * item.price!);
     final items = project.items;
-    items[item.id] = newQtd;
+    items![item.id!] = newQtd;
 
     final updateProject = Project(
       id: project.id,
@@ -36,12 +36,12 @@ class AlterQuantity {
   Future<void> worker(Worker worker, Project project, int value) async {
     if (worker == null || project == null) return;
 
-    final int oldQtd = project.workers[worker.id] as int;
+    final int oldQtd = project.workers![worker.id] as int;
     final newQtd = oldQtd + value;
     final newPrice =
-        (project.price - (worker.price * oldQtd)) + (newQtd * worker.price);
+        (project.price - (worker.price! * oldQtd)) + (newQtd * worker.price!);
     final workers = project.workers;
-    workers[worker.id] = newQtd;
+    workers![worker.id!] = newQtd;
 
     final updateProject = Project(
       id: project.id,

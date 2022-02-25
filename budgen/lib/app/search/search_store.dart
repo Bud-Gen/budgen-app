@@ -23,13 +23,13 @@ abstract class _SearchStore with Store {
   AddWorker _addWorker = AddWorker();
 
   @observable
-  List<Worker> workers;
+  List<Worker>? workers;
 
   @observable
-  List<Item> items;
+  List<Item>? items;
 
   @observable
-  Project currentProject;
+  Project? currentProject;
 
   @observable
   bool isLoading = false;
@@ -39,10 +39,6 @@ abstract class _SearchStore with Store {
 
   @observable
   String searchText = '';
-
-  ///
-  ///
-  ///
 
   @action
   Future<void> onInit() async {
@@ -64,12 +60,12 @@ abstract class _SearchStore with Store {
 
   @action
   Future<void> addItemToProject(Item item) async {
-    await _addItem.call(item: item, project: currentProject, qtd: 1);
+    await _addItem.call(item: item, project: currentProject!, qtd: 1);
   }
 
   @action
   Future<void> addWorkerToProject(Worker worker) async {
-    await _addWorker.call(project: currentProject, worker: worker, qtd: 1);
+    await _addWorker.call(project: currentProject!, worker: worker, qtd: 1);
   }
 
   @action
@@ -99,28 +95,28 @@ abstract class _SearchStore with Store {
   void search(String value) => searchText = value;
 
   @computed
-  List<Item> get filteredItemsList {
+  List<Item>? get filteredItemsList {
     if (searchText.isEmpty) {
       return items;
     } else {
-      return items
+      return items!
           .where(
             (element) =>
-                element.name.toLowerCase().contains(searchText.toLowerCase()),
+                element.name!.toLowerCase().contains(searchText.toLowerCase()),
           )
           .toList();
     }
   }
 
   @computed
-  List<Worker> get filteredWorkersList {
+  List<Worker>? get filteredWorkersList {
     if (searchText.isEmpty) {
       return workers;
     } else {
-      return workers
+      return workers!
           .where(
             (element) =>
-                element.name.toLowerCase().contains(searchText.toLowerCase()),
+                element.name!.toLowerCase().contains(searchText.toLowerCase()),
           )
           .toList();
     }

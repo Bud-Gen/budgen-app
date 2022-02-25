@@ -9,9 +9,10 @@ class ProjectWorkersTile extends StatelessWidget {
   final void Function(Worker) removeWorker;
 
   const ProjectWorkersTile({
-    @required this.worker,
-    @required this.qtd,
-    @required this.alterValue, this.removeWorker,
+    required this.worker,
+    required this.qtd,
+    required this.alterValue,
+    required this.removeWorker,
   }) : super();
 
   @override
@@ -19,8 +20,8 @@ class ProjectWorkersTile extends StatelessWidget {
     return Card(
       child: ListTile(
         leading: Icon(Icons.person),
-        title: Text(worker.name),
-        subtitle: Text(worker?.description ?? "S/N"),
+        title: Text(worker.name!),
+        subtitle: Text(worker.description!),
         trailing: SlicerButton(
           alterValue: alterValue,
           product: worker,

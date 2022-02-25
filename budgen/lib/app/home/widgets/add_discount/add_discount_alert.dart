@@ -7,9 +7,9 @@ class AddDiscountAlert extends StatelessWidget {
   final Project project;
 
   const AddDiscountAlert({
-    @required this.addDiscount,
-    @required this.addDiscountValue,
-    this.project,
+    required this.addDiscount,
+    required this.addDiscountValue,
+    required this.project,
   }) : super();
 
   @override
@@ -22,7 +22,7 @@ class AddDiscountAlert extends StatelessWidget {
         child: TextFormField(
           key: _form,
           validator: (value) {
-            final valueToDouble = double?.tryParse(value) ?? 0;
+            final valueToDouble = double?.tryParse(value!) ?? 0;
             if (value.isEmpty) return "valor não pode ser vazio.";
             if (valueToDouble > project.price)
               return "valor maior que o preço total.";

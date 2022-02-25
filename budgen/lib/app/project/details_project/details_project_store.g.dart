@@ -12,13 +12,13 @@ mixin _$DetailsProjectStore on _DetailsProjectStore, Store {
   final _$projectAtom = Atom(name: '_DetailsProjectStore.project');
 
   @override
-  Project get project {
+  Project? get project {
     _$projectAtom.reportRead();
     return super.project;
   }
 
   @override
-  set project(Project value) {
+  set project(Project? value) {
     _$projectAtom.reportWrite(value, super.project, () {
       super.project = value;
     });
@@ -28,13 +28,13 @@ mixin _$DetailsProjectStore on _DetailsProjectStore, Store {
       Atom(name: '_DetailsProjectStore.currentProject');
 
   @override
-  Project get currentProject {
+  Project? get currentProject {
     _$currentProjectAtom.reportRead();
     return super.currentProject;
   }
 
   @override
-  set currentProject(Project value) {
+  set currentProject(Project? value) {
     _$currentProjectAtom.reportWrite(value, super.currentProject, () {
       super.currentProject = value;
     });
@@ -58,13 +58,13 @@ mixin _$DetailsProjectStore on _DetailsProjectStore, Store {
   final _$itemsAtom = Atom(name: '_DetailsProjectStore.items');
 
   @override
-  List<Item> get items {
+  List<Item>? get items {
     _$itemsAtom.reportRead();
     return super.items;
   }
 
   @override
-  set items(List<Item> value) {
+  set items(List<Item>? value) {
     _$itemsAtom.reportWrite(value, super.items, () {
       super.items = value;
     });
@@ -73,13 +73,13 @@ mixin _$DetailsProjectStore on _DetailsProjectStore, Store {
   final _$workersAtom = Atom(name: '_DetailsProjectStore.workers');
 
   @override
-  List<Worker> get workers {
+  List<Worker>? get workers {
     _$workersAtom.reportRead();
     return super.workers;
   }
 
   @override
-  set workers(List<Worker> value) {
+  set workers(List<Worker>? value) {
     _$workersAtom.reportWrite(value, super.workers, () {
       super.workers = value;
     });

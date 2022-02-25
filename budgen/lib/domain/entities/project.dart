@@ -4,28 +4,28 @@ import 'dart:convert';
 class Project {
   final String id;
   final String name;
-  final Map<String, dynamic> items;
-  final Map<String, dynamic> workers;
+  final Map<String, dynamic>? items;
+  final Map<String, dynamic>? workers;
   final String email;
-  final bool isFinished;
+  final bool? isFinished;
   final double price;
   final double discount;
   final DateTime createdAt;
   final String createdBy;
-  final String deletedBy;
+  final String? deletedBy;
 
   Project({
-    @required this.id,
-    @required this.name,
+    required this.id,
+    required this.name,
     this.items,
     this.workers,
-    @required this.email,
-    @required this.isFinished,
-    @required this.price,
-    @required this.discount,
-    @required this.createdAt,
-    @required this.createdBy,
-    @required this.deletedBy,
+    required this.email,
+    this.isFinished,
+    required this.price,
+    required this.discount,
+    required this.createdAt,
+    required this.createdBy,
+    this.deletedBy,
   });
 
   factory Project.fromMap(Map<String, dynamic> project) => new Project(

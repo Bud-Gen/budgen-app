@@ -6,8 +6,8 @@ class PriceWithDiscount extends StatelessWidget {
   final double discount;
 
   const PriceWithDiscount({
-    this.price,
-    this.discount,
+    required this.price,
+    required this.discount,
   }) : super();
 
   @override
