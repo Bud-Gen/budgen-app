@@ -22,69 +22,71 @@ class SearchPage extends StatelessWidget {
         backgroundColor: colorPalette.primaryCollor,
         title: Text("Pesquisa"),
       ),
-      body: Column(
-        children: [
-          TextField(
-            autocorrect: false,
-            maxLines: 1,
-            onChanged: store.search,
-            textAlignVertical: TextAlignVertical.bottom,
-            decoration: InputDecoration(
-              labelText: "",
-              hintText: "",
-              prefixIcon: Icon(
-                Icons.search,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            TextField(
+              autocorrect: false,
+              maxLines: 1,
+              onChanged: store.search,
+              textAlignVertical: TextAlignVertical.bottom,
+              decoration: InputDecoration(
+                labelText: "",
+                hintText: "",
+                prefixIcon: Icon(
+                  Icons.search,
+                ),
               ),
             ),
-          ),
-          Observer(
-            builder: (_) => Column(
-              children: [
-                if (store.isLoading) CircularProgressIndicator(),
-              ],
+            Observer(
+              builder: (_) => Column(
+                children: [
+                  if (store.isLoading) CircularProgressIndicator(),
+                ],
+              ),
             ),
-          ),
-          Observer(
-            builder: (_) {
-              return TypeButton(
-                showItems: store.showItems,
-                onPressedShowItem: () => store.showItemsList(),
-                onPressedShowWorker: () => store.showWorkersList(),
-              );
-            },
-          ),
-          Observer(
-            builder: (_) {
-              if (store.showItems) {
-                return ItemsList(
-                  existsProject: store.currentProject != null,
-                  onPressedAdd: (Item item) {
-                    store.addItemToProject(item);
-                    showSnack(
-                        context: context,
-                        content: "Item adicionado ao projeto");
-                  },
-                  items: store.filteredItemsList ?? [],
-                  onPressedFavorite: (Item item) =>
-                      store.changeFavoriteItem(item),
+            Observer(
+              builder: (_) {
+                return TypeButton(
+                  showItems: store.showItems,
+                  onPressedShowItem: () => store.showItemsList(),
+                  onPressedShowWorker: () => store.showWorkersList(),
                 );
-              } else {
-                return WorkersList(
-                  existsProject: store.currentProject != null,
-                  onPressedAdd: (Worker worker) {
-                    store.addWorkerToProject(worker);
-                    showSnack(
-                        context: context,
-                        content: "Serviço adicionado ao projeto");
-                  },
-                  workers: store.filteredWorkersList ?? [],
-                  onPressedFavorite: (Worker worker) =>
-                      store.changeFavoriteWorker(worker),
-                );
-              }
-            },
-          ),
-        ],
+              },
+            ),
+            Observer(
+              builder: (_) {
+                if (store.showItems) {
+                  return ItemsList(
+                    existsProject: store.currentProject != null,
+                    onPressedAdd: (Item item) {
+                      store.addItemToProject(item);
+                      showSnack(
+                          context: context,
+                          content: "Item adicionado ao projeto");
+                    },
+                    items: store.filteredItemsList ?? [],
+                    onPressedFavorite: (Item item) =>
+                        store.changeFavoriteItem(item),
+                  );
+                } else {
+                  return WorkersList(
+                    existsProject: store.currentProject != null,
+                    onPressedAdd: (Worker worker) {
+                      store.addWorkerToProject(worker);
+                      showSnack(
+                          context: context,
+                          content: "Serviço adicionado ao projeto");
+                    },
+                    workers: store.filteredWorkersList ?? [],
+                    onPressedFavorite: (Worker worker) =>
+                        store.changeFavoriteWorker(worker),
+                  );
+                }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
