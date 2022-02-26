@@ -80,21 +80,22 @@ abstract class _HomeStore with Store {
 
   @action
   Future<void> addNewProject() async {
-    await _insertProject.withName(projectName!);
+    await _insertProject.withName(projectName??"Novo projeto");
     await _sync();
   }
 
   @action
   Future<void> finishProject() async {
     await _finishProject.call(currentProject!, projectEmail);
-    currentProject = null;
+    //currentProject = null;
     existsProject = false;
-    workers = null;
-    items = null;
+    //workers = null;
+    //items = null;
+    await _sync();
   }
 
   Future<void> _sync() async {
-    currentProject = null;
+    //currentProject = null;
     isLoading = true;
     currentProject = await _getCurrentProject.call();
 

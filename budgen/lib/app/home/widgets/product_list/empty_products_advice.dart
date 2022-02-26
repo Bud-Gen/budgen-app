@@ -14,7 +14,7 @@ class EmptyProductsAdvice extends StatelessWidget {
       child: Center(
         child: Card(
           child: Container(
-            height: screenSize.height * 0.3,
+            height: screenSize.height * 0.4,
             width: screenSize.width * 0.7,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

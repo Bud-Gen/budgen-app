@@ -14,8 +14,8 @@ class DetailsProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     ColorPalette colorPalette = ColorPalette();
     final screenSize = MediaQuery.of(context).size;
-    final height = screenSize.height * 0.05;
-    final width = screenSize.width * 0.2;
+    final height = screenSize.height * 0.08;
+    final width = screenSize.width * 0.20;
 
     return Padding(
       padding: EdgeInsets.all(5),

@@ -47,51 +47,53 @@ class _HomePageState extends State<HomePage> {
           }),
         ],
       ),
-      body: Column(
-        children: [
-          Observer(builder: (_) {
-            if (store.isLoading) return SizedBox(width: 0);
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Observer(builder: (_) {
+              if (store.isLoading) return SizedBox(width: 0);
 
-            return DetailsProject(
-              project: store.currentProject!,
-              addDiscount: () => store.addDiscount(),
-              addDiscountValue: (String value) => store.editDiscount(value),
-            );
-          }),
-          Observer(
-            builder: (_) {
-              if (store.showProducts) {
-                if (store.isProjectEmpty)
-                  return EmptyProductsAdvice();
-                else {
-                  return Expanded(
-                    child: ListView(
-                      children: [
-                        ProjectItemsList(
-                          alterItemQuantity: (int value, Item item) =>
-                              store.alterItemQuantity(value, item),
-                          items: store.items!,
-                          qtdItems: store.currentProject!.items!,
-                          removeItem: (Item item) => store.removeItem(item),
-                        ),
-                        ProjectWorkersList(
-                          removeWorker: (Worker worker) =>
-                              store.removeWorker(worker),
-                          qtdWorkers: store.currentProject!.workers!,
-                          workers: store.workers!,
-                          alterWorkerQuantity: (int value, Worker worker) =>
-                              store.alterWorkerQuantity(value, worker),
-                        ),
-                      ],
-                    ),
-                  );
+              return DetailsProject(
+                project: store.currentProject!,
+                addDiscount: () => store.addDiscount(),
+                addDiscountValue: (String value) => store.editDiscount(value),
+              );
+            }),
+            Observer(
+              builder: (_) {
+                if (store.showProducts) {
+                  if (store.isProjectEmpty)
+                    return EmptyProductsAdvice();
+                  else {
+                    return Expanded(
+                      child: ListView(
+                        children: [
+                          ProjectItemsList(
+                            alterItemQuantity: (int value, Item item) =>
+                                store.alterItemQuantity(value, item),
+                            items: store.items!,
+                            qtdItems: store.currentProject!.items!,
+                            removeItem: (Item item) => store.removeItem(item),
+                          ),
+                          ProjectWorkersList(
+                            removeWorker: (Worker worker) =>
+                                store.removeWorker(worker),
+                            qtdWorkers: store.currentProject!.workers!,
+                            workers: store.workers!,
+                            alterWorkerQuantity: (int value, Worker worker) =>
+                                store.alterWorkerQuantity(value, worker),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                } else {
+                  return SizedBox(height: 0);
                 }
-              } else {
-                return SizedBox(height: 0);
-              }
-            },
-          )
-        ],
+              },
+            )
+          ],
+        ),
       ),
       floatingActionButton: Observer(
         builder: (_) => !store.existsProject

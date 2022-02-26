@@ -21,27 +21,25 @@ class FinishedProjectsPage extends StatelessWidget {
         backgroundColor: colorPalette.primaryCollor,
         title: Text("Lista de Projetos"),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Observer(
-              builder: (BuildContext context) {
-                if (store.projects == null || store.projects!.isEmpty)
-                  return EmptyProjectsAlert();
-      
-                return FinishedProjectsList(
-                  projects: store.projects!,
-                  existsCurrentProject: store.existsCurrentProject,
-                  deleteProject: (Project project) =>
-                      store.deleteProject(project),
-                  copyProject: (Project project) => store.copyProject(project),
-                  showSnack: () =>
-                      showSnack(context: context, content: "Projeto copiado!"),
-                );
-              },
-            ),
-          ],
-        ),
+      body: Column(
+        children: [
+          Observer(
+            builder: (BuildContext context) {
+              if (store.projects == null || store.projects!.isEmpty)
+                return EmptyProjectsAlert();
+
+              return FinishedProjectsList(
+                projects: store.projects!,
+                existsCurrentProject: store.existsCurrentProject,
+                deleteProject: (Project project) =>
+                    store.deleteProject(project),
+                copyProject: (Project project) => store.copyProject(project),
+                showSnack: () =>
+                    showSnack(context: context, content: "Projeto copiado!"),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
