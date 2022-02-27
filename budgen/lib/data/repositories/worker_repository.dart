@@ -18,7 +18,7 @@ class WorkerRepository {
   }
 
   Future<List<Worker>> getAllWorkers() async {
-    List<Worker> workers = [];
+    List<Worker>? workers = [];
 
     Database? _database = await LocalDatabase.instance.database;
     final workersData = await _database!.rawQuery(GET_ALL_WORKERS);
@@ -48,14 +48,11 @@ class WorkerRepository {
 
     final workerData = await _database!
         .query(WORKER, where: 'id = ?', whereArgs: [id], limit: 1);
-    if (workerData != null) {
-      return Worker.fromMap(workerData.first);
-    }
 
-    return null;
+    return Worker.fromMap(workerData.first);
   }
 
-  Future<bool> changeFavoriteWorker(Worker worker) async {
+  Future<void> changeFavoriteWorker(Worker worker) async {
     Database? _database = await LocalDatabase.instance.database;
 
     final Worker favoriteWorker = Worker(
@@ -71,17 +68,12 @@ class WorkerRepository {
       path: worker.path!,
       createdAt: worker.createdAt!,
       createdBy: worker.createdBy!,
-      deletedBy: worker.deletedBy!,
+      deletedBy: worker.deletedBy,
       isFavorite: !worker.isFavorite!,
     );
 
-    try {
-      await _database!.update(WORKER, favoriteWorker.toMap(),
-          where: 'id = ?', whereArgs: [worker.id]);
-      return true;
-    } catch (error) {
-      return false;
-    }
+    await _database!.update(WORKER, favoriteWorker.toMap(),
+        where: 'id = ?', whereArgs: [worker.id]);
   }
 
   Future<bool> update(Worker worker) async {

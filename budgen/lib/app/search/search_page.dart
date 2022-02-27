@@ -17,6 +17,7 @@ class SearchPage extends StatelessWidget {
     SearchStore store = SearchStore();
 
     store.onInit();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colorPalette.primaryCollor,
@@ -39,13 +40,6 @@ class SearchPage extends StatelessWidget {
               ),
             ),
             Observer(
-              builder: (_) => Column(
-                children: [
-                  if (store.isLoading) CircularProgressIndicator(),
-                ],
-              ),
-            ),
-            Observer(
               builder: (_) {
                 return TypeButton(
                   showItems: store.showItems,
@@ -54,37 +48,37 @@ class SearchPage extends StatelessWidget {
                 );
               },
             ),
-            Observer(
-              builder: (_) {
-                if (store.showItems) {
-                  return ItemsList(
-                    existsProject: store.currentProject != null,
-                    onPressedAdd: (Item item) {
-                      store.addItemToProject(item);
-                      showSnack(
-                          context: context,
-                          content: "Item adicionado ao projeto");
-                    },
-                    items: store.filteredItemsList ?? [],
-                    onPressedFavorite: (Item item) =>
-                        store.changeFavoriteItem(item),
-                  );
-                } else {
-                  return WorkersList(
-                    existsProject: store.currentProject != null,
-                    onPressedAdd: (Worker worker) {
-                      store.addWorkerToProject(worker);
-                      showSnack(
-                          context: context,
-                          content: "Serviço adicionado ao projeto");
-                    },
-                    workers: store.filteredWorkersList ?? [],
-                    onPressedFavorite: (Worker worker) =>
-                        store.changeFavoriteWorker(worker),
-                  );
-                }
-              },
-            ),
+            Observer(builder: (_) {
+              if (store.showItems) {
+                return ItemsList(
+                  items: store.items,
+                  onPressedFavorite: (Item item) =>
+                      store.changeFavoriteItem(item),
+                  onPressedAdd: (Item item) {
+                    store.addItemToProject(item);
+                    showSnack(
+                      context: context,
+                      content: "Item adicionado ao projeto",
+                    );
+                  },
+                  existsProject: store.existsProject,
+                );
+              } else {
+                return WorkersList(
+                  workers: store.workers,
+                  onPressedFavorite: (Worker worker) =>
+                      store.changeFavoriteWorker(worker),
+                  onPressedAdd: (Worker worker) {
+                    store.addWorkerToProject(worker);
+                    showSnack(
+                      context: context,
+                      content: "Serviço adicionado ao projeto",
+                    );
+                  },
+                  existsProject: store.existsProject,
+                );
+              }
+            })
           ],
         ),
       ),

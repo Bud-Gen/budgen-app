@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 class ItemListTile extends StatelessWidget {
   final Item item;
-  final Function? onPressedFavorite;
-  final Function? onPressedAdd;
+  final Function onPressedFavorite;
+  final Function onPressedAdd;
   final bool existsProject;
 
   const ItemListTile({
@@ -34,7 +34,7 @@ class ItemListTile extends StatelessWidget {
                   color:
                       existsProject ? colorPalette.primaryCollor : Colors.grey,
                 ),
-                onPressed: () => existsProject ? onPressedAdd!() : null,
+                onPressed: () => existsProject ? onPressedAdd() : null,
               ),
               IconButton(
                 icon: Icon(
@@ -43,7 +43,7 @@ class ItemListTile extends StatelessWidget {
                       ? colorPalette.primaryCollor
                       : Colors.grey,
                 ),
-                onPressed: () => onPressedFavorite!(),
+                onPressed: () => onPressedFavorite(),
               ),
             ],
           ),

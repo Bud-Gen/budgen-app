@@ -14,8 +14,8 @@ class DetailsProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     ColorPalette colorPalette = ColorPalette();
     final screenSize = MediaQuery.of(context).size;
-    final height = screenSize.height * 0.08;
-    final width = screenSize.width * 0.20;
+    final height = screenSize.height * 0.054;
+    final width = screenSize.width * 0.2;
 
     return Padding(
       padding: EdgeInsets.all(5),
@@ -27,6 +27,7 @@ class DetailsProducts extends StatelessWidget {
               height: height,
               width: width,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
                     "Itens",
@@ -50,6 +51,7 @@ class DetailsProducts extends StatelessWidget {
               height: height,
               width: width,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
                     "Serviços",
