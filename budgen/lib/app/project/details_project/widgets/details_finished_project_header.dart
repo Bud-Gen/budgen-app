@@ -23,8 +23,14 @@ class DetailsFinishedProjectHeader extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Card(
-          color: colorPalette.secondCollor,
+          // color: colorPalette.secondCollor,
           child: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [colorPalette.secondCollor, colorPalette.primaryCollor],
+            )),
             width: screenSize.width,
             height: screenSize.height * 0.15,
             child: Row(
