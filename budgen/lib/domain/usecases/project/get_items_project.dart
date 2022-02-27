@@ -5,7 +5,7 @@ import 'package:budgen/domain/entities/project.dart';
 class GetItemsProject {
   ItemRepository _itemRepository = ItemRepository();
 
-  Future<List<Item>?> call(Project project) async {
+  Future<List<Item>?> call(Project? project) async {
     if (project == null) return null;
 
     List<String> itemsId = project.items?.keys.toList() ?? [];

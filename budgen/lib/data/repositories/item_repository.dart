@@ -63,7 +63,7 @@ class ItemRepository {
       price: item.price!,
       createdAt: item.createdAt!,
       createdBy: item.createdBy!,
-      deletedBy: item.deletedBy!,
+      deletedBy: item.deletedBy,
       isFavorite: !item.isFavorite!,
     );
 

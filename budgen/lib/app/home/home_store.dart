@@ -34,9 +34,6 @@ abstract class _HomeStore with Store {
   Project? currentProject;
 
   @observable
-  bool existsProject = false;
-
-  @observable
   List<Worker>? workers;
 
   @observable
@@ -80,29 +77,26 @@ abstract class _HomeStore with Store {
 
   @action
   Future<void> addNewProject() async {
-    await _insertProject.withName(projectName??"Novo projeto");
+    await _insertProject.withName(projectName ?? "Novo projeto");
     await _sync();
   }
 
   @action
   Future<void> finishProject() async {
     await _finishProject.call(currentProject!, projectEmail);
-    //currentProject = null;
-    existsProject = false;
-    //workers = null;
-    //items = null;
+    currentProject = null;
+    workers = null;
+    items = null;
     await _sync();
   }
 
   Future<void> _sync() async {
-    //currentProject = null;
+    currentProject = null;
     isLoading = true;
     currentProject = await _getCurrentProject.call();
 
-    if (currentProject != null) existsProject = true;
-
-    workers = await _getWorkersProject.call(currentProject!);
-    items = await _getItemsProject.call(currentProject!);
+    workers = await _getWorkersProject.call(currentProject);
+    items = await _getItemsProject.call(currentProject);
     isLoading = false;
   }
 
@@ -162,5 +156,8 @@ abstract class _HomeStore with Store {
   void editEmailProject(String email) => projectEmail = email;
 
   bool get showProducts => (!isLoading && currentProject != null);
+
+  bool get existsProject => currentProject != null;
+
   bool get isProjectEmpty => (items!.isEmpty & workers!.isEmpty);
 }

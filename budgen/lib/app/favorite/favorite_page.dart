@@ -22,27 +22,24 @@ class FavoritePage extends StatelessWidget {
         backgroundColor: colorPalette.primaryCollor,
         title: Text("Favoritos"),
       ),
-      body: Column(
-        children: [
-          Observer(
-            builder: (_) => Column(
-              children: [
-                if (store.isLoading) CircularProgressIndicator(),
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Observer(
+              builder: (_) {
+                return TypeButton(
+                  showItems: store.showItems,
+                  onPressedShowItem: () => store.showItemsList(),
+                  onPressedShowWorker: () => store.showWorkersList(),
+                );
+              },
             ),
-          ),
-          Observer(builder: (_) {
-            return TypeButton(
-              showItems: store.showItems,
-              onPressedShowItem: () => store.showItemsList(),
-              onPressedShowWorker: () => store.showWorkersList(),
-            );
-          }),
-          Observer(
-            builder: (_) {
+            Observer(builder: (_) {
               if (store.showItems) {
                 return ItemsList(
-                  existsProject: store.currentProject != null,
+                  items: store.items,
+                  onPressedFavorite: (Item item) =>
+                      store.changeFavoriteItem(item),
                   onPressedAdd: (Item item) {
                     store.addItemToProject(item);
                     showSnack(
@@ -50,27 +47,26 @@ class FavoritePage extends StatelessWidget {
                       content: "Item adicionado ao projeto",
                     );
                   },
-                  items: store.items ?? [],
-                  onPressedFavorite: (Item item) =>
-                      store.changeFavoriteItem(item),
+                  existsProject: store.existsProject,
                 );
               } else {
                 return WorkersList(
-                  existsProject: store.currentProject != null,
+                  workers: store.workers,
+                  onPressedFavorite: (Worker worker) =>
+                      store.changeFavoriteWorker(worker),
                   onPressedAdd: (Worker worker) {
                     store.addWorkerToProject(worker);
                     showSnack(
-                        context: context,
-                        content: "Serviço adicionado ao projeto");
+                      context: context,
+                      content: "Serviço adicionado ao projeto",
+                    );
                   },
-                  workers: store.workers ?? [],
-                  onPressedFavorite: (Worker worker) =>
-                      store.changeFavoriteWorker(worker),
+                  existsProject: store.existsProject,
                 );
               }
-            },
-          ),
-        ],
+            })
+          ],
+        ),
       ),
     );
   }

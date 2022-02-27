@@ -64,6 +64,8 @@ abstract class _FavoriteStore with Store {
     showItems = true;
   }
 
+  bool get existsProject => currentProject != null;
+
   @action
   Future<void> changeFavoriteItem(Item item) async {
     await _changeFavoriteItem.call(item);

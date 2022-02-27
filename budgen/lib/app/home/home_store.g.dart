@@ -24,21 +24,6 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
-  final _$existsProjectAtom = Atom(name: '_HomeStore.existsProject');
-
-  @override
-  bool get existsProject {
-    _$existsProjectAtom.reportRead();
-    return super.existsProject;
-  }
-
-  @override
-  set existsProject(bool value) {
-    _$existsProjectAtom.reportWrite(value, super.existsProject, () {
-      super.existsProject = value;
-    });
-  }
-
   final _$workersAtom = Atom(name: '_HomeStore.workers');
 
   @override
@@ -248,7 +233,6 @@ mixin _$HomeStore on _HomeStore, Store {
   String toString() {
     return '''
 currentProject: ${currentProject},
-existsProject: ${existsProject},
 workers: ${workers},
 items: ${items},
 projectName: ${projectName},

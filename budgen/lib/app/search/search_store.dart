@@ -42,10 +42,7 @@ abstract class _SearchStore with Store {
 
   @action
   Future<void> onInit() async {
-    isLoading = true;
     await _sync();
-
-    isLoading = false;
   }
 
   @action
@@ -86,9 +83,11 @@ abstract class _SearchStore with Store {
     items = [];
     currentProject = null;
 
+    isLoading = true;
     currentProject = await _getCurrentProject.call();
     workers = await _getWorkers.all();
     items = await _getItems.all();
+    isLoading = false;
   }
 
   @action
@@ -107,6 +106,8 @@ abstract class _SearchStore with Store {
           .toList();
     }
   }
+
+  bool get existsProject => currentProject != null;
 
   @computed
   List<Worker>? get filteredWorkersList {
