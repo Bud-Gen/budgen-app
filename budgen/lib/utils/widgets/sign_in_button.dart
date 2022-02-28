@@ -2,7 +2,7 @@ import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:flutter/material.dart';
 
 class SignInButton extends StatelessWidget {
-  SignInButton({@required this.onPressed});
+  SignInButton({required this.onPressed});
 
   final GestureTapCallback onPressed;
 

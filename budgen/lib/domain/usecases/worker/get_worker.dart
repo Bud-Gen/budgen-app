@@ -4,5 +4,5 @@ import 'package:budgen/domain/entities/worker.dart';
 class GetWorker {
   WorkerRepository _repository = WorkerRepository();
 
-  Future<Worker> byId(String id) => _repository.getWorkerById(id);
+  Future<Worker?> byId(String id) => _repository.getWorkerById(id);
 }

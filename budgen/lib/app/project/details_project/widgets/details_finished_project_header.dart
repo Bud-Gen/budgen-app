@@ -7,10 +7,10 @@ import 'package:budgen/utils/widgets/details_project/total_price_card.dart';
 import 'package:flutter/material.dart';
 
 class DetailsFinishedProjectHeader extends StatelessWidget {
-  final Project project;
+  final Project? project;
 
   const DetailsFinishedProjectHeader({
-    @required this.project,
+    required this.project,
   }) : super();
 
   @override
@@ -23,28 +23,34 @@ class DetailsFinishedProjectHeader extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Card(
-          color: colorPalette.secondCollor,
+          // color: colorPalette.secondCollor,
           child: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [colorPalette.secondCollor, colorPalette.primaryCollor],
+            )),
             width: screenSize.width,
             height: screenSize.height * 0.15,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                if (project.discount == 0)
+                if (project?.discount == 0)
                   TotalPriceCard(
-                    price: project.price.toStringAsFixed(2).toString(),
+                    price: project!.price.toStringAsFixed(2).toString(),
                   ),
-                if (project.discount != 0)
+                if (project!.discount != 0)
                   PriceWithDiscount(
-                    price: project.price,
-                    discount: project.discount,
+                    price: project!.price,
+                    discount: project!.discount,
                   ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     DetailsProducts(
-                      itemsQtd: project.items?.length ?? 0,
-                      workersQtd: project.workers?.length ?? 0,
+                      itemsQtd: project!.items!.length,
+                      workersQtd: project!.workers!.length,
                     ),
                     Card(
                       color: colorPalette.background,
@@ -63,7 +69,7 @@ class DetailsFinishedProjectHeader extends StatelessWidget {
                             ),
                             SizedBox(height: screenSize.height * 0.005),
                             Text(
-                              project.email,
+                              project!.email,
                               style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w300,

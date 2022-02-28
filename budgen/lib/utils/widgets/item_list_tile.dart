@@ -9,10 +9,10 @@ class ItemListTile extends StatelessWidget {
   final bool existsProject;
 
   const ItemListTile({
-    @required this.item,
-    @required this.onPressedFavorite,
-    this.onPressedAdd,
-    this.existsProject,
+    required this.item,
+    required this.onPressedFavorite,
+    required this.onPressedAdd,
+    required this.existsProject,
   }) : super();
 
   @override
@@ -21,8 +21,8 @@ class ItemListTile extends StatelessWidget {
     return Card(
       child: ListTile(
         leading: Icon(Icons.category_rounded),
-        title: Text(item?.name ?? "s/n"),
-        subtitle: Text(item?.description ?? "s/n"),
+        title: Text(item.name ?? "s/n"),
+        subtitle: Text(item.description ?? "s/n"),
         trailing: Container(
           width: 100,
           height: 100,
@@ -39,7 +39,7 @@ class ItemListTile extends StatelessWidget {
               IconButton(
                 icon: Icon(
                   Icons.favorite,
-                  color: item.isFavorite
+                  color: item.isFavorite!
                       ? colorPalette.primaryCollor
                       : Colors.grey,
                 ),

@@ -1,27 +1,26 @@
 import 'package:budgen/data/repositories/project_repository.dart';
 import 'package:budgen/domain/entities/project.dart';
 import 'package:budgen/domain/entities/worker.dart';
-import 'package:flutter/material.dart';
 
 class AddWorker {
   ProjectRepository _repository = ProjectRepository();
 
   Future<Project> call({
-    @required Project project,
-    @required Worker worker,
-    @required int qtd,
+    required Project project,
+    required Worker worker,
+    required int qtd,
   }) async {
-    Map<String, dynamic> workers = project?.workers ?? <String, dynamic>{};
-    double newPrice = project?.price ?? 0;
+    Map<String, dynamic> workers = project.workers ?? <String, dynamic>{};
+    double newPrice = project.price;
 
     if (workers.containsKey(worker.id)) {
       int workersQtd = workers[worker.id] as int;
       workersQtd += qtd;
-      workers[worker.id] = workersQtd;
+      workers[worker.id!] = workersQtd;
     } else {
-      workers[worker.id] = qtd;
+      workers[worker.id!] = qtd;
     }
-    newPrice += worker.price * qtd;
+    newPrice += worker.price! * qtd;
 
     Project updatedProject = new Project(
       id: project.id,

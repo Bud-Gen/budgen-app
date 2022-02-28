@@ -8,10 +8,10 @@ class RemoveWorker {
   Future<void> call(Project project, Worker worker) async {
     if (project == null || worker == null) return;
 
-    Map<String, dynamic> workers = project.workers;
-    final newPrice = (project.price - worker.price) < 0.0
+    Map<String, dynamic> workers = project.workers!;
+    final newPrice = (project.price - worker.price!) < 0.0
         ? 0.0
-        : (project.price - worker.price);
+        : (project.price - worker.price!);
     final double newDiscount =
         newPrice - project.discount <= 0.0 ? 0.0 : project.discount;
     workers.remove(worker.id);

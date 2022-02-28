@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class DriveFile {
   String id;
   String name;
@@ -7,10 +5,10 @@ class DriveFile {
   String mineType;
 
   DriveFile({
-    @required this.id,
-    @required this.name,
-    @required this.kind,
-    @required this.mineType,
+    required this.id,
+    required this.name,
+    required this.kind,
+    required this.mineType,
   });
 
   factory DriveFile.fromMap(Map<String, dynamic> json) => new DriveFile(

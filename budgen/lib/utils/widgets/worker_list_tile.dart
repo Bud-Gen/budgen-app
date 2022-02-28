@@ -9,10 +9,10 @@ class WorkerListTile extends StatelessWidget {
   final bool existsProject;
 
   const WorkerListTile({
-    @required this.worker,
-    @required this.onPressedFavorite,
-    this.onPressedAdd,
-    this.existsProject,
+    required this.worker,
+    required this.onPressedFavorite,
+    required this.onPressedAdd,
+    required this.existsProject,
   }) : super();
 
   @override
@@ -22,8 +22,8 @@ class WorkerListTile extends StatelessWidget {
     return Card(
       child: ListTile(
         leading: Icon(Icons.person),
-        title: Text(worker?.name ?? "s/n"),
-        subtitle: Text(worker?.description ?? "s/n"),
+        title: Text(worker.name ?? "s/n"),
+        subtitle: Text(worker.description ?? "s/n"),
         trailing: Container(
           width: 100,
           height: 100,
@@ -40,7 +40,7 @@ class WorkerListTile extends StatelessWidget {
               IconButton(
                 icon: Icon(
                   Icons.favorite,
-                  color: worker.isFavorite
+                  color: worker.isFavorite!
                       ? colorPalette.primaryCollor
                       : Colors.grey,
                 ),

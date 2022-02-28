@@ -11,7 +11,7 @@ class DetailsProjectPage extends StatelessWidget {
   final Project project;
 
   const DetailsProjectPage({
-    this.project,
+    required this.project,
   }) : super();
 
   @override
@@ -43,7 +43,7 @@ class DetailsProjectPage extends StatelessWidget {
                 IconButton(
                   icon: Icon(Icons.delete),
                   onPressed: () {
-                    return showDialog(
+                    showDialog(
                       context: context,
                       builder: (_) {
                         return DeleteProjectAlert(
@@ -68,8 +68,8 @@ class DetailsProjectPage extends StatelessWidget {
               if (store.isLoading) return CircularProgressIndicator();
               return DetailsFinishedProjectList(
                 project: project,
-                items: store.items,
-                workers: store.workers,
+                items: store.items!,
+                workers: store.workers!,
               );
             },
           ),
@@ -79,9 +79,11 @@ class DetailsProjectPage extends StatelessWidget {
   }
 
   void showSnack({
-    @required BuildContext context,
-    @required String content,
+    required BuildContext context,
+    required String content,
   }) {
+    //TODO: corrigir isso que tá errado mds
+
     final snack = SnackBar(
       content: Text(content),
       duration: Duration(milliseconds: 500),

@@ -15,7 +15,7 @@ class _LoginPageState extends State<LoginPage> {
   final loginStore = LoginStore();
   final ColorPalette colorPalette = ColorPalette();
 
-  ReactionDisposer disposer;
+  late ReactionDisposer disposer;
 
   @override
   void didChangeDependencies() {

@@ -6,9 +6,9 @@ class EditNameProjectAlert extends StatelessWidget {
   final String initialName;
 
   const EditNameProjectAlert({
-    this.editProjectName,
-    this.renameProject,
-    this.initialName,
+    required this.editProjectName,
+    required this.renameProject,
+    required this.initialName,
   }) : super();
 
   @override
@@ -17,7 +17,7 @@ class EditNameProjectAlert extends StatelessWidget {
       title: Text("Editar nome"),
       content: Expanded(
         child: TextFormField(
-          initialValue: initialName ?? "",
+          initialValue: initialName,
           onChanged: (value) => editProjectName(value),
         ),
       ),

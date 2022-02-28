@@ -10,7 +10,7 @@ class SplashStore = _SplashStore with _$SplashStore;
 
 abstract class _SplashStore with Store {
   FirebaseAuth auth = FirebaseAuth.instance;
-  BuildContext pageContext;
+  late BuildContext pageContext;
 
   @action
   initSplash() {

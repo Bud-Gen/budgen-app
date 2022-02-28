@@ -4,8 +4,8 @@ import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:flutter/material.dart';
 
 class FinishedProductWorkerList extends StatelessWidget {
-  final List<Worker> workers;
-  final Project project;
+  final List<Worker>? workers;
+  final Project? project;
 
   const FinishedProductWorkerList({
     this.project,
@@ -25,12 +25,12 @@ class FinishedProductWorkerList extends StatelessWidget {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
             ),
           ),
-          for (Worker worker in workers) ...[
+          for (Worker worker in workers!) ...[
             Card(
               child: ListTile(
                 leading: Icon(Icons.person),
-                title: Text(worker.name),
-                subtitle: Text(worker.price.toStringAsFixed(2).toString()),
+                title: Text(worker.name!),
+                subtitle: Text(worker.price!.toStringAsFixed(2).toString()),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -40,7 +40,7 @@ class FinishedProductWorkerList extends StatelessWidget {
                         height: screenSize.height * 0.2,
                         width: screenSize.width * 0.13,
                         child: Center(
-                          child: Text(project.workers[worker.id].toString()),
+                          child: Text(project!.workers![worker.id].toString()),
                         ),
                       ),
                     )

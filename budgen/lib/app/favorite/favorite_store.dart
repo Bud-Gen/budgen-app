@@ -23,10 +23,10 @@ abstract class _FavoriteStore with Store {
   AddWorker _addWorker = AddWorker();
 
   @observable
-  List<Worker> workers;
+  List<Worker>? workers;
 
   @observable
-  List<Item> items;
+  List<Item>? items;
 
   @observable
   bool showItems = true;
@@ -35,7 +35,7 @@ abstract class _FavoriteStore with Store {
   bool isLoading = false;
 
   @observable
-  Project currentProject;
+  Project? currentProject;
 
   Future<void> onInit() async {
     isLoading = true;
@@ -51,18 +51,20 @@ abstract class _FavoriteStore with Store {
 
   @action
   Future<void> addItemToProject(Item item) async {
-    await _addItem.call(item: item, project: currentProject, qtd: 1);
+    await _addItem.call(item: item, project: currentProject!, qtd: 1);
   }
 
   @action
   Future<void> addWorkerToProject(Worker worker) async {
-    await _addWorker.call(project: currentProject, worker: worker, qtd: 1);
+    await _addWorker.call(project: currentProject!, worker: worker, qtd: 1);
   }
 
   @action
   void showItemsList() {
     showItems = true;
   }
+
+  bool get existsProject => currentProject != null;
 
   @action
   Future<void> changeFavoriteItem(Item item) async {

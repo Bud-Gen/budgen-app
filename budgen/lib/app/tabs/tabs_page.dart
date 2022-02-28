@@ -11,7 +11,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 class TabsPage extends StatelessWidget {
   List screens = [
     HomePage(),
-    //SearchPage(),
+    SearchPage(),
     FavoritePage(),
     SettingsPage(),
   ];

@@ -4,7 +4,7 @@ import 'package:budgen/app/settings/widgets/settings_tile.dart';
 import 'package:flutter/material.dart';
 
 class SettingsOptions extends StatelessWidget {
-  const SettingsOptions({this.onLogout});
+  const SettingsOptions({required this.onLogout});
   final Function onLogout;
 
   @override

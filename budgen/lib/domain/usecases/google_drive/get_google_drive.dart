@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:budgen/data/remote/google_api.dart';
 import 'package:budgen/domain/entities/drive_file.dart';
 import 'package:googleapis/drive/v3.dart' as ga;
@@ -14,9 +13,9 @@ class GetGoogleDrive {
     var value = await drive.files
         .list(q: "mimeType='application/vnd.google-apps.spreadsheet'");
 
-    for (var v in value.files) {
+    for (var v in value.files!) {
       files.add(DriveFile(
-          id: v.id, name: v.name, kind: v.kind, mineType: v.mimeType));
+          id: v.id!, name: v.name!, kind: v.kind!, mineType: v.mimeType!));
     }
 
     return files;

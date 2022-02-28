@@ -7,9 +7,9 @@ class EditNameProjectButton extends StatelessWidget {
   final Function renameProject;
 
   const EditNameProjectButton({
-    this.currentProjectName,
-    this.editProjectName,
-    this.renameProject,
+    required this.currentProjectName,
+    required this.editProjectName,
+    required this.renameProject,
   }) : super();
 
   @override
@@ -17,7 +17,7 @@ class EditNameProjectButton extends StatelessWidget {
     return IconButton(
       icon: Icon(Icons.create),
       onPressed: () {
-        return showDialog(
+        showDialog(
           context: context,
           builder: (_) {
             return EditNameProjectAlert(

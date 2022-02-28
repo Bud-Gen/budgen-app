@@ -2,12 +2,12 @@ import 'package:budgen/app/home/widgets/finish_project/finish_project_alert.dart
 import 'package:flutter/material.dart';
 
 class EmailProjectAlert extends StatelessWidget {
-  final Function editEmailProject;
+  final Function? editEmailProject;
   final Function finishProject;
 
   const EmailProjectAlert({
-    this.editEmailProject,
-    this.finishProject,
+    required this.editEmailProject,
+    required this.finishProject,
   }) : super();
 
   @override
@@ -16,7 +16,7 @@ class EmailProjectAlert extends StatelessWidget {
       title: Text("Email para envio"),
       content: Expanded(
         child: TextFormField(
-          onChanged: (String value) => editEmailProject(value),
+          onChanged: (String value) => editEmailProject!(value),
         ),
       ),
       actions: [

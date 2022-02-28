@@ -1,28 +1,27 @@
 import 'package:budgen/data/repositories/project_repository.dart';
 import 'package:budgen/domain/entities/item.dart';
 import 'package:budgen/domain/entities/project.dart';
-import 'package:flutter/material.dart';
 
 class AddItem {
   ProjectRepository _repository = ProjectRepository();
 
-  Future<void> call({
-    @required Project project,
-    @required Item item,
-    @required int qtd,
+  Future<Project> call({
+    required Project project,
+    required Item item,
+    required int qtd,
   }) async {
-    Map<String, dynamic> items = project?.items ?? <String, dynamic>{};
-    double newPrice = project?.price ?? 0;
+    Map<String, dynamic> items = project.items ?? <String, dynamic>{};
+    double newPrice = project.price;
 
     if (items.containsKey(item.id)) {
       int itemQtd = items[item.id] as int;
       itemQtd += qtd;
-      items[item.id] = itemQtd;
+      items[item.id!] = itemQtd;
     } else {
-      items[item.id] = qtd;
+      items[item.id!] = qtd;
     }
 
-    newPrice += item.price * qtd;
+    newPrice += item.price! * qtd;
 
     Project updatedProject = new Project(
       id: project.id,

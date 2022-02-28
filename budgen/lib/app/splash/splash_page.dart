@@ -3,7 +3,7 @@ import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:flutter/material.dart';
 
 class SplashPage extends StatefulWidget {
-  const SplashPage({Key key}) : super(key: key);
+  const SplashPage();
 
   @override
   _SplashPageState createState() => _SplashPageState();

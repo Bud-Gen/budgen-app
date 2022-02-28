@@ -6,15 +6,15 @@ class DetailsProducts extends StatelessWidget {
   final int workersQtd;
 
   const DetailsProducts({
-    @required this.itemsQtd,
-    @required this.workersQtd,
+    required this.itemsQtd,
+    required this.workersQtd,
   }) : super();
 
   @override
   Widget build(BuildContext context) {
     ColorPalette colorPalette = ColorPalette();
     final screenSize = MediaQuery.of(context).size;
-    final height = screenSize.height * 0.05;
+    final height = screenSize.height * 0.054;
     final width = screenSize.width * 0.2;
 
     return Padding(
@@ -27,6 +27,7 @@ class DetailsProducts extends StatelessWidget {
               height: height,
               width: width,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
                     "Itens",
@@ -50,6 +51,7 @@ class DetailsProducts extends StatelessWidget {
               height: height,
               width: width,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
                     "Serviços",

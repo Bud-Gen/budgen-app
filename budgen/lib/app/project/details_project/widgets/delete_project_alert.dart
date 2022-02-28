@@ -4,7 +4,7 @@ class DeleteProjectAlert extends StatelessWidget {
   final Function deleteProject;
 
   const DeleteProjectAlert({
-    @required this.deleteProject,
+    required this.deleteProject,
   }) : super();
 
   @override

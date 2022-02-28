@@ -5,16 +5,17 @@ import 'package:budgen/domain/entities/project.dart';
 class RemoveItem {
   ProjectRepository _repository = ProjectRepository();
 
-  Future<void> call(Project project, Item item) async {
+  Future<void> call(Project? project, Item? item) async {
     if (project == null || item == null) return;
 
-    Map<String, dynamic> items = project.items;
+    Map<String, dynamic>? items = project.items;
 
-    final double newPrice =
-        (project.price - item.price) < 0.0 ? 0.0 : (project.price - item.price);
+    final double newPrice = (project.price - item.price!) < 0.0
+        ? 0.0
+        : (project.price - item.price!);
     final double newDiscount =
         newPrice - project.discount <= 0.0 ? 0.0 : project.discount;
-    items.remove(item.id);
+    items!.remove(item.id);
 
     Project updatedProject = new Project(
       id: project.id,
@@ -31,7 +32,5 @@ class RemoveItem {
     );
 
     _repository.updateProject(updatedProject);
-
-    return updatedProject;
   }
 }

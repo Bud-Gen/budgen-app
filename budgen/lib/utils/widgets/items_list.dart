@@ -4,37 +4,38 @@ import 'package:budgen/utils/widgets/item_list_tile.dart';
 import 'package:flutter/material.dart';
 
 class ItemsList extends StatelessWidget {
-  final List<Item> items;
+  final List<Item>? items;
   final Function onPressedFavorite;
   final Function onPressedAdd;
   final bool existsProject;
 
   const ItemsList({
-    @required this.items,
-    this.onPressedFavorite,
-    this.onPressedAdd,
-    this.existsProject,
+    required this.items,
+    required this.onPressedFavorite,
+    required this.onPressedAdd,
+    required this.existsProject,
   }) : super();
 
   @override
   Widget build(BuildContext context) {
-    if (items.isEmpty) return EmptyText();
+    final screenSize = MediaQuery.of(context).size;
 
-    return Expanded(
-      child: SizedBox(
-        child: ListView.builder(
-          itemCount: items.length ?? 0,
-          itemBuilder: (_, int index) {
-            Item item = items[index];
+    if (items!.isEmpty) return EmptyText();
 
-            return ItemListTile(
-              item: item,
-              existsProject: existsProject,
-              onPressedAdd: () => onPressedAdd(item),
-              onPressedFavorite: () => onPressedFavorite(item),
-            );
-          },
-        ),
+    return Container(
+      height: screenSize.height,
+      child: ListView.builder(
+        itemCount: items!.length,
+        itemBuilder: (_, int index) {
+          Item item = items![index];
+
+          return ItemListTile(
+            item: item,
+            existsProject: existsProject,
+            onPressedAdd: () => onPressedAdd(item),
+            onPressedFavorite: () => onPressedFavorite(item),
+          );
+        },
       ),
     );
   }

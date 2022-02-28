@@ -25,11 +25,11 @@ class FinishedProjectsPage extends StatelessWidget {
         children: [
           Observer(
             builder: (BuildContext context) {
-              if (store.projects == null || store.projects.isEmpty)
+              if (store.projects == null || store.projects!.isEmpty)
                 return EmptyProjectsAlert();
 
               return FinishedProjectsList(
-                projects: store.projects,
+                projects: store.projects!,
                 existsCurrentProject: store.existsCurrentProject,
                 deleteProject: (Project project) =>
                     store.deleteProject(project),
@@ -45,11 +45,11 @@ class FinishedProjectsPage extends StatelessWidget {
   }
 
   void showSnack({
-    @required BuildContext context,
-    @required String content,
+    required BuildContext context,
+    required String content,
   }) {
     final snack = SnackBar(
-      content: Text(content),
+      content: Text(content), //TODO: corrigir isso aqui
       duration: Duration(milliseconds: 500),
     );
     Scaffold.of(context).showSnackBar(snack);

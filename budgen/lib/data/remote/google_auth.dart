@@ -8,16 +8,15 @@ class GoogleAuth {
 
   Future<bool> signInWithGoogle() async {
     try {
-      final GoogleSignInAccount googleSignInAccount =
+      final GoogleSignInAccount? googleSignInAccount =
           await _googleSignIn.signIn();
       final GoogleSignInAuthentication googleSignInAuthentication =
-          await googleSignInAccount.authentication;
+          await googleSignInAccount!.authentication;
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleSignInAuthentication.accessToken,
         idToken: googleSignInAuthentication.idToken,
       );
       await _auth.signInWithCredential(credential);
-
       return true;
     } on FirebaseAuthException catch (e) {
       print(e.message);
@@ -38,30 +37,30 @@ class GoogleAuth {
 
   Future<Map<String, String>> getAuthHeaders() async {
     await _googleSignIn.signIn();
-    Map<String, String> headers = await _googleSignIn.currentUser.authHeaders;
+    Map<String, String> headers = await _googleSignIn.currentUser!.authHeaders;
     return headers;
   }
 
   Future<String> getToken() async {
-    final GoogleSignInAccount googleSignInAccount =
+    final GoogleSignInAccount? googleSignInAccount =
         await _googleSignIn.signInSilently();
 
     final GoogleSignInAuthentication googleSignInAuthentication =
-        await googleSignInAccount.authentication;
+        await googleSignInAccount!.authentication;
 
-    String token = googleSignInAuthentication.accessToken;
+    String? token = googleSignInAuthentication.accessToken;
 
-    return token;
+    return token ?? "";
   }
 
   Future<UserCredentials> getGoogleUser() async {
-    final GoogleSignInAccount googleSignInAccount =
+    final GoogleSignInAccount? googleSignInAccount =
         await _googleSignIn.signInSilently();
 
     UserCredentials user = new UserCredentials(
-        id: googleSignInAccount.id,
-        name: googleSignInAccount.displayName,
-        email: googleSignInAccount.email);
+        id: googleSignInAccount?.id ?? "",
+        name: googleSignInAccount?.displayName ?? "",
+        email: googleSignInAccount?.email ?? "");
 
     return user;
   }

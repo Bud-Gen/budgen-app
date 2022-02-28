@@ -1,14 +1,12 @@
-import 'package:flutter/material.dart';
-
 class UserCredentials {
   String id;
   String name;
   String email;
 
   UserCredentials({
-    @required this.id,
-    @required this.name,
-    @required this.email,
+    required this.id,
+    required this.name,
+    required this.email,
   });
 
   factory UserCredentials.fromMap(Map<String, dynamic> json) =>
