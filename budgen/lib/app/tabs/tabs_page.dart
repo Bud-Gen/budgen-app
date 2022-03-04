@@ -4,12 +4,11 @@ import 'package:budgen/app/search/search_page.dart';
 import 'package:budgen/app/settings/settings_page.dart';
 import 'package:budgen/app/tabs/tabs_store.dart';
 import 'package:budgen/app/tabs/widgets/bottom_bar.dart';
-import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class TabsPage extends StatelessWidget {
-  List screens = [
+  final List screens = [
     HomePage(),
     SearchPage(),
     FavoritePage(),
@@ -36,8 +35,6 @@ class TabsPage extends StatelessWidget {
           setIndex: (int value) => store.setIndex(value),
         ),
       ),
-
-      // floatingActionButtonLocation: FloatingActionButtonLocation.miniStartFloat,
     );
   }
 }
