@@ -7,8 +7,8 @@ class AddProjectButton extends StatelessWidget {
   final Function addProjectName;
 
   const AddProjectButton({
-    this.newProject,
-    this.addProjectName,
+    required this.newProject,
+    required this.addProjectName,
   }) : super();
 
   @override

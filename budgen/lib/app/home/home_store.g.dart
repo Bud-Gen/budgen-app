@@ -12,43 +12,28 @@ mixin _$HomeStore on _HomeStore, Store {
   final _$currentProjectAtom = Atom(name: '_HomeStore.currentProject');
 
   @override
-  Project get currentProject {
+  Project? get currentProject {
     _$currentProjectAtom.reportRead();
     return super.currentProject;
   }
 
   @override
-  set currentProject(Project value) {
+  set currentProject(Project? value) {
     _$currentProjectAtom.reportWrite(value, super.currentProject, () {
       super.currentProject = value;
-    });
-  }
-
-  final _$existsProjectAtom = Atom(name: '_HomeStore.existsProject');
-
-  @override
-  bool get existsProject {
-    _$existsProjectAtom.reportRead();
-    return super.existsProject;
-  }
-
-  @override
-  set existsProject(bool value) {
-    _$existsProjectAtom.reportWrite(value, super.existsProject, () {
-      super.existsProject = value;
     });
   }
 
   final _$workersAtom = Atom(name: '_HomeStore.workers');
 
   @override
-  List<Worker> get workers {
+  List<Worker>? get workers {
     _$workersAtom.reportRead();
     return super.workers;
   }
 
   @override
-  set workers(List<Worker> value) {
+  set workers(List<Worker>? value) {
     _$workersAtom.reportWrite(value, super.workers, () {
       super.workers = value;
     });
@@ -57,13 +42,13 @@ mixin _$HomeStore on _HomeStore, Store {
   final _$itemsAtom = Atom(name: '_HomeStore.items');
 
   @override
-  List<Item> get items {
+  List<Item>? get items {
     _$itemsAtom.reportRead();
     return super.items;
   }
 
   @override
-  set items(List<Item> value) {
+  set items(List<Item>? value) {
     _$itemsAtom.reportWrite(value, super.items, () {
       super.items = value;
     });
@@ -72,13 +57,13 @@ mixin _$HomeStore on _HomeStore, Store {
   final _$projectNameAtom = Atom(name: '_HomeStore.projectName');
 
   @override
-  String get projectName {
+  String? get projectName {
     _$projectNameAtom.reportRead();
     return super.projectName;
   }
 
   @override
-  set projectName(String value) {
+  set projectName(String? value) {
     _$projectNameAtom.reportWrite(value, super.projectName, () {
       super.projectName = value;
     });
@@ -132,13 +117,13 @@ mixin _$HomeStore on _HomeStore, Store {
   final _$errorMessageAtom = Atom(name: '_HomeStore.errorMessage');
 
   @override
-  String get errorMessage {
+  String? get errorMessage {
     _$errorMessageAtom.reportRead();
     return super.errorMessage;
   }
 
   @override
-  set errorMessage(String value) {
+  set errorMessage(String? value) {
     _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
       super.errorMessage = value;
     });
@@ -248,7 +233,6 @@ mixin _$HomeStore on _HomeStore, Store {
   String toString() {
     return '''
 currentProject: ${currentProject},
-existsProject: ${existsProject},
 workers: ${workers},
 items: ${items},
 projectName: ${projectName},

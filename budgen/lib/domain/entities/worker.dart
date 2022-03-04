@@ -1,25 +1,25 @@
 import 'package:budgen/domain/entities/product.dart';
 
 class Worker extends Product {
-  final String phone;
-  final String type;
-  final String address;
+  final String? phone;
+  final String? type;
+  final String? address;
 
   Worker({
-    String id,
-    String name,
-    String code,
-    String description,
-    String imageUrl,
-    double price,
+    required String id,
+    required String name,
+    required String code,
+    String? description,
+    String? imageUrl,
+    required double price,
     this.phone,
     this.type,
     this.address,
-    bool isFavorite,
-    String path,
-    DateTime createdAt,
-    String createdBy,
-    String deletedBy,
+    required bool? isFavorite,
+    String? path,
+    required DateTime createdAt,
+    required String createdBy,
+    String? deletedBy,
   }) : super(
           id: id,
           name: name,
@@ -39,7 +39,7 @@ class Worker extends Product {
         name: json['name'],
         code: json['code'],
         description: json['description'],
-        imageUrl: json['url'],
+        imageUrl: json['imageUrl'],
         price: json['price'],
         phone: json['phone'],
         type: json['type'],
@@ -63,13 +63,13 @@ class Worker extends Product {
         'type': type,
         'address': address,
         'isFavorite': convertBool(),
-        'createdAt': createdAt.millisecondsSinceEpoch,
+        'createdAt': createdAt?.millisecondsSinceEpoch,
         'createdBy': createdBy,
         'deletedBy': deletedBy,
       };
 
   int convertBool() {
-    if (isFavorite != null && isFavorite) return 1;
+    if (isFavorite != null && isFavorite!) return 1;
     return 0;
   }
 

@@ -7,9 +7,9 @@ class TypeButton extends StatelessWidget {
   final Function onPressedShowWorker;
 
   const TypeButton({
-    @required this.showItems,
-    @required this.onPressedShowItem,
-    @required this.onPressedShowWorker,
+    required this.showItems,
+    required this.onPressedShowItem,
+    required this.onPressedShowWorker,
   }) : super();
 
   @override

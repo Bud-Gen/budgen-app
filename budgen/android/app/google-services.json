@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "720476944089",
+    "project_id": "budgen-26abb",
+    "storage_bucket": "budgen-26abb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:720476944089:android:5879a0108867dc2c4130c8",
+        "android_client_info": {
+          "package_name": "com.budgen.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "720476944089-b5ankdlcieulsa6hpsek18uet735mqsu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.budgen.app",
+            "certificate_hash": "b0df40cbc95c8f90f8664ec6e0f44aa726af1c28"
+          }
+        },
+        {
+          "client_id": "720476944089-ls1boeu91s4j8nsm5f0fuo209ie800ht.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArTYVispkIZp8F_bD5BXXK6A3F2PyZwTI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "720476944089-ls1boeu91s4j8nsm5f0fuo209ie800ht.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

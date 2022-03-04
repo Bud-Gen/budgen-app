@@ -1,15 +1,15 @@
 abstract class Product {
-  String id;
-  String name;
-  String code;
-  String description;
-  String imageUrl;
-  double price;
-  String path;
-  bool isFavorite;
-  DateTime createdAt;
-  String createdBy;
-  String deletedBy;
+  String? id;
+  String? name;
+  String? code;
+  String? description;
+  String? imageUrl;
+  double? price;
+  String? path;
+  bool? isFavorite;
+  DateTime? createdAt;
+  String? createdBy;
+  String? deletedBy;
 
   Product({
     this.id,

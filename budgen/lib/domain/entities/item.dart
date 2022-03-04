@@ -1,19 +1,18 @@
 import 'package:budgen/domain/entities/product.dart';
-import 'package:flutter/material.dart';
 
 class Item extends Product {
   Item({
-    @required String id,
-    @required String name,
-    @required String code,
-    @required String description,
-    @required String imageUrl,
-    @required double price,
-    @required String path,
-    bool isFavorite,
-    @required DateTime createdAt,
-    @required String createdBy,
-    @required String deletedBy,
+    required String id,
+    required String name,
+    required String code,
+    String? description,
+    String? imageUrl,
+    required double price,
+    required bool? isFavorite,
+    String? path,
+    required DateTime createdAt,
+    required String createdBy,
+    String? deletedBy,
   }) : super(
           id: id,
           name: name,
@@ -33,7 +32,7 @@ class Item extends Product {
         name: json['name'],
         code: json['code'],
         description: json['description'],
-        imageUrl: json['url'],
+        imageUrl: json['imageUrl'],
         price: json['price'],
         path: json['path'],
         isFavorite: json['isFavorite'] == 1 ? true : false,
@@ -51,13 +50,13 @@ class Item extends Product {
         'imageUrl': imageUrl,
         'price': price,
         'isFavorite': convertBool(),
-        'createdAt': createdAt.millisecondsSinceEpoch,
+        'createdAt': createdAt!.millisecondsSinceEpoch,
         'createdBy': createdBy,
         'deletedBy': deletedBy,
       };
 
   int convertBool() {
-    if (isFavorite != null && isFavorite) return 1;
+    if (isFavorite != null && isFavorite!) return 1;
     return 0;
   }
 

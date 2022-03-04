@@ -4,7 +4,8 @@ import 'package:budgen/app/settings/widgets/settings_tile.dart';
 import 'package:flutter/material.dart';
 
 class SettingsOptions extends StatelessWidget {
-  const SettingsOptions() : super();
+  const SettingsOptions({required this.onLogout});
+  final Function onLogout;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,12 @@ class SettingsOptions extends StatelessWidget {
           iconData: Icons.alternate_email_sharp,
           title: "Sobre o app",
           onTap: () => print("Pagina sobre o app"),
-        )
+        ),
+        SettingsTile(
+          iconData: Icons.logout,
+          title: "Sair da conta",
+          onTap: onLogout,
+        ),
       ],
     );
   }

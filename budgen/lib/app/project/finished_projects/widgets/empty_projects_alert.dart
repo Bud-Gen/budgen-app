@@ -14,7 +14,7 @@ class EmptyProjectsAlert extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(
-            vertical: screenSize.height * 0.26,
+            vertical: screenSize.height * 0.24,
             horizontal: screenSize.height * 0.07,
           ),
           child: Center(

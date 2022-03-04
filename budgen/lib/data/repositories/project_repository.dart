@@ -6,10 +6,10 @@ import 'package:sqflite/sqflite.dart';
 
 class ProjectRepository {
   Future<bool> insertProject(Project project) async {
-    Database _database = await LocalDatabase.instance.database;
+    Database? _database = await LocalDatabase.instance.database;
 
     try {
-      await _database.insert(PROJECT, project.toMap());
+      await _database!.insert(PROJECT, project.toMap());
       return true;
     } catch (error) {
       return false;
@@ -17,9 +17,9 @@ class ProjectRepository {
   }
 
   Future<bool> deleteProject(String id) async {
-    Database _database = await LocalDatabase.instance.database;
+    Database? _database = await LocalDatabase.instance.database;
     try {
-      _database.delete(PROJECT, where: 'id = ?', whereArgs: [id]);
+      _database!.delete(PROJECT, where: 'id = ?', whereArgs: [id]);
       return true;
     } catch (error) {
       return false;
@@ -29,8 +29,8 @@ class ProjectRepository {
   Future<bool> updateProject(Project project) async {
     bool result = false;
 
-    Database _database = await LocalDatabase.instance.database;
-    await _database.update(PROJECT, project.toMap(),
+    Database? _database = await LocalDatabase.instance.database;
+    await _database!.update(PROJECT, project.toMap(),
         where: 'id = ?',
         whereArgs: [project.id]).whenComplete(() => result = true);
 
@@ -39,8 +39,8 @@ class ProjectRepository {
 
   Future<List<Project>> getAllProjects() async {
     List<Project> projects = [];
-    Database _database = await LocalDatabase.instance.database;
-    final projectsData = await _database.rawQuery(GET_ALL_PROJECTS);
+    Database? _database = await LocalDatabase.instance.database;
+    final projectsData = await _database!.rawQuery(GET_ALL_PROJECTS);
 
     projectsData.forEach((project) {
       projects.add(Project.fromMap(project));
@@ -51,8 +51,8 @@ class ProjectRepository {
 
   Future<List<Project>> getFinishedProjects() async {
     List<Project> projects = [];
-    Database _database = await LocalDatabase.instance.database;
-    final projectsData = await _database.rawQuery(GET_FINISHED_PROJECTS);
+    Database? _database = await LocalDatabase.instance.database;
+    final projectsData = await _database!.rawQuery(GET_FINISHED_PROJECTS);
 
     projectsData.forEach((project) {
       projects.add(Project.fromMap(project));
@@ -62,19 +62,19 @@ class ProjectRepository {
   }
 
   Future<Project> getProjectById(String id) async {
-    Database _database = await LocalDatabase.instance.database;
-    final projectData = await _database.query(PROJECT,
+    Database? _database = await LocalDatabase.instance.database;
+    final projectData = await _database?.query(PROJECT,
         where: 'id = ?', whereArgs: [id], limit: 1);
 
-    return Project.fromMap(projectData.first);
+    return Project.fromMap(projectData!.first);
   }
 
   Future<Project> getLatestProjectOpen() async {
-    Database _database = await LocalDatabase.instance.database;
+    Database? _database = await LocalDatabase.instance.database;
     final projectData =
-        await _database.query(PROJECT, limit: 1, orderBy: "createdAt DESC");
+        await _database?.query(PROJECT, limit: 1, orderBy: "createdAt DESC");
 
-    if (projectData.isEmpty) {
+    if (projectData!.isEmpty) {
       Project project = new Project(
         id: "1",
         name: "Novo Projeto",
@@ -93,18 +93,18 @@ class ProjectRepository {
     return Project.fromMap(projectData.first);
   }
 
-  Future<Project> getCurrentProject() async {
+  Future<Project?> getCurrentProject() async {
     List<Project> projects = [];
-    Database _database = await LocalDatabase.instance.database;
-    final projectsData = await _database.rawQuery(GET_UNFINISHED_PROJECT);
+    Database? _database = await LocalDatabase.instance.database;
+    final projectsData = await _database?.rawQuery(GET_UNFINISHED_PROJECT);
 
-    projectsData.forEach((project) {
+    projectsData?.forEach((project) {
       projects.add(Project.fromMap(project));
     });
 
     if (projects.isEmpty) return null;
 
-    return projects?.first;
+    return projects.first;
   }
 
   Future<bool> finishProject(Project project) async {
@@ -125,7 +125,7 @@ class ProjectRepository {
       isFinished: true,
     );
 
-    await _database.update(PROJECT, finishedProject.toMap(),
+    await _database?.update(PROJECT, finishedProject.toMap(),
         where: 'id = ?',
         whereArgs: [project.id]).whenComplete(() => result = true);
 

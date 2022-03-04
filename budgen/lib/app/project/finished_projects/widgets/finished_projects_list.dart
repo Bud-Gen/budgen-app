@@ -11,11 +11,11 @@ class FinishedProjectsList extends StatelessWidget {
   final bool existsCurrentProject;
 
   const FinishedProjectsList({
-    @required this.projects,
-    @required this.deleteProject,
-    @required this.existsCurrentProject,
-    @required this.copyProject,
-    @required this.showSnack,
+    required this.projects,
+    required this.deleteProject,
+    required this.existsCurrentProject,
+    required this.copyProject,
+    required this.showSnack,
   }) : super();
 
   @override
@@ -39,8 +39,8 @@ class FinishedProjectsList extends StatelessWidget {
                   size: 45,
                 ),
                 title: Text(project.name),
-                subtitle: Text(
-                    (project?.price - project?.discount).toStringAsFixed(2)),
+                subtitle:
+                    Text((project.price - project.discount).toStringAsFixed(2)),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [

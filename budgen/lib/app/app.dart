@@ -1,3 +1,5 @@
+import 'package:budgen/app/login/login_page.dart';
+import 'package:budgen/app/splash/splash_page.dart';
 import 'package:budgen/app/tabs/tabs_page.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +13,7 @@ class App extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: TabsPage(),
+      home: SplashPage(),
     );
   }
 }

@@ -8,10 +8,10 @@ class SlicerButton extends StatelessWidget {
   final String qtd;
 
   const SlicerButton({
-    @required this.alterValue,
-    @required this.product,
-    @required this.qtd,
-    @required this.removeProduct,
+    required this.alterValue,
+    required this.product,
+    required this.qtd,
+    required this.removeProduct,
   }) : super();
 
   @override

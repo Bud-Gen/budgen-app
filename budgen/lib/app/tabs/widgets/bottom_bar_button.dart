@@ -7,9 +7,9 @@ class BottomBarButton extends StatelessWidget {
   final IconData iconData;
 
   const BottomBarButton({
-    @required this.iconData,
-    @required this.isActive,
-    @required this.onPressed,
+    required this.iconData,
+    required this.isActive,
+    required this.onPressed,
   }) : super();
 
   @override

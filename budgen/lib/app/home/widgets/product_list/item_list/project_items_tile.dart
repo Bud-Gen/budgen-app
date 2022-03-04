@@ -1,5 +1,4 @@
 import 'package:budgen/domain/entities/item.dart';
-import 'package:budgen/domain/entities/product.dart';
 import 'package:budgen/utils/widgets/slicer_button.dart';
 import 'package:flutter/material.dart';
 
@@ -10,10 +9,10 @@ class ProjectItemsTile extends StatelessWidget {
   final void Function(Item) removeItem;
 
   const ProjectItemsTile({
-    @required this.item,
-    @required this.qtd,
-    @required this.alterValue,
-    @required this.removeItem,
+    required this.item,
+    required this.qtd,
+    required this.alterValue,
+    required this.removeItem,
   }) : super();
 
   @override
@@ -21,8 +20,8 @@ class ProjectItemsTile extends StatelessWidget {
     return Card(
       child: ListTile(
         leading: Icon(Icons.category_rounded),
-        title: Text(item.name),
-        subtitle: Text(item?.description ?? "S/N"),
+        title: Text(item.name!),
+        subtitle: Text(item.description!),
         trailing: SlicerButton(
           alterValue: alterValue,
           product: item,

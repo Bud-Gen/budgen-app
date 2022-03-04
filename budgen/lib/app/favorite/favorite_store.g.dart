@@ -12,13 +12,13 @@ mixin _$FavoriteStore on _FavoriteStore, Store {
   final _$workersAtom = Atom(name: '_FavoriteStore.workers');
 
   @override
-  List<Worker> get workers {
+  List<Worker>? get workers {
     _$workersAtom.reportRead();
     return super.workers;
   }
 
   @override
-  set workers(List<Worker> value) {
+  set workers(List<Worker>? value) {
     _$workersAtom.reportWrite(value, super.workers, () {
       super.workers = value;
     });
@@ -27,13 +27,13 @@ mixin _$FavoriteStore on _FavoriteStore, Store {
   final _$itemsAtom = Atom(name: '_FavoriteStore.items');
 
   @override
-  List<Item> get items {
+  List<Item>? get items {
     _$itemsAtom.reportRead();
     return super.items;
   }
 
   @override
-  set items(List<Item> value) {
+  set items(List<Item>? value) {
     _$itemsAtom.reportWrite(value, super.items, () {
       super.items = value;
     });
@@ -72,13 +72,13 @@ mixin _$FavoriteStore on _FavoriteStore, Store {
   final _$currentProjectAtom = Atom(name: '_FavoriteStore.currentProject');
 
   @override
-  Project get currentProject {
+  Project? get currentProject {
     _$currentProjectAtom.reportRead();
     return super.currentProject;
   }
 
   @override
-  set currentProject(Project value) {
+  set currentProject(Project? value) {
     _$currentProjectAtom.reportWrite(value, super.currentProject, () {
       super.currentProject = value;
     });

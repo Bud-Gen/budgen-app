@@ -5,7 +5,7 @@ class TotalPriceCard extends StatelessWidget {
   final String price;
 
   const TotalPriceCard({
-    @required this.price,
+    required this.price,
   }) : super();
 
   @override

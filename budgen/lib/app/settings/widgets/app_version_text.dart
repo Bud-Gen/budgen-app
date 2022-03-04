@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppVersionText extends StatelessWidget {
   final String version;
   const AppVersionText({
-    @required this.version,
+    required this.version,
   }) : super();
 
   @override

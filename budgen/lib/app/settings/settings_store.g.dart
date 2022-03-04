@@ -31,6 +31,13 @@ mixin _$SettingsStore on _SettingsStore, Store {
     return _$onInitAsyncAction.run(() => super.onInit());
   }
 
+  final _$onLogoutAsyncAction = AsyncAction('_SettingsStore.onLogout');
+
+  @override
+  Future<void> onLogout() {
+    return _$onLogoutAsyncAction.run(() => super.onLogout());
+  }
+
   @override
   String toString() {
     return '''

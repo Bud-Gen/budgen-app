@@ -17,81 +17,77 @@ class SearchPage extends StatelessWidget {
     SearchStore store = SearchStore();
 
     store.onInit();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colorPalette.primaryCollor,
         title: Text("Pesquisa"),
       ),
-      body: Column(
-        children: [
-          TextField(
-            autocorrect: false,
-            maxLines: 1,
-            onChanged: store.search,
-            textAlignVertical: TextAlignVertical.bottom,
-            decoration: InputDecoration(
-              labelText: "",
-              hintText: "",
-              prefixIcon: Icon(
-                Icons.search,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            TextField(
+              autocorrect: false,
+              maxLines: 1,
+              onChanged: store.search,
+              textAlignVertical: TextAlignVertical.bottom,
+              decoration: InputDecoration(
+                labelText: "",
+                hintText: "",
+                prefixIcon: Icon(
+                  Icons.search,
+                ),
               ),
             ),
-          ),
-          Observer(
-            builder: (_) => Column(
-              children: [
-                if (store.isLoading) CircularProgressIndicator(),
-              ],
+            Observer(
+              builder: (_) {
+                return TypeButton(
+                  showItems: store.showItems,
+                  onPressedShowItem: () => store.showItemsList(),
+                  onPressedShowWorker: () => store.showWorkersList(),
+                );
+              },
             ),
-          ),
-          Observer(
-            builder: (_) {
-              return TypeButton(
-                showItems: store.showItems,
-                onPressedShowItem: () => store.showItemsList(),
-                onPressedShowWorker: () => store.showWorkersList(),
-              );
-            },
-          ),
-          Observer(
-            builder: (_) {
+            Observer(builder: (_) {
               if (store.showItems) {
                 return ItemsList(
-                  existsProject: store.currentProject != null,
+                  items: store.items,
+                  onPressedFavorite: (Item item) =>
+                      store.changeFavoriteItem(item),
                   onPressedAdd: (Item item) {
                     store.addItemToProject(item);
                     showSnack(
-                        context: context,
-                        content: "Item adicionado ao projeto");
+                      context: context,
+                      content: "Item adicionado ao projeto",
+                    );
                   },
-                  items: store.filteredItemsList ?? [],
-                  onPressedFavorite: (Item item) =>
-                      store.changeFavoriteItem(item),
+                  existsProject: store.existsProject,
                 );
               } else {
                 return WorkersList(
-                  existsProject: store.currentProject != null,
+                  workers: store.workers,
+                  onPressedFavorite: (Worker worker) =>
+                      store.changeFavoriteWorker(worker),
                   onPressedAdd: (Worker worker) {
                     store.addWorkerToProject(worker);
                     showSnack(
-                        context: context,
-                        content: "Serviço adicionado ao projeto");
+                      context: context,
+                      content: "Serviço adicionado ao projeto",
+                    );
                   },
-                  workers: store.filteredWorkersList ?? [],
-                  onPressedFavorite: (Worker worker) =>
-                      store.changeFavoriteWorker(worker),
+                  existsProject: store.existsProject,
                 );
               }
-            },
-          ),
-        ],
+            })
+          ],
+        ),
       ),
     );
   }
 
   void showSnack({
-    @required BuildContext context,
-    @required String content,
+    required BuildContext context,
+    required String content,
   }) {
     final snack = SnackBar(
       content: Text(content),

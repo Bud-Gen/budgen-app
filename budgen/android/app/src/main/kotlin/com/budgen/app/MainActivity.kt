@@ -1,4 +1,4 @@
-package com.example.budgen
+package com.budgen.app
 
 import io.flutter.embedding.android.FlutterActivity
 

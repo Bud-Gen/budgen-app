@@ -20,19 +20,19 @@ abstract class _DetailsProjectStore with Store {
   DeleteProject _deleteProject = DeleteProject();
 
   @observable
-  Project project;
+  Project? project;
 
   @observable
-  Project currentProject;
+  Project? currentProject;
 
   @observable
   bool isLoading = false;
 
   @observable
-  List<Item> items;
+  List<Item>? items;
 
   @observable
-  List<Worker> workers;
+  List<Worker>? workers;
 
   @action
   Future<void> onInit(Project newProject) async {
@@ -48,15 +48,15 @@ abstract class _DetailsProjectStore with Store {
 
   @action
   Future<void> deleteProject() async {
-    await _deleteProject.call(project);
+    await _deleteProject.call(project!);
     await _sync();
   }
 
   Future<void> _sync() async {
     if (project == null) return;
     isLoading = true;
-    items = await _getItemsProject.call(project);
-    workers = await _getWorkersProject.call(project);
+    items = await _getItemsProject.call(project!);
+    workers = await _getWorkersProject.call(project!);
     currentProject = await _getCurrentProject.call();
 
     isLoading = false;
