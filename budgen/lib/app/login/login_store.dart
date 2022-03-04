@@ -10,7 +10,7 @@ class LoginStore = _LoginStore with _$LoginStore;
 
 abstract class _LoginStore with Store {
   @observable
-   GetSignInGoogleAuth login = GetSignInGoogleAuth(new GoogleAuth());
+  GetSignInGoogleAuth login = GetSignInGoogleAuth(new GoogleAuth());
 
   @observable
   GetGoogleUser googleUser = GetGoogleUser(new GoogleAuth());
