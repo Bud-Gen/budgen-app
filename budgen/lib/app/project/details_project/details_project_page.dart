@@ -82,7 +82,6 @@ class DetailsProjectPage extends StatelessWidget {
     required BuildContext context,
     required String content,
   }) {
-    //TODO: corrigir isso que tá errado mds
 
     final snack = SnackBar(
       content: Text(content),

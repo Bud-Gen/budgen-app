@@ -4,20 +4,21 @@ Map<String, dynamic> MOCK_JSON = {
   "items": [
     {
       "code": "38d1f53c-4678-4c6e-8ade-c0bcd78f461a",
-      "name": "Dragline",
+      "name": "Batata",
       "description": "2-822 - Ornamental Metal Fences and Gates",
       "price": 52.58,
       "path": "Aluminum",
-      "imageUrl": "https://robohash.org/auteumdoloribus.png?size=50x50&set=set1"
+      "imageUrl":
+          "https://opinioescertificadas.com.br/wp-content/uploads/2020/10/shutterstock_1590674887-1.jpg"
     },
     {
       "code": "516c05d5-8e26-4ac8-84a1-c631c15f8372",
-      "name": "Grader",
+      "name": "Batata",
       "description": "9-680 - Carpet",
       "price": 34.04,
       "path": "Rubber",
       "imageUrl":
-          "https://robohash.org/sintrecusandaeexercitationem.png?size=50x50&set=set1"
+          "https://opinioescertificadas.com.br/wp-content/uploads/2020/10/shutterstock_1590674887-1.jpg"
     },
     {
       "code": "8a5d6937-4460-4cc8-8896-11cf32354dee",
@@ -25,7 +26,8 @@ Map<String, dynamic> MOCK_JSON = {
       "description": "3-500 - Cementitious Decks and Underlayments",
       "price": 24.45,
       "path": "Granite",
-      "imageUrl": "https://robohash.org/quaeiureaut.png?size=50x50&set=set1"
+      "imageUrl":
+          "https://opinioescertificadas.com.br/wp-content/uploads/2020/10/shutterstock_1590674887-1.jpg"
     },
     {
       "code": "6a96f453-2e35-45ef-aa0d-8235e853f145",
@@ -1976,5 +1978,3 @@ Project MOCK_PROJECT_FINISHED = Project(
   createdBy: 'bia',
   deletedBy: null,
 );
-
-
