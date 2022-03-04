@@ -7,7 +7,7 @@ class DetailsItemPage extends StatelessWidget {
   final Item item;
 
   const DetailsItemPage({
-    @required this.item,
+    required this.item,
   }) : super();
 
   @override

@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 class ProductImage extends StatelessWidget {
   final String imageUrl;
-  const ProductImage({this.imageUrl}) : super();
+
+  const ProductImage({
+    required this.imageUrl,
+  }) : super();
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +25,6 @@ class ProductImage extends StatelessWidget {
                 fit: BoxFit.fill,
                 height: screenSize.width * 0.7,
                 width: screenSize.width * 0.7,
-                loadingBuilder: (BuildContext context, Widget child,
-                    ImageChunkEvent loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return Center(child: CircularProgressIndicator());
-                },
               )
             : Padding(
                 padding: EdgeInsets.all(

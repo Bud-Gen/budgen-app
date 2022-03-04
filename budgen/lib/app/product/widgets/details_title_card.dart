@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 
 class DetailsTitleCard extends StatelessWidget {
   final String title;
-  const DetailsTitleCard({this.title}) : super();
+
+  const DetailsTitleCard({
+    required this.title,
+  }) : super();
 
   @override
   Widget build(BuildContext context) {

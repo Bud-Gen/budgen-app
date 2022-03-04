@@ -8,7 +8,7 @@ class DetailsProductBody extends StatelessWidget {
   final Product product;
 
   const DetailsProductBody({
-    @required this.product,
+    required this.product,
   }) : super();
 
   @override
@@ -18,7 +18,7 @@ class DetailsProductBody extends StatelessWidget {
     return Column(
       children: [
         ProductImage(
-          imageUrl: product.imageUrl,
+          imageUrl: product.imageUrl!,
         ),
         Column(
           children: [
@@ -36,7 +36,7 @@ class DetailsProductBody extends StatelessWidget {
                           title: 'Nome',
                         ),
                         DetailsContent(
-                          content: product.name,
+                          content: product.name!,
                         ),
                       ],
                     ),
@@ -58,7 +58,7 @@ class DetailsProductBody extends StatelessWidget {
                           title: 'Preço',
                         ),
                         DetailsContent(
-                          content: product.price.toStringAsFixed(2),
+                          content: product.price!.toStringAsFixed(2),
                         )
                       ],
                     ),
@@ -78,7 +78,7 @@ class DetailsProductBody extends StatelessWidget {
                           title: 'Tipo',
                         ),
                         DetailsContent(
-                          content: product?.path ?? "",
+                          content: product.path ?? "",
                         )
                       ],
                     ),
@@ -102,7 +102,7 @@ class DetailsProductBody extends StatelessWidget {
                       title: 'Descrição',
                     ),
                     DetailsContent(
-                      content: product.description,
+                      content: product.description!,
                     )
                   ],
                 ),

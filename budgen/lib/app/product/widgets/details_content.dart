@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class DetailsContent extends StatelessWidget {
   final String content;
-  const DetailsContent({this.content}) : super();
+  const DetailsContent({
+    required this.content,
+  }) : super();
 
   @override
   Widget build(BuildContext context) {

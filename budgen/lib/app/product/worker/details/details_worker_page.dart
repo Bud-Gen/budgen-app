@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class DetailsWorkerPage extends StatelessWidget {
   final Worker worker;
   const DetailsWorkerPage({
-    @required this.worker,
+    required this.worker,
   }) : super();
 
   @override
