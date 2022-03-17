@@ -59,14 +59,14 @@ class _ImportSpreadsheetPageState extends State<ImportSpreadsheetPage> {
               final spreadsheet = store.spreadsheets[index];
 
               return ListTile(
-                title: Text(
-                  spreadsheet.name,
-                ),
-                trailing: Icon(Icons.send),
-                onTap: () {
-                  store.importSpreadsheet(context, spreadsheet.id);
-                },
-              );
+                  title: Text(
+                    spreadsheet.name,
+                  ),
+                  trailing: Icon(Icons.send),
+                  onTap: () {
+                    store.importSpreadsheet(context, spreadsheet.id);
+                  },
+                );
             },
             separatorBuilder: (_, __) {
               return Divider();

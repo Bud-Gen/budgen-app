@@ -5,7 +5,7 @@ import 'package:uuid/uuid.dart';
 class InsertWorkers {
   WorkerRepository _workerRepository = WorkerRepository();
 
-  Future<bool> call(List<Map<String, dynamic>> workersJson) async {
+  Future<bool> call(List<dynamic> workersJson) async {
     bool result = true;
     Uuid _uuid = Uuid();
 
@@ -20,9 +20,7 @@ class InsertWorkers {
             code: json['code'],
             description: json['description'],
             imageUrl: json['imageUrl'],
-            price: (json['price'] is String)
-                ? double.parse(json['price'])
-                : json['price'],
+            price: json['price'].toDouble(),
             path: json['path'],
             isFavorite: false,
             createdAt: DateTime.now(),

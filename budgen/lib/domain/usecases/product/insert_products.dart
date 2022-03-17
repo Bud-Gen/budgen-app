@@ -6,8 +6,8 @@ class InsertProducts {
   InsertWorkers _insertWorkers = InsertWorkers();
 
   Future<bool> fromJson(Map<String, dynamic> json) async {
-    List<Map<String, dynamic>> itemsJson = json['items'];
-    List<Map<String, dynamic>> workersJson = json['workers'];
+    List<dynamic> itemsJson = json['items'];
+    List<dynamic> workersJson = json['workers'];
 
     return await _insertItems.call(itemsJson) &&
         await _insertWorkers.call(workersJson);
