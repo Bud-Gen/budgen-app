@@ -27,6 +27,7 @@ dependencies:
   flutter_svg: ^1.0.3
   uuid: ^3.0.6
   package_info_plus: ^1.4.0
+  material_design_icons_flutter: ^5.0.6595
 
 dev_dependencies:
   flutter_test:

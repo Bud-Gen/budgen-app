@@ -6,7 +6,7 @@ class InsertItems {
   ItemRepository _itemRepository = ItemRepository();
   Uuid _uuid = Uuid();
 
-  Future<bool> call(List<Map<String, dynamic>> itemsJson) async {
+  Future<bool> call(List<dynamic> itemsJson) async {
     bool result = true;
 
     if (itemsJson != null) {
@@ -21,9 +21,7 @@ class InsertItems {
             code: json['code'],
             description: json['description'],
             imageUrl: json['imageUrl'],
-            price: (json['price'] is String)
-                ? double.parse(json['price'])
-                : json['price'],
+            price: json['price'].toDouble(),
             path: json['path'],
             createdAt: DateTime.now(),
             createdBy: '000000', //TODO: mudar para o email do usuário
