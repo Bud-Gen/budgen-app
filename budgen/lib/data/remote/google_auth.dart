@@ -18,6 +18,14 @@ class GoogleAuth {
         idToken: googleSignInAuthentication.idToken,
       );
       await _auth.signInWithCredential(credential);
+
+      print("================");
+      print("Access Token");
+      print(googleSignInAuthentication.accessToken);
+      print("=======================");
+      print("ID token");
+      print(googleSignInAuthentication.idToken);
+
       return true;
     } on FirebaseAuthException catch (e) {
       print(e.message);
