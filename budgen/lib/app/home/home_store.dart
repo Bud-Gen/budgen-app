@@ -1,3 +1,5 @@
+import 'package:budgen/data/remote/google_auth.dart';
+import 'package:budgen/domain/api_services/api_handler.dart';
 import 'package:budgen/domain/entities/item.dart';
 import 'package:budgen/domain/entities/project.dart';
 import 'package:budgen/domain/entities/worker.dart';
@@ -12,6 +14,8 @@ import 'package:budgen/domain/usecases/project/insert_project.dart';
 import 'package:budgen/domain/usecases/project/remove_item.dart';
 import 'package:budgen/domain/usecases/project/remove_worker.dart';
 import 'package:budgen/domain/usecases/project/rename_project.dart';
+import 'package:budgen/domain/usecases/project/send_email.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 
 part 'home_store.g.dart';
@@ -19,6 +23,7 @@ part 'home_store.g.dart';
 class HomeStore = _HomeStore with _$HomeStore;
 
 abstract class _HomeStore with Store {
+  late BuildContext pageContext;
   GetCurrentProject _getCurrentProject = GetCurrentProject();
   RenameProject _renameProject = RenameProject();
   FinishProject _finishProject = FinishProject();
@@ -29,6 +34,7 @@ abstract class _HomeStore with Store {
   AlterQuantity _alterQuantity = AlterQuantity();
   RemoveItem _removeItem = RemoveItem();
   RemoveWorker _removeWorker = RemoveWorker();
+  SendEmail _sendEmail = SendEmail(GoogleAuth());
 
   @observable
   Project? currentProject;
@@ -82,12 +88,20 @@ abstract class _HomeStore with Store {
   }
 
   @action
-  Future<void> finishProject() async {
+  Future<bool> finishProject() async {
+    bool isEmailSent = await _sendEmail.call(projectEmail);
+
+    if (!isEmailSent) {
+      return false;
+    }
+
     await _finishProject.call(currentProject!, projectEmail);
     currentProject = null;
     workers = null;
     items = null;
     await _sync();
+
+    return true;
   }
 
   Future<void> _sync() async {

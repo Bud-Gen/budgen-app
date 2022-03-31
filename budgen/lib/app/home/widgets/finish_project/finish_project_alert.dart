@@ -2,7 +2,9 @@ import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:flutter/material.dart';
 
 class FinishProjectAlert extends StatelessWidget {
-  const FinishProjectAlert() : super();
+  final bool isSuccessful;
+
+  const FinishProjectAlert({this.isSuccessful = false}) : super();
 
   @override
   Widget build(BuildContext context) {
@@ -11,12 +13,21 @@ class FinishProjectAlert extends StatelessWidget {
     //TODO: ver como fazer esse cara desaparecer sozinho
 
     return AlertDialog(
-      title: Center(child: Text("Projeto Finalizado!")),
-      content: Icon(
-        Icons.assignment_turned_in_sharp,
-        color: colorPalette.primaryDarker,
-        size: 60,
-      ),
+      title: Center(
+          child: isSuccessful
+              ? Text("Projeto Finalizado!")
+              : Text("Ocorreu um erro\n Tente novamente")),
+      content: isSuccessful
+          ? Icon(
+              Icons.assignment_turned_in_sharp,
+              color: colorPalette.primaryDarker,
+              size: 60,
+            )
+          : Icon(
+              Icons.error,
+              color: colorPalette.primaryDarker,
+              size: 60,
+            ),
       actions: [
         TextButton(
           onPressed: () {

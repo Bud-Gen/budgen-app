@@ -1,4 +1,6 @@
 import 'package:budgen/app/home/widgets/finish_project/finish_project_alert.dart';
+import 'package:budgen/utils/widgets/custom_dialog.dart';
+import 'package:budgen/utils/widgets/custom_progress.dart';
 import 'package:flutter/material.dart';
 
 class EmailProjectAlert extends StatelessWidget {
@@ -21,10 +23,14 @@ class EmailProjectAlert extends StatelessWidget {
       ),
       actions: [
         TextButton(
-          onPressed: () {
+          onPressed: () async {
+            CustomProgress.call(context: context,text: "Finalizando...");
+            bool isFinished = await finishProject();
             Navigator.of(context).pop();
-            finishProject();
-            showDialog(context: context, builder: (_) => FinishProjectAlert());
+            Navigator.of(context).pop();
+            showDialog(
+                context: context,
+                builder: (_) => FinishProjectAlert(isSuccessful: isFinished));
           },
           child: const Text('finalizar'),
         ),

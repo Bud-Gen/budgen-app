@@ -53,7 +53,7 @@ Future<Map<String, dynamic>> importSpreadsheet(String userID, String id) async {
         }
     }
     return responseRequest;
-  } on HttpException catch (error) {
+  } on Exception catch (error) {
     responseRequest = {
       "status": false,
       "message": "Ocorreu um erro ao tentar importar a planilha"
@@ -71,4 +71,58 @@ Future<dynamic> getProducts(String userID) async {
   var jsonParsed = jsonDecoder.convert(resp.body);
 
   return jsonParsed;
+}
+
+Future<dynamic> sendEmail(String email) async {
+  Map<String, dynamic> responseRequest;
+
+  try {
+    final url = Uri.parse('${Constants.API_BASE_URL}/email');
+
+    final data = jsonEncode(<String, String>{
+      "to": email,
+      "subject": "Finalização do projeto",
+      "template":
+          "<mjml>   <mj-body>     <mj-section>       <mj-column>         <mj-text>Seu projeto foi finalizado com sucesso</mj-text>       </mj-column>     </mj-section>   </mj-body> </mjml>"
+    });
+
+    http.Response response =
+        await http.post(url, body: data, headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    });
+
+    switch (response.statusCode) {
+      case 200:
+        {
+          responseRequest = {
+            "status": true,
+            "message": "E-mail enviado com sucesso"
+          };
+          break;
+        }
+
+      case 201:
+        {
+          responseRequest = {
+            "status": true,
+            "message": "E-mail enviado com sucesso"
+          };
+          break;
+        }
+
+      default:
+        {
+          responseRequest = {
+            "status": false,
+            "message": "Ocorreu um erro ao tentar enviar o email"
+          };
+        }
+    }
+  } on Exception catch (error) {
+    responseRequest = {
+      "status": false,
+      "message": "Ocorreu um erro ao tentar enviar o email"
+    };
+  }
+  return responseRequest;
 }

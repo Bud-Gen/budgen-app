@@ -160,7 +160,7 @@ mixin _$HomeStore on _HomeStore, Store {
   final _$finishProjectAsyncAction = AsyncAction('_HomeStore.finishProject');
 
   @override
-  Future<void> finishProject() {
+  Future<bool> finishProject() {
     return _$finishProjectAsyncAction.run(() => super.finishProject());
   }
 

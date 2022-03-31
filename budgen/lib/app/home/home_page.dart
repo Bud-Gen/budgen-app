@@ -25,6 +25,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     HomeStore store = HomeStore();
     ColorPalette colorPalette = ColorPalette();
+    store.pageContext = context;
     store.onInit();
 
     return Scaffold(
