@@ -89,7 +89,7 @@ abstract class _HomeStore with Store {
 
   @action
   Future<bool> finishProject() async {
-    bool isEmailSent = await _sendEmail.call(projectEmail);
+    bool isEmailSent = await _sendEmail.call(projectEmail,currentProject!);
 
     if (!isEmailSent) {
       return false;
