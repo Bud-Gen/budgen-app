@@ -160,7 +160,7 @@ mixin _$HomeStore on _HomeStore, Store {
   final _$finishProjectAsyncAction = AsyncAction('_HomeStore.finishProject');
 
   @override
-  Future<void> finishProject() {
+  Future<bool> finishProject() {
     return _$finishProjectAsyncAction.run(() => super.finishProject());
   }
 
@@ -224,6 +224,17 @@ mixin _$HomeStore on _HomeStore, Store {
         name: '_HomeStore.editEmailProject');
     try {
       return super.editEmailProject(email);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  bool getExistsProject() {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.getExistsProject');
+    try {
+      return super.getExistsProject();
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }
