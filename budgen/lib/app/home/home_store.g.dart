@@ -230,6 +230,17 @@ mixin _$HomeStore on _HomeStore, Store {
   }
 
   @override
+  bool getExistsProject() {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.getExistsProject');
+    try {
+      return super.getExistsProject();
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 currentProject: ${currentProject},

@@ -28,7 +28,6 @@ class DetailsProject extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Card(
-          // color: ,
           child: Container(
             width: screenSize.width,
             height: screenSize.height * 0.15,
@@ -54,8 +53,7 @@ class DetailsProject extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     DetailsProducts(
-                      itemsQtd: project!.items?.length ?? 0,
-                      workersQtd: project!.workers?.length ?? 0,
+                      project: project,
                     ),
                     if (project!.price != 0)
                       AddDiscountButton(

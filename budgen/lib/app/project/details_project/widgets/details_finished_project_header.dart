@@ -23,7 +23,6 @@ class DetailsFinishedProjectHeader extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Card(
-          // color: colorPalette.secondCollor,
           child: Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -49,8 +48,7 @@ class DetailsFinishedProjectHeader extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     DetailsProducts(
-                      itemsQtd: project!.items!.length,
-                      workersQtd: project!.workers!.length,
+                      project: project,
                     ),
                     Card(
                       color: colorPalette.background,

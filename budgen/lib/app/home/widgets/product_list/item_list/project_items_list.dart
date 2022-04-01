@@ -3,8 +3,8 @@ import 'package:budgen/domain/entities/item.dart';
 import 'package:flutter/material.dart';
 
 class ProjectItemsList extends StatelessWidget {
-  final List<Item> items;
-  final Map<String, dynamic> qtdItems;
+  final List<Item>? items;
+  final Map<String, dynamic>? qtdItems;
   final void Function(int, Item) alterItemQuantity;
   final void Function(Item item) removeItem;
 
@@ -17,7 +17,7 @@ class ProjectItemsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (items == null || items.isEmpty) return SizedBox(width: 0, height: 0);
+    if (qtdItems == null || items == null) return SizedBox(width: 0, height: 0);
 
     return Container(
       child: Column(
@@ -26,11 +26,11 @@ class ProjectItemsList extends StatelessWidget {
             "Itens",
             style: TextStyle(fontSize: 26),
           ),
-          for (Item item in items) ...[
+          for (Item item in items!) ...[
             ProjectItemsTile(
               removeItem: (Item item) => removeItem(item),
               item: item,
-              qtd: qtdItems[item.id].toString(),
+              qtd: qtdItems![item.id].toString(),
               alterValue: (int value, Item item) =>
                   alterItemQuantity(value, item),
             ),

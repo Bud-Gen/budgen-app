@@ -3,8 +3,8 @@ import 'package:budgen/domain/entities/worker.dart';
 import 'package:flutter/material.dart';
 
 class ProjectWorkersList extends StatelessWidget {
-  final List<Worker> workers;
-  final Map<String, dynamic> qtdWorkers;
+  final List<Worker>? workers;
+  final Map<String, dynamic>? qtdWorkers;
   final void Function(int, Worker) alterWorkerQuantity;
   final void Function(Worker) removeWorker;
 
@@ -17,7 +17,7 @@ class ProjectWorkersList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (workers == null || workers.isEmpty)
+    if (workers == null || workers!.isEmpty)
       return SizedBox(width: 0, height: 0);
 
     return Container(
@@ -27,11 +27,11 @@ class ProjectWorkersList extends StatelessWidget {
             "Serviços",
             style: TextStyle(fontSize: 26),
           ),
-          for (Worker worker in workers) ...[
+          for (Worker worker in workers!) ...[
             ProjectWorkersTile(
               removeWorker: (Worker worker) => removeWorker(worker),
               worker: worker,
-              qtd: qtdWorkers[worker.id].toString(),
+              qtd: qtdWorkers![worker.id].toString(),
               alterValue: (
                 int value,
                 Worker worker,

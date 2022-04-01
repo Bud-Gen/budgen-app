@@ -1,5 +1,4 @@
 import 'package:budgen/data/remote/google_auth.dart';
-import 'package:budgen/domain/api_services/api_handler.dart';
 import 'package:budgen/domain/entities/item.dart';
 import 'package:budgen/domain/entities/project.dart';
 import 'package:budgen/domain/entities/worker.dart';
@@ -89,7 +88,7 @@ abstract class _HomeStore with Store {
 
   @action
   Future<bool> finishProject() async {
-    bool isEmailSent = await _sendEmail.call(projectEmail,currentProject!);
+    bool isEmailSent = await _sendEmail.call(projectEmail, currentProject!);
 
     if (!isEmailSent) {
       return false;
@@ -171,7 +170,8 @@ abstract class _HomeStore with Store {
 
   bool get showProducts => (!isLoading && currentProject != null);
 
-  bool get existsProject => currentProject != null;
+  @action
+  bool getExistsProject() => currentProject != null;
 
   bool get isProjectEmpty => (items!.isEmpty & workers!.isEmpty);
 }

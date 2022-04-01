@@ -1,13 +1,12 @@
+import 'package:budgen/domain/entities/project.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:flutter/material.dart';
 
 class DetailsProducts extends StatelessWidget {
-  final int itemsQtd;
-  final int workersQtd;
+  final Project? project;
 
   const DetailsProducts({
-    required this.itemsQtd,
-    required this.workersQtd,
+    this.project,
   }) : super();
 
   @override
@@ -16,6 +15,9 @@ class DetailsProducts extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
     final height = screenSize.height * 0.054;
     final width = screenSize.width * 0.2;
+    int itemsQtd = project!.items == null ? 0 : project!.items!.length;
+    int workersQtd =
+        project!.workers == null ?  0 : project!.workers!.length;
 
     return Padding(
       padding: EdgeInsets.all(5),
