@@ -2,7 +2,6 @@ import 'package:budgen/app/import/import_spreadsheet_page.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:budgen/utils/widgets/sign_in_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:mobx/mobx.dart';
 import 'login_store.dart';
 
@@ -38,20 +37,40 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: colorPalette.background,
+      backgroundColor: colorPalette.secondCollor,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: colorPalette.primaryCollor,
         title: Text('Budgen'),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(height: 150),
-          SizedBox(height: 50),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                "assets/icon.png",
+                scale: 3,
+              ),
+              SizedBox(height: 20),
+              Text(
+                "Bem-vindo ao Budgen!",
+                style: TextStyle(
+                  fontSize: 27,
+                  fontWeight: FontWeight.w600,
+                  color: colorPalette.primaryDarker,
+                ),
+              )
+            ],
+          ),
+          SizedBox(height: 70),
           SignInButton(
             onPressed: () {
               loginStore.signInWithGoogle();
             },
           ),
+          SizedBox(height: 150)
         ],
       ),
     );

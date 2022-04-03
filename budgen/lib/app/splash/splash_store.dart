@@ -3,6 +3,7 @@ import 'package:budgen/app/tabs/tabs_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 part 'splash_store.g.dart';
 
@@ -12,11 +13,21 @@ abstract class _SplashStore with Store {
   FirebaseAuth auth = FirebaseAuth.instance;
   late BuildContext pageContext;
 
+  @observable
+  String versionNumber = "";
+
   @action
-  initSplash() {
+  initSplash() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    versionNumber = packageInfo.version;
     Future.delayed(Duration(milliseconds: 2000), () {
       navigateToFirstPage();
     });
+  }
+
+  @action
+  String getVersion() {
+    return versionNumber;
   }
 
   void navigateToFirstPage() {

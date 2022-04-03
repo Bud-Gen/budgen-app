@@ -197,6 +197,17 @@ mixin _$HomeStore on _HomeStore, Store {
   final _$_HomeStoreActionController = ActionController(name: '_HomeStore');
 
   @override
+  String getProjectName() {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.getProjectName');
+    try {
+      return super.getProjectName();
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void editDiscount(String newDiscount) {
     final _$actionInfo = _$_HomeStoreActionController.startAction(
         name: '_HomeStore.editDiscount');
