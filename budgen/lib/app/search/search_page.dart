@@ -20,6 +20,7 @@ class SearchPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: colorPalette.primaryCollor,
         title: Text("Pesquisa"),
       ),

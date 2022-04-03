@@ -4,9 +4,6 @@ import 'package:budgen/app/home/widgets/edit_project/edit_name_project_button.da
 import 'package:budgen/app/home/widgets/empty_project_body.dart';
 import 'package:budgen/app/home/widgets/finish_project/finish_project_button.dart';
 import 'package:budgen/app/home/widgets/home_body.dart';
-import 'package:budgen/app/home/widgets/product_list/empty_products_advice.dart';
-import 'package:budgen/app/home/widgets/product_list/item_list/project_items_tile.dart';
-import 'package:budgen/app/home/widgets/product_list/worker_list/project_workers_tile.dart';
 import 'package:budgen/domain/entities/item.dart';
 import 'package:budgen/domain/entities/worker.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
@@ -31,14 +28,14 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: colorPalette.primaryCollor,
         title: Observer(builder: (_) {
-          return Text(
-              (store.getExistsProject()) ? store.currentProject!.name : "");
+          return Text(store.getProjectName());
         }),
         actions: [
           Observer(builder: (_) {
-            if (!store.getExistsProject()) return SizedBox(width: 1);
+            if (store.currentProject == null) return SizedBox(width: 1);
 
             return EditNameProjectButton(
               currentProjectName: store.currentProject!.name,

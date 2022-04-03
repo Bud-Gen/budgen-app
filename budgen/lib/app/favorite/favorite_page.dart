@@ -19,6 +19,7 @@ class FavoritePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: colorPalette.primaryCollor,
         title: Text("Favoritos"),
       ),

@@ -159,6 +159,11 @@ abstract class _HomeStore with Store {
   }
 
   @action
+  String getProjectName() {
+    return currentProject != null ? currentProject!.name : 'projeto';
+  }
+
+  @action
   void editDiscount(String newDiscount) =>
       discount = double.tryParse(newDiscount)!;
 

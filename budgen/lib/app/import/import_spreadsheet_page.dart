@@ -6,10 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class ImportSpreadsheetPage extends StatefulWidget {
-
   final bool loadSpreadSheet;
   const ImportSpreadsheetPage({this.loadSpreadSheet = false});
-
 
   @override
   _ImportSpreadsheetPageState createState() => _ImportSpreadsheetPageState();
@@ -39,8 +37,11 @@ class _ImportSpreadsheetPageState extends State<ImportSpreadsheetPage> {
                 store.setLoadSpreadsheet(true);
               },
               onPressedAfter: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => TabsPage()));
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => TabsPage()),
+                  (Route<dynamic> route) => false,
+                );
               },
             );
           }
@@ -59,14 +60,14 @@ class _ImportSpreadsheetPageState extends State<ImportSpreadsheetPage> {
               final spreadsheet = store.spreadsheets[index];
 
               return ListTile(
-                  title: Text(
-                    spreadsheet.name,
-                  ),
-                  trailing: Icon(Icons.send),
-                  onTap: () {
-                    store.importSpreadsheet(context, spreadsheet.id);
-                  },
-                );
+                title: Text(
+                  spreadsheet.name,
+                ),
+                trailing: Icon(Icons.send),
+                onTap: () {
+                  store.importSpreadsheet(context, spreadsheet.id);
+                },
+              );
             },
             separatorBuilder: (_, __) {
               return Divider();

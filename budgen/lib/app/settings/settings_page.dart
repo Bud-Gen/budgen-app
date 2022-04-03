@@ -16,13 +16,16 @@ class SettingsPage extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: colorPalette.primaryCollor,
           title: Text("Configuração"),
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SettingsOptions(onLogout: store.onLogout,),
+            SettingsOptions(
+              onLogout: store.onLogout,
+            ),
             Observer(
               builder: (_) => AppVersionText(
                 version: store.versionNumber,
