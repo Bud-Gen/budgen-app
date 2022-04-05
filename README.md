@@ -1,2 +1,2 @@
 # BudGen-app
-Repositorio para o aplicativo BufGen [Criar nova descrição]
+Repositorio para o aplicativo BudGen 
