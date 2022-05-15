@@ -1,4 +1,3 @@
-import 'package:budgen/app/home/widgets/empty_project_body.dart';
 import 'package:budgen/domain/entities/project.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:budgen/utils/widgets/details_project/details_products.dart';
@@ -17,7 +16,7 @@ class DetailsFinishedProjectHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     ColorPalette colorPalette = ColorPalette();
     final screenSize = MediaQuery.of(context).size;
-    if (project == null) return EmptyProjectBody();
+    // if (project == null) return EmptyProjectBody();
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,

@@ -1,3 +1,4 @@
+import 'package:budgen/app/home/home_page.dart';
 import 'package:budgen/app/login/login_page.dart';
 import 'package:budgen/app/tabs/tabs_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -49,7 +50,7 @@ abstract class _SplashStore with Store {
   void navigateToHomePage() {
     Navigator.of(pageContext).pushReplacement(
       MaterialPageRoute(
-        builder: (pageContext) => TabsPage(),
+        builder: (pageContext) => HomePage(),
       ),
     );
   }

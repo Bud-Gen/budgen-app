@@ -1,6 +1,6 @@
+import 'package:budgen/app/home/home_page.dart';
 import 'package:budgen/app/import/import_spreadsheet_store.dart';
 import 'package:budgen/app/import/widgets/spreadsheet_options.dart';
-import 'package:budgen/app/tabs/tabs_page.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -39,7 +39,7 @@ class _ImportSpreadsheetPageState extends State<ImportSpreadsheetPage> {
               onPressedAfter: () {
                 Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => TabsPage()),
+                  MaterialPageRoute(builder: (context) => HomePage()),
                   (Route<dynamic> route) => false,
                 );
               },

@@ -1,4 +1,4 @@
-import 'package:budgen/app/tabs/tabs_page.dart';
+import 'package:budgen/app/home/home_page.dart';
 import 'package:budgen/data/remote/google_auth.dart';
 import 'package:budgen/domain/entities/drive_file.dart';
 import 'package:budgen/domain/entities/user.dart';
@@ -54,11 +54,11 @@ abstract class _ImportSpreadsheetStore with Store {
     Map<String, dynamic> response = await insertSpreadsheet.call(user.id, id);
 
     Navigator.of(context).pop();
-    
+
     CustomDialog.call(context, "Planilha", response["message"], () {
       if (response["status"]) {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => TabsPage(),
+          builder: (context) => HomePage(),
         ));
       } else {
         Navigator.of(context).pop();
