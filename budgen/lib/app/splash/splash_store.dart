@@ -1,4 +1,5 @@
 import 'package:budgen/app/login/login_page.dart';
+import 'package:budgen/app/onboarding/onboarding_page.dart';
 import 'package:budgen/app/tabs/tabs_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
