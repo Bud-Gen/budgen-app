@@ -1,3 +1,4 @@
+import 'package:budgen/app/drawer/drawer_page.dart';
 import 'package:budgen/app/home/home_store.dart';
 import 'package:budgen/app/home/widgets/add_product_button.dart';
 import 'package:budgen/app/home/widgets/alerts/add_project_alert.dart';
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         backgroundColor: colorPalette.background,
         key: scaffoldKey,
-        drawer: Drawer(),
+        drawer: NavigationDrawer(),
         body: SingleChildScrollView(
           child: Container(
             height: screenSize.height,
