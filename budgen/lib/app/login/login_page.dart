@@ -1,4 +1,4 @@
-import 'package:budgen/app/import/import_spreadsheet_page.dart';
+import 'package:budgen/app/onboarding/onboarding_page.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:budgen/utils/widgets/sign_in_button.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
 
     disposer = reaction((_) => loginStore.loggedIn, (loggedIn) {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => ImportSpreadsheetPage(),
+        builder: (context) => OnboardingPage(),
       ));
     });
   }

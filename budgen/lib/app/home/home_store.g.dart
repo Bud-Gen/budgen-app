@@ -54,6 +54,21 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
+  final _$productQuantityAtom = Atom(name: '_HomeStore.productQuantity');
+
+  @override
+  int get productQuantity {
+    _$productQuantityAtom.reportRead();
+    return super.productQuantity;
+  }
+
+  @override
+  set productQuantity(int value) {
+    _$productQuantityAtom.reportWrite(value, super.productQuantity, () {
+      super.productQuantity = value;
+    });
+  }
+
   final _$projectNameAtom = Atom(name: '_HomeStore.projectName');
 
   @override
@@ -244,6 +259,7 @@ mixin _$HomeStore on _HomeStore, Store {
   String toString() {
     return '''
 currentProject: ${currentProject},
+productQuantity: ${productQuantity},
 projectName: ${projectName},
 isLoading: ${isLoading},
 showItems: ${showItems},
