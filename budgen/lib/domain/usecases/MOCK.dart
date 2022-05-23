@@ -1,6 +1,6 @@
 import 'package:budgen/domain/entities/project.dart';
 
-Map<String, dynamic> MOCK_JSON = {
+const Map<String, dynamic> MOCK_JSON = {
   "items": [
     {
       "code": "38d1f53c-4678-4c6e-8ade-c0bcd78f461a",
@@ -1951,7 +1951,7 @@ Map<String, dynamic> MOCK_JSON = {
   ]
 };
 
-Project MOCK_PROJECT_UNFINISHED = Project(
+final MOCK_PROJECT_UNFINISHED = Project(
   id: 'd',
   items: <String, int>{},
   workers: <String, int>{},
