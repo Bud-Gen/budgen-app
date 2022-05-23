@@ -10,6 +10,7 @@ import 'package:budgen/app/home/widgets/lists/worker_list.dart';
 import 'package:budgen/app/import/import_spreadsheet_page.dart';
 import 'package:budgen/app/project/simple_details_project_page.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
+import 'package:budgen/utils/widgets/navigation_drawer/navigation_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         backgroundColor: colorPalette.background,
         key: scaffoldKey,
-        drawer: Drawer(),
+        drawer: NavigationDrawer(),
         body: SingleChildScrollView(
           child: Container(
             height: screenSize.height,
