@@ -1,6 +1,6 @@
+import 'package:budgen/app/favorite/favorite_page.dart';
 import 'package:budgen/app/home/home_store.dart';
 import 'package:budgen/app/home/widgets/add_product_button.dart';
-import 'package:budgen/app/home/widgets/alerts/add_project_alert.dart';
 import 'package:budgen/app/home/widgets/alerts/new_project_alert.dart';
 import 'package:budgen/app/home/widgets/empty_products_body.dart';
 import 'package:budgen/app/home/widgets/header/home_header.dart';
@@ -57,7 +57,14 @@ class _HomePageState extends State<HomePage> {
                     HomeHeader(
                       openDrawer: () => scaffoldKey.currentState?.openDrawer(),
                       onChanged: (String value) => store.changeFilter(value),
-                      onTapFavorite: () => print('on tap favorite'),
+                      onTapFavorite: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => FavoritePage(),
+                          ),
+                        );
+                      },
                       onInitProject: () {
                         return showCupertinoModalPopup(
                           context: context,
@@ -88,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                           ? store.currentProject
                           : null,
                     ),
-                    if (store.workers == null && store.items == null)
+                    if (store.isEmpty)
                       EmptyProductsBody(
                         downloadSpreadsheet: () {},
                         uploadSpreadsheet: () {
@@ -113,7 +120,6 @@ class _HomePageState extends State<HomePage> {
                           addToProject: store.addItemToProject,
                           favorite: store.changeFavoriteItem,
                           onChangedValue: (String value) {
-                            print(store.productQuantity.toString());
                             store.changeProductQuantity(value);
                           },
                         )

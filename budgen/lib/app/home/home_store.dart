@@ -160,4 +160,6 @@ abstract class _HomeStore with Store {
           .where((worker) => worker.name!.toLowerCase().contains(filter))
           .toList()
       : _workers!;
+
+  bool get isEmpty => this.items!.isEmpty && this.workers!.isEmpty;
 }
