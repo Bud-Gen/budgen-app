@@ -1,4 +1,5 @@
 import 'package:budgen/app/home/widgets/alerts/counter_add_project_textfield.dart';
+import 'package:budgen/domain/entities/project.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:budgen/utils/widgets/custom_progress.dart';
 import 'package:flutter/material.dart';
@@ -6,11 +7,12 @@ import 'package:flutter/material.dart';
 import 'finish_project_alert.dart';
 
 class DiscountProjectAlert extends StatelessWidget {
-  final Function editEmailProject;
-  final Function finishProject;
+  final Function addDiscount;
+  final Function addDiscountValue;
+  final Project project;
 
   const DiscountProjectAlert({
-    Key? key, required this.editEmailProject, required this.finishProject,
+    Key? key, required this.addDiscount, required this.addDiscountValue, required this.project,
 
   }) : super(key: key);
 
@@ -38,7 +40,7 @@ class DiscountProjectAlert extends StatelessWidget {
               height: screenSize.height * 0.03,
             ),
             CounterAddProjectTextfield(
-              onChanged: (String value) => editEmailProject(value),
+              onChanged: (String value) => addDiscountValue(value),
             ),
           ],
         ),
@@ -60,7 +62,8 @@ class DiscountProjectAlert extends StatelessWidget {
             ),
           ),
           onPressed: () async{
-
+            addDiscount();
+            Navigator.pop(context, 'OK');
           },
           child: Text("Adicionar"),
         ),

@@ -190,6 +190,9 @@ Future<dynamic> sendEmail(String email, Project project) async {
       'Content-Type': 'application/json; charset=UTF-8',
     });
 
+    print(response.statusCode);
+    print(response.body);
+
     switch (response.statusCode) {
       case 200:
         {

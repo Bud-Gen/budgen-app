@@ -33,12 +33,6 @@ class FinishProjectAlert extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () {
-            if(this.isSuccessful){
-              Navigator.pushReplacement(context,MaterialPageRoute(
-                builder: (context) => HomePage(),
-              ),);
-              return;
-            }
             Navigator.pop(context);
           },
           child: const Text('OK'),

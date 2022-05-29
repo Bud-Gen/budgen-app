@@ -6,6 +6,7 @@ import 'package:budgen/domain/entities/worker.dart';
 import 'package:budgen/domain/usecases/item/change_favorite_item.dart';
 import 'package:budgen/domain/usecases/item/get_items.dart';
 import 'package:budgen/domain/usecases/mock_data.dart';
+import 'package:budgen/domain/usecases/project/add_discount.dart';
 import 'package:budgen/domain/usecases/project/add_item.dart';
 import 'package:budgen/domain/usecases/project/add_worker.dart';
 import 'package:budgen/domain/usecases/project/alter_quantity.dart';
@@ -45,6 +46,8 @@ abstract class _SimpleDetailsProjectStore with Store {
   AlterQuantity _alterQuantity = AlterQuantity();
   RemoveItem _removeItem = RemoveItem();
   RemoveWorker _removeWorker = RemoveWorker();
+
+  AddDiscount _addDiscount = AddDiscount();
 
   @observable
   Project? currentProject;
@@ -201,7 +204,27 @@ abstract class _SimpleDetailsProjectStore with Store {
   }
 
   @action
+  void editDiscount(String newDiscount) =>
+      discount = double.tryParse(newDiscount)!;
+
+  @action
+  Future<void> addDiscount() async {
+    if (discount > currentProject!.price) {
+      errorMessage =
+      "Não é possível adicionar um desconto maior que o valor do projeto";
+      return;
+    }
+    if (discount == 0 || currentProject == null) return;
+    isLoading = true;
+    await _addDiscount.call(currentProject!, discount);
+    await _sync();
+    isLoading = false;
+  }
+
+
+  @action
   void editEmailProject(String email) => projectEmail = email;
+
 
   @action
   Future<bool> finishProject() async {

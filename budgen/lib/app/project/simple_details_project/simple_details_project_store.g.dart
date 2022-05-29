@@ -255,6 +255,14 @@ mixin _$SimpleDetailsProjectStore on _SimpleDetailsProjectStore, Store {
     return _$removeWorkerAsyncAction.run(() => super.removeWorker(worker));
   }
 
+  final _$addDiscountAsyncAction =
+      AsyncAction('_SimpleDetailsProjectStore.addDiscount');
+
+  @override
+  Future<void> addDiscount() {
+    return _$addDiscountAsyncAction.run(() => super.addDiscount());
+  }
+
   final _$finishProjectAsyncAction =
       AsyncAction('_SimpleDetailsProjectStore.finishProject');
 
@@ -316,6 +324,17 @@ mixin _$SimpleDetailsProjectStore on _SimpleDetailsProjectStore, Store {
         .startAction(name: '_SimpleDetailsProjectStore.navigateToHome');
     try {
       return super.navigateToHome();
+    } finally {
+      _$_SimpleDetailsProjectStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void editDiscount(String newDiscount) {
+    final _$actionInfo = _$_SimpleDetailsProjectStoreActionController
+        .startAction(name: '_SimpleDetailsProjectStore.editDiscount');
+    try {
+      return super.editDiscount(newDiscount);
     } finally {
       _$_SimpleDetailsProjectStoreActionController.endAction(_$actionInfo);
     }

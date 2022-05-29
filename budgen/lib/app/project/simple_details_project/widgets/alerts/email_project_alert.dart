@@ -1,3 +1,4 @@
+import 'package:budgen/app/home/home_page.dart';
 import 'package:budgen/app/home/widgets/alerts/counter_add_project_textfield.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:budgen/utils/widgets/custom_progress.dart';
@@ -62,8 +63,8 @@ class EmailProjectAlert extends StatelessWidget {
           onPressed: () async{
             CustomProgress.call(context: context,text: "Finalizando...");
             bool isFinished = await finishProject();
-            Navigator.of(context).pop();
-            Navigator.of(context).pop();
+            Navigator.pushReplacement(context,MaterialPageRoute(
+                builder: (context) => HomePage()));
             showDialog(
                 context: context,
                 builder: (_) => FinishProjectAlert(isSuccessful: isFinished));

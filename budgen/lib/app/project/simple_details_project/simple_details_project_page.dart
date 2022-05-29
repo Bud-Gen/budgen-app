@@ -81,7 +81,7 @@ class _SimpleDetailsProjectPageState extends State<SimpleDetailsProjectPage> {
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Text(
-                                            store.currentProject?.name??"",
+                                            store.currentProject?.name.toUpperCase()??"",
                                             style: TextStyle(
                                                 color: Colors.black, fontSize: 18),
                                           ),
@@ -121,7 +121,10 @@ class _SimpleDetailsProjectPageState extends State<SimpleDetailsProjectPage> {
                                     ],
                                   ),
                                 ),
-                                DiscountButton(onTap: () {})
+                                DiscountButton(
+                                  project: store.currentProject!,
+                                  addDiscount: () => store.addDiscount(),
+                                  addDiscountValue: (String value) => store.editDiscount(value),)
                               ],
                             ),
                           )

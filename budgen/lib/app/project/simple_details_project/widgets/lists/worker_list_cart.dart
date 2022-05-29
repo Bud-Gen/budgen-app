@@ -41,6 +41,7 @@ class WorkerListCart extends StatelessWidget {
             ) =>
             alterWorkerQuantity(value, worker),
               ),
+
             ]
           ],
         ),
