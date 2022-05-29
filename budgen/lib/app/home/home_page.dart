@@ -8,7 +8,7 @@ import 'package:budgen/app/home/widgets/header/product_bottons.dart';
 import 'package:budgen/app/home/widgets/lists/item_list.dart';
 import 'package:budgen/app/home/widgets/lists/worker_list.dart';
 import 'package:budgen/app/import/import_spreadsheet_page.dart';
-import 'package:budgen/app/project/simple_details_project_page.dart';
+import 'package:budgen/app/project/simple_details_project/simple_details_project_page.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:budgen/utils/widgets/navigation_drawer/navigation_drawer.dart';
 import 'package:flutter/cupertino.dart';
@@ -86,9 +86,7 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => SimpleDetailsProject(
-                              project: store.currentProject!,
-                            ),
+                            builder: (context) => SimpleDetailsProjectPage(),
                           ),
                         );
                       },

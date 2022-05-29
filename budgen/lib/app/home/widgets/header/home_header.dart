@@ -35,7 +35,7 @@ class HomeHeader extends StatelessWidget {
 
     return Container(
       width: screenSize.width,
-      height: screenSize.height * 0.26,
+      height: screenSize.height * 0.30,
       color: colorPalette.primaryCollor,
       child: Column(
         children: [
@@ -56,8 +56,8 @@ class HomeHeader extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.symmetric(
-              vertical: screenSize.width * 0.01,
-              horizontal: screenSize.height * 0.012,
+              vertical: screenSize.width * 0.008,
+              horizontal: screenSize.height* 0.012,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
