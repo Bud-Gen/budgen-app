@@ -52,7 +52,10 @@ class NewProjectAlert extends StatelessWidget {
               ),
             ),
           ),
-          onPressed: () => initProject(),
+          onPressed: () {
+            initProject();
+            Navigator.pop(context);
+          },
           child: Text("Concluir"),
         ),
       ],

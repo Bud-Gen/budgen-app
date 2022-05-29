@@ -179,55 +179,11 @@ mixin _$SimpleDetailsProjectStore on _SimpleDetailsProjectStore, Store {
     });
   }
 
-  final _$addMockAsyncAction =
-      AsyncAction('_SimpleDetailsProjectStore.addMock');
-
-  @override
-  Future<void> addMock() {
-    return _$addMockAsyncAction.run(() => super.addMock());
-  }
-
   final _$onInitAsyncAction = AsyncAction('_SimpleDetailsProjectStore.onInit');
 
   @override
   Future<void> onInit() {
     return _$onInitAsyncAction.run(() => super.onInit());
-  }
-
-  final _$changeFavoriteItemAsyncAction =
-      AsyncAction('_SimpleDetailsProjectStore.changeFavoriteItem');
-
-  @override
-  Future<void> changeFavoriteItem(Item item) {
-    return _$changeFavoriteItemAsyncAction
-        .run(() => super.changeFavoriteItem(item));
-  }
-
-  final _$addItemToProjectAsyncAction =
-      AsyncAction('_SimpleDetailsProjectStore.addItemToProject');
-
-  @override
-  Future<void> addItemToProject(Item item) {
-    return _$addItemToProjectAsyncAction
-        .run(() => super.addItemToProject(item));
-  }
-
-  final _$addWorkerToProjectAsyncAction =
-      AsyncAction('_SimpleDetailsProjectStore.addWorkerToProject');
-
-  @override
-  Future<void> addWorkerToProject(Worker worker) {
-    return _$addWorkerToProjectAsyncAction
-        .run(() => super.addWorkerToProject(worker));
-  }
-
-  final _$changeFavoriteWorkerAsyncAction =
-      AsyncAction('_SimpleDetailsProjectStore.changeFavoriteWorker');
-
-  @override
-  Future<void> changeFavoriteWorker(Worker worker) {
-    return _$changeFavoriteWorkerAsyncAction
-        .run(() => super.changeFavoriteWorker(worker));
   }
 
   final _$alterItemQuantityAsyncAction =

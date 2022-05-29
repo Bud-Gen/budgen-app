@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                                   store.changeProjectName(value),
                               initProject: () {
                                 store.initProject();
-                                Navigator.pop(context);
+                               
                               },
                             );
                           },
