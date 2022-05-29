@@ -230,6 +230,31 @@ mixin _$SimpleDetailsProjectStore on _SimpleDetailsProjectStore, Store {
         .run(() => super.changeFavoriteWorker(worker));
   }
 
+  final _$alterItemQuantityAsyncAction =
+      AsyncAction('_SimpleDetailsProjectStore.alterItemQuantity');
+
+  @override
+  Future<void> alterItemQuantity(int value, Item item) {
+    return _$alterItemQuantityAsyncAction
+        .run(() => super.alterItemQuantity(value, item));
+  }
+
+  final _$removeItemAsyncAction =
+      AsyncAction('_SimpleDetailsProjectStore.removeItem');
+
+  @override
+  Future<void> removeItem(Item item) {
+    return _$removeItemAsyncAction.run(() => super.removeItem(item));
+  }
+
+  final _$removeWorkerAsyncAction =
+      AsyncAction('_SimpleDetailsProjectStore.removeWorker');
+
+  @override
+  Future<void> removeWorker(Worker worker) {
+    return _$removeWorkerAsyncAction.run(() => super.removeWorker(worker));
+  }
+
   final _$finishProjectAsyncAction =
       AsyncAction('_SimpleDetailsProjectStore.finishProject');
 
@@ -280,6 +305,17 @@ mixin _$SimpleDetailsProjectStore on _SimpleDetailsProjectStore, Store {
         .startAction(name: '_SimpleDetailsProjectStore.getExistsProject');
     try {
       return super.getExistsProject();
+    } finally {
+      _$_SimpleDetailsProjectStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void navigateToHome() {
+    final _$actionInfo = _$_SimpleDetailsProjectStoreActionController
+        .startAction(name: '_SimpleDetailsProjectStore.navigateToHome');
+    try {
+      return super.navigateToHome();
     } finally {
       _$_SimpleDetailsProjectStoreActionController.endAction(_$actionInfo);
     }

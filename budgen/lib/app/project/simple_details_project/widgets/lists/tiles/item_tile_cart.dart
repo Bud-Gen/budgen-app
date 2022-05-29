@@ -1,23 +1,22 @@
 import 'package:budgen/app/home/widgets/lists/home_trailing_buttons.dart';
 import 'package:budgen/domain/entities/item.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
+import 'package:budgen/utils/widgets/slicer_button.dart';
 import 'package:flutter/material.dart';
 
 import '../project_trailing_buttons.dart';
 
 class ItemTileCart extends StatelessWidget {
   final Item item;
-  final bool hasProject;
-  final Function? addToProject;
-  final Function favorite;
+
+  final String qtd;
+  final void Function(int, Item) alterValue;
+  final void Function(Item) removeItem;
 
   const ItemTileCart({
     Key? key,
-    required this.item,
-    required this.hasProject,
-    required this.addToProject,
-    required this.favorite,
-  }) : super(key: key);
+    required this.item, required this.qtd, required this.alterValue, required this.removeItem,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +33,11 @@ class ItemTileCart extends StatelessWidget {
           ),
           title: Text(item.name!),
           subtitle: Text('R\$ ' + item.price!.toStringAsFixed(2)),
-          trailing: ProjectTrailingButtons(
-            qtd: 1,
-            incrementValue: () => addToProject!(),
-            decrementValue: () => favorite(item),
+          trailing: SlicerButton(
+            alterValue: alterValue,
+            product: item,
+            qtd: qtd,
+            removeProduct: removeItem,
           ),
         ),
       ),

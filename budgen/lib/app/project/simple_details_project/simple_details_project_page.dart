@@ -6,6 +6,7 @@ import 'package:budgen/app/project/simple_details_project/widgets/finish_project
 import 'package:budgen/app/project/simple_details_project/widgets/header/discount_button.dart';
 import 'package:budgen/app/project/simple_details_project/widgets/lists/item_list_cart.dart';
 import 'package:budgen/app/project/simple_details_project/widgets/lists/worker_list_cart.dart';
+import 'package:budgen/domain/entities/item.dart';
 import 'package:budgen/domain/entities/project.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:flutter/material.dart';
@@ -34,13 +35,11 @@ class _SimpleDetailsProjectPageState extends State<SimpleDetailsProjectPage> {
 
   @override
   Widget build(BuildContext context) {
-    // final int qtdItems = project.items != null ? project.items!.length : 0;
-    // final int qtdWorkers =
-    //     project.workers != null ? project.workers!.length : 0;
     final ColorPalette colorPalette = ColorPalette();
     final screenSize = MediaQuery
         .of(context)
         .size;
+    store.pageContext = context;
 
     return Scaffold(
         body: SingleChildScrollView(
@@ -67,7 +66,7 @@ class _SimpleDetailsProjectPageState extends State<SimpleDetailsProjectPage> {
                             padding: const EdgeInsets.only(top: 25),
                             child: Row(
                               children: [
-                                BackButton(color: Colors.white,),
+                                BackButton(color: Colors.white,onPressed: store.navigateToHome,),
                                 Text("PROJETO",
                                   style: TextStyle(fontSize: 20, color: Colors.white),),
                               ],),
@@ -135,23 +134,17 @@ class _SimpleDetailsProjectPageState extends State<SimpleDetailsProjectPage> {
                       if (store.showItems)
                         ItemListCart(
                           items: store.items,
-                          hasProject: store.currentProject != null,
-                          addToProject: store.addItemToProject,
-                          favorite: store.changeFavoriteItem,
-                          onChangedValue: (String value) {
-                            store.changeProductQuantity(value);
-                          },
+                          qtdItems: store.currentProject?.items,
+                          alterItemQuantity: (int value, Item item) =>
+                              store.alterItemQuantity(value, item),
+                          removeItem: (Item item) => store.removeItem(item),
                         )
                       else
                         WorkerListCart(
                           workers: store.workers,
-                          hasProject: store.currentProject != null,
-                          addToProject: store.addWorkerToProject,
-                          favorite: store.changeFavoriteWorker,
-                          onChangedValue: (String value) {
-                            store.changeProductQuantity(value);
-                            print(store.productQuantity.toString());
-                          },
+                          qtdWorkers: store.currentProject?.workers,
+                          alterWorkerQuantity: store.alterWorkerQuantity,
+                          removeWorker: store.removeWorker,
                         )
                     ],
                   ),

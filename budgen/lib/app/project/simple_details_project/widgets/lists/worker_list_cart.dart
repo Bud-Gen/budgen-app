@@ -7,18 +7,14 @@ import 'package:flutter/material.dart';
 
 class WorkerListCart extends StatelessWidget {
   final List<Worker>? workers;
-  final bool hasProject;
-  final Function addToProject;
-  final Function favorite;
-  final Function onChangedValue;
+  final Map<String, dynamic>? qtdWorkers;
+  final void Function(int, Worker) alterWorkerQuantity;
+  final void Function(Worker) removeWorker;
 
   const WorkerListCart({
     Key? key,
-    required this.workers,
-    required this.hasProject,
-    required this.addToProject,
-    required this.favorite,
-    required this.onChangedValue,
+    required this.workers, required this.qtdWorkers, required this.alterWorkerQuantity, required this.removeWorker,
+
   }) : super(key: key);
 
   @override
@@ -34,26 +30,16 @@ class WorkerListCart extends StatelessWidget {
         child: ListView(
           children: [
             for (final Worker worker in workers!) ...[
+              if (qtdWorkers![worker.id].toString() != "null")
               WorkerTileCart(
+                removeWorker: (Worker worker) => removeWorker(worker),
                 worker: worker,
-                hasProject: hasProject,
-                addToProject: hasProject
-                    ? () {
-                        showCupertinoModalPopup(
-                          context: context,
-                          builder: (context) {
-                            return AddProjectAlert(
-                              addToProject: () => addToProject(worker),
-                              onChanged: (String value) =>
-                                  onChangedValue(value),
-                              name: worker.name!,
-                              typeName: 'serviço',
-                            );
-                          },
-                        );
-                      }
-                    : null,
-                favorite: favorite,
+        qtd: qtdWorkers![worker.id].toString(),
+        alterValue: (
+            int value,
+            Worker worker,
+            ) =>
+            alterWorkerQuantity(value, worker),
               ),
             ]
           ],

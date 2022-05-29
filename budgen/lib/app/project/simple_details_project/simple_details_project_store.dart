@@ -1,3 +1,4 @@
+import 'package:budgen/app/home/home_page.dart';
 import 'package:budgen/data/remote/google_auth.dart';
 import 'package:budgen/domain/entities/item.dart';
 import 'package:budgen/domain/entities/project.dart';
@@ -7,13 +8,17 @@ import 'package:budgen/domain/usecases/item/get_items.dart';
 import 'package:budgen/domain/usecases/mock_data.dart';
 import 'package:budgen/domain/usecases/project/add_item.dart';
 import 'package:budgen/domain/usecases/project/add_worker.dart';
+import 'package:budgen/domain/usecases/project/alter_quantity.dart';
 import 'package:budgen/domain/usecases/project/finish_project.dart';
 import 'package:budgen/domain/usecases/project/get_current_project.dart';
 import 'package:budgen/domain/usecases/project/insert_project.dart';
+import 'package:budgen/domain/usecases/project/remove_item.dart';
+import 'package:budgen/domain/usecases/project/remove_worker.dart';
 import 'package:budgen/domain/usecases/project/send_email.dart';
 import 'package:budgen/domain/usecases/worker/change_favorite_worker.dart';
 import 'package:budgen/domain/usecases/worker/get_workers.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 part 'simple_details_project_store.g.dart';
@@ -36,6 +41,10 @@ abstract class _SimpleDetailsProjectStore with Store {
 
   SendEmail _sendEmail = SendEmail(GoogleAuth());
   FinishProject _finishProject = FinishProject();
+
+  AlterQuantity _alterQuantity = AlterQuantity();
+  RemoveItem _removeItem = RemoveItem();
+  RemoveWorker _removeWorker = RemoveWorker();
 
   @observable
   Project? currentProject;
@@ -151,6 +160,44 @@ abstract class _SimpleDetailsProjectStore with Store {
     _workers = await _getWorkers.all();
 
     isLoading = false;
+  }
+
+  @action
+  Future<void> alterItemQuantity(int value, Item item) async {
+    final qtd = (currentProject!.items![item.id] as int);
+
+    if (qtd == 1 && value < 0) return;
+
+    await _alterQuantity.item(item, currentProject!, value);
+    await _sync();
+  }
+
+  Future<void> alterWorkerQuantity(int value, Worker worker) async {
+    final qtd = (currentProject!.workers![worker.id] as int);
+
+    if (qtd == 1 && value < 0) return;
+
+    await _alterQuantity.worker(worker, currentProject!, value);
+    await _sync();
+  }
+
+  @action
+  Future<void> removeItem(Item item) async {
+    await _removeItem.call(currentProject!, item);
+    await _sync();
+  }
+
+  @action
+  Future<void> removeWorker(Worker worker) async {
+    await _removeWorker.call(currentProject!, worker);
+    await _sync();
+  }
+
+  @action
+  void navigateToHome(){
+    Navigator.of(pageContext).pushReplacement(MaterialPageRoute(
+      builder: (context) => HomePage(),
+    ));
   }
 
   @action
