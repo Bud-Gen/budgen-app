@@ -8,6 +8,7 @@ import 'package:budgen/app/home/widgets/header/product_bottons.dart';
 import 'package:budgen/app/home/widgets/lists/item_list.dart';
 import 'package:budgen/app/home/widgets/lists/worker_list.dart';
 import 'package:budgen/app/import/import_spreadsheet_page.dart';
+import 'package:budgen/app/product/add_product/add_product_page.dart';
 import 'package:budgen/app/project/simple_details_project/simple_details_project_page.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:budgen/utils/widgets/navigation_drawer/navigation_drawer.dart';
@@ -38,109 +39,117 @@ class _HomePageState extends State<HomePage> {
     var scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
-        backgroundColor: colorPalette.background,
-        key: scaffoldKey,
-        drawer: NavigationDrawer(),
-        body: SingleChildScrollView(
-          child: Container(
-            height: screenSize.height,
-            width: screenSize.width,
-            child: Observer(
-              builder: (context) {
-                if (store.isLoading)
-                  return Center(
-                    child: CircularProgressIndicator(
-                      color: colorPalette.primaryDarker,
-                    ),
-                  );
-                return Column(
-                  children: [
-                    HomeHeader(
-                      openDrawer: () => scaffoldKey.currentState?.openDrawer(),
-                      onChanged: (String value) => store.changeFilter(value),
-                      onTapFavorite: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => FavoritePage(),
-                          ),
-                        );
-                      },
-                      onInitProject: () {
-                        return showCupertinoModalPopup(
-                          context: context,
-                          builder: (_) {
-                            return NewProjectAlert(
-                              changeProjectName: (String value) =>
-                                  store.changeProjectName(value),
-                              initProject: () {
-                                store.initProject();
-                               
-                              },
-                            );
-                          },
-                        );
-                      },
-                      hasProject: store.currentProject != null,
-                      onTapProject: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SimpleDetailsProjectPage(),
-                          ),
-                        );
-                      },
-                      project: store.currentProject != null
-                          ? store.currentProject
-                          : null,
-                    ),
-                    if (store.isEmpty)
-                      EmptyProductsBody(
-                        downloadSpreadsheet: () {},
-                        uploadSpreadsheet: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ImportSpreadsheetPage(),
-                            ),
+      backgroundColor: colorPalette.background,
+      key: scaffoldKey,
+      drawer: NavigationDrawer(),
+      body: SingleChildScrollView(
+        child: Container(
+          height: screenSize.height,
+          width: screenSize.width,
+          child: Observer(
+            builder: (context) {
+              if (store.isLoading)
+                return Center(
+                  child: CircularProgressIndicator(
+                    color: colorPalette.primaryDarker,
+                  ),
+                );
+              return Column(
+                children: [
+                  HomeHeader(
+                    openDrawer: () => scaffoldKey.currentState?.openDrawer(),
+                    onChanged: (String value) => store.changeFilter(value),
+                    onTapFavorite: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FavoritePage(),
+                        ),
+                      );
+                    },
+                    onInitProject: () {
+                      return showCupertinoModalPopup(
+                        context: context,
+                        builder: (_) {
+                          return NewProjectAlert(
+                            changeProjectName: (String value) =>
+                                store.changeProjectName(value),
+                            initProject: () {
+                              store.initProject();
+                            },
                           );
                         },
+                      );
+                    },
+                    hasProject: store.currentProject != null,
+                    onTapProject: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SimpleDetailsProjectPage(),
+                        ),
+                      );
+                    },
+                    project: store.currentProject != null
+                        ? store.currentProject
+                        : null,
+                  ),
+                  if (store.isEmpty)
+                    EmptyProductsBody(
+                      downloadSpreadsheet: () {},
+                      uploadSpreadsheet: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ImportSpreadsheetPage(),
+                          ),
+                        );
+                      },
+                    )
+                  else ...[
+                    ProductBottons(
+                      showItems: store.showItems,
+                      onPressedShowItem: () => store.viewItems(true),
+                      onPressedShowWorker: () => store.viewItems(false),
+                    ),
+                    if (store.showItems)
+                      ItemList(
+                        items: store.items,
+                        hasProject: store.currentProject != null,
+                        addToProject: store.addItemToProject,
+                        favorite: store.changeFavoriteItem,
+                        onChangedValue: (String value) {
+                          store.changeProductQuantity(value);
+                        },
                       )
-                    else ...[
-                      ProductBottons(
-                        showItems: store.showItems,
-                        onPressedShowItem: () => store.viewItems(true),
-                        onPressedShowWorker: () => store.viewItems(false),
-                      ),
-                      if (store.showItems)
-                        ItemList(
-                          items: store.items,
-                          hasProject: store.currentProject != null,
-                          addToProject: store.addItemToProject,
-                          favorite: store.changeFavoriteItem,
-                          onChangedValue: (String value) {
-                            store.changeProductQuantity(value);
-                          },
-                        )
-                      else
-                        WorkerList(
-                          workers: store.workers,
-                          hasProject: store.currentProject != null,
-                          addToProject: store.addWorkerToProject,
-                          favorite: store.changeFavoriteWorker,
-                          onChangedValue: (String value) {
-                            store.changeProductQuantity(value);
-                            print(store.productQuantity.toString());
-                          },
-                        )
-                    ],
+                    else
+                      WorkerList(
+                        workers: store.workers,
+                        hasProject: store.currentProject != null,
+                        addToProject: store.addWorkerToProject,
+                        favorite: store.changeFavoriteWorker,
+                        onChangedValue: (String value) {
+                          store.changeProductQuantity(value);
+                          print(store.productQuantity.toString());
+                        },
+                      )
                   ],
-                );
-              },
-            ),
+                ],
+              );
+            },
           ),
         ),
-        floatingActionButton:
-            AddProductButton(onPressed: () => print('floating')));
+      ),
+      floatingActionButton: AddProductButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddProductPage(),
+            ),
+          );
+        },
+      ),
+    );
   }
 }
