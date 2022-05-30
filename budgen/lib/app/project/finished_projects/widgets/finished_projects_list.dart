@@ -26,49 +26,54 @@ class FinishedProjectsList extends StatelessWidget {
       child: ListView(
         children: [
           for (Project project in projects) ...[
-            Card(
-              child: ListTile(
-                onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    settings: RouteSettings(name: "/page"),
-                    builder: (context) => DetailsProjectPage(project: project),
-                  ),
-                ),
-                leading: Icon(
-                  Icons.insert_chart,
-                  size: 45,
-                ),
-                title: Text(project.name),
-                subtitle:
-                    Text((project.price - project.discount).toStringAsFixed(2)),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    IconButton(
-                      icon: Icon(
-                        Icons.delete,
-                        color: colorPalette.primaryCollor,
-                      ),
-                      onPressed: () {
-                        deleteProject(project);
-                      },
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+              child: Card(
+                child: ListTile(
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      settings: RouteSettings(name: "/page"),
+                      builder: (context) =>
+                          DetailsProjectPage(project: project),
                     ),
-                    SizedBox(width: 4),
-                    IconButton(
-                      icon: Icon(
-                        Icons.copy_rounded,
-                        color: (!existsCurrentProject)
-                            ? colorPalette.primaryCollor
-                            : colorPalette.disabled,
+                  ),
+                  leading: Icon(
+                    Icons.insert_chart,
+                    size: 40,
+                    color: colorPalette.primaryCollor,
+                  ),
+                  title: Text(project.name),
+                  subtitle: Text('preço finalizado: R\$' +
+                      (project.price - project.discount).toStringAsFixed(2)),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        icon: Icon(
+                          Icons.delete,
+                          color: colorPalette.primaryCollor,
+                        ),
+                        onPressed: () {
+                          deleteProject(project);
+                        },
                       ),
-                      onPressed: () {
-                        if (!existsCurrentProject) {
-                          copyProject(project);
-                          showSnack();
-                        }
-                      },
-                    )
-                  ],
+                      SizedBox(width: 4),
+                      IconButton(
+                        icon: Icon(
+                          Icons.copy_rounded,
+                          color: (!existsCurrentProject)
+                              ? colorPalette.primaryCollor
+                              : colorPalette.disabled,
+                        ),
+                        onPressed: () {
+                          if (!existsCurrentProject) {
+                            copyProject(project);
+                            showSnack();
+                          }
+                        },
+                      )
+                    ],
+                  ),
                 ),
               ),
             )

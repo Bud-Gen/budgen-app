@@ -6,18 +6,31 @@ import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-class FinishedProjectsPage extends StatelessWidget {
+class FinishedProjectsPage extends StatefulWidget {
   const FinishedProjectsPage() : super();
 
   @override
-  Widget build(BuildContext context) {
+  State<FinishedProjectsPage> createState() => _FinishedProjectsPageState();
+}
+
+class _FinishedProjectsPageState extends State<FinishedProjectsPage> {
     FinishedProjectsStore store = FinishedProjectsStore();
+
+  @override
+  void initState() {
+    store.onInit();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     ColorPalette colorPalette = ColorPalette();
 
-    store.onInit();
+
 
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         backgroundColor: colorPalette.primaryCollor,
         title: Text("Lista de Projetos"),
       ),

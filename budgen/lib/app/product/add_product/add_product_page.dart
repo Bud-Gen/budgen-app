@@ -45,27 +45,16 @@ class _AddProductPageState extends State<AddProductPage> {
           children: [Icon(Icons.add), Text('ADICIONAR')],
         ),
         onPressed: () async {
-          if (store.isItem)
-            print('ITEM');
-          else
-            print('SERVIÇO');
-          print('nome: ');
-          print(store.name);
-          print('codigo de registro: ');
-          print(store.code);
-          print('preço: ');
-          print(store.price);
-          print('tipo: ');
-          print(store.type);
-          print('descrição: ');
-          print(store.description);
-          print('url de produto: ');
-          print(store.url);
-
           if (!store.isValid()) {
-            EmptyProductAlert();
+            showCupertinoDialog(
+              context: (context),
+              builder: (_) {
+                return EmptyProductAlert();
+              },
+            );
           } else {
             final bool result = await store.addProduct();
+
             if (result) {
               showCupertinoDialog(
                 context: (context),

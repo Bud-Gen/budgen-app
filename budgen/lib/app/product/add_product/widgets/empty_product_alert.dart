@@ -16,22 +16,22 @@ class EmptyProductAlert extends StatelessWidget {
         ),
       ),
       backgroundColor: colorPalette.alertColor,
-      title: Text('Adicionar Produto'),
+      title: Text('Não foi possível adicionar produto!'),
       content: Container(
         height: screenSize.height * 0.12,
         width: screenSize.width * 0.7,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('Produto adicionado com sucesso!'),
+            Text('Falta algum dado necessário para este produto!'),
             SizedBox(
               height: screenSize.height * 0.03,
             ),
             Center(
               child: Icon(
-                Icons.post_add_rounded,
+                Icons.error,
                 size: 55,
-                color: colorPalette.primaryCollor,
+                color: Colors.red,
               ),
             )
           ],
@@ -52,7 +52,7 @@ class EmptyProductAlert extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Text("Concluir"),
+          child: Text("Sair"),
         ),
       ],
     );
