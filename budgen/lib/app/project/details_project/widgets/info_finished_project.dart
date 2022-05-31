@@ -21,7 +21,7 @@ class InfoFinishedProject extends StatelessWidget {
             style: TextStyle(
               color: Colors.white,
               fontSize: 20,
-              fontWeight: FontWeight.w200,
+              fontWeight: FontWeight.w300,
             ),
           ),
           SizedBox(height: 10),
@@ -30,7 +30,7 @@ class InfoFinishedProject extends StatelessWidget {
             style: TextStyle(
               color: Colors.white,
               fontSize: 16,
-              fontWeight: FontWeight.w200,
+              fontWeight: FontWeight.w300,
             ),
           ),
           Text(
@@ -38,7 +38,7 @@ class InfoFinishedProject extends StatelessWidget {
             style: TextStyle(
               color: Colors.white,
               fontSize: 16,
-              fontWeight: FontWeight.w200,
+              fontWeight: FontWeight.w300,
             ),
           ),
           Padding(

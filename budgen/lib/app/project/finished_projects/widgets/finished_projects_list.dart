@@ -28,51 +28,59 @@ class FinishedProjectsList extends StatelessWidget {
           for (Project project in projects) ...[
             Padding(
               padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-              child: Card(
-                child: ListTile(
-                  onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      settings: RouteSettings(name: "/page"),
-                      builder: (context) =>
-                          DetailsProjectPage(project: project),
+              child: Container(
+                child: Card(
+                  child: ListTile(
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        settings: RouteSettings(name: "/page"),
+                        builder: (context) =>
+                            DetailsProjectPage(project: project),
+                      ),
                     ),
-                  ),
-                  leading: Icon(
-                    Icons.insert_chart,
-                    size: 40,
-                    color: colorPalette.primaryCollor,
-                  ),
-                  title: Text(project.name),
-                  subtitle: Text('preço finalizado: R\$' +
-                      (project.price - project.discount).toStringAsFixed(2)),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(
-                        icon: Icon(
-                          Icons.delete,
+                    leading: Column(
+                      children: [
+                        Icon(
+                          Icons.insert_chart,
+                          size: 40,
                           color: colorPalette.primaryCollor,
                         ),
-                        onPressed: () {
-                          deleteProject(project);
-                        },
+                      ],
+                    ),
+                    title: Text(project.name),
+                    subtitle: Text('preço finalizado: R\$' +
+                        (project.price - project.discount).toStringAsFixed(2)),
+                    trailing: Container(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          InkWell(
+                            child: Icon(
+                              Icons.copy_rounded,
+                              color: (!existsCurrentProject)
+                                  ? colorPalette.primaryCollor
+                                  : colorPalette.disabled,
+                            ),
+                            onTap: () {
+                              if (!existsCurrentProject) {
+                                copyProject(project);
+                                showSnack();
+                              }
+                            },
+                          ),
+                          SizedBox(height: 4,),
+                          InkWell(
+                            child: Icon(
+                              Icons.delete_outlined,
+                              color: colorPalette.primaryCollor,
+                            ),
+                            onTap: () {
+                              deleteProject(project);
+                            },
+                          ),
+                        ],
                       ),
-                      SizedBox(width: 4),
-                      IconButton(
-                        icon: Icon(
-                          Icons.copy_rounded,
-                          color: (!existsCurrentProject)
-                              ? colorPalette.primaryCollor
-                              : colorPalette.disabled,
-                        ),
-                        onPressed: () {
-                          if (!existsCurrentProject) {
-                            copyProject(project);
-                            showSnack();
-                          }
-                        },
-                      )
-                    ],
+                    ),
                   ),
                 ),
               ),

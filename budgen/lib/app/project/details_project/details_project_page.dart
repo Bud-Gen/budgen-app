@@ -2,7 +2,6 @@ import 'package:budgen/app/home/widgets/header/product_buttons.dart';
 import 'package:budgen/app/project/details_project/details_project_store.dart';
 import 'package:budgen/app/project/details_project/widgets/delete_project_alert.dart';
 import 'package:budgen/app/project/details_project/widgets/details_finished_project_header.dart';
-import 'package:budgen/app/project/details_project/widgets/details_finished_project_list.dart';
 import 'package:budgen/app/project/details_project/widgets/finished_product_item_list.dart';
 import 'package:budgen/app/project/details_project/widgets/finished_product_worker_list.dart';
 import 'package:budgen/domain/entities/project.dart';
@@ -28,27 +27,8 @@ class DetailsProjectPage extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: colorPalette.primaryCollor,
-        title: Text('Detalhes do projeto'),
-        // actions: [
-        //   Observer(builder: (context) {
-        //     return Row(
-        //       children: [
-        //         if (!store.existsCurrentProject)
-        //           IconButton(
-        //             icon: Icon(
-        //               Icons.copy,
-        //               color: Colors.white,
-        //             ),
-        // onPressed:
-        //           ),
-        //         IconButton(
-        //           icon: Icon(Icons.delete),
-
-        //         ),
-        //       ],
-        //     );
-        //   }),
-        // ],
+        centerTitle: true,
+        title: Text('Projeto'),
       ),
       body: Column(
         children: [

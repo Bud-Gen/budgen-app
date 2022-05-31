@@ -177,12 +177,7 @@ abstract class _SimpleDetailsProjectStore with Store {
     if (!isEmailSent) {
       return false;
     }
-
     await _finishProject.call(currentProject!, projectEmail);
-    _workers = null;
-    _items = null;
-    currentProject = null;
-    await _sync();
 
     return true;
   }

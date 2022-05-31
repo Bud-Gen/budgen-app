@@ -32,7 +32,7 @@ class _FinishedProjectsPageState extends State<FinishedProjectsPage> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: colorPalette.primaryCollor,
-        title: Text("Lista de Projetos"),
+        title: Text("Projetos Finalizados"),
       ),
       body: Column(
         children: [
