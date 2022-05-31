@@ -15,7 +15,6 @@ import 'package:budgen/domain/usecases/project/remove_worker.dart';
 import 'package:budgen/domain/usecases/project/send_email.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-
 part 'simple_details_project_store.g.dart';
 
 class SimpleDetailsProjectStore = _SimpleDetailsProjectStore
@@ -31,11 +30,9 @@ abstract class _SimpleDetailsProjectStore with Store {
 
   SendEmail _sendEmail = SendEmail(GoogleAuth());
   FinishProject _finishProject = FinishProject();
-
   AlterQuantity _alterQuantity = AlterQuantity();
   RemoveItem _removeItem = RemoveItem();
   RemoveWorker _removeWorker = RemoveWorker();
-
   AddDiscount _addDiscount = AddDiscount();
 
   @observable
