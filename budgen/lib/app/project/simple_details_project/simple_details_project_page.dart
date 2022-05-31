@@ -1,4 +1,4 @@
-import 'package:budgen/app/home/widgets/header/product_bottons.dart';
+import 'package:budgen/app/home/widgets/header/product_buttons.dart';
 import 'package:budgen/app/project/simple_details_project/simple_details_project_store.dart';
 import 'package:budgen/app/project/simple_details_project/widgets/finish_project_button.dart';
 import 'package:budgen/app/project/simple_details_project/widgets/header/discount_button.dart';
@@ -129,7 +129,7 @@ class _SimpleDetailsProjectPageState extends State<SimpleDetailsProjectPage> {
                       ],
                     ),
                   ),
-                  ProductBottons(
+                  ProductButtons(
                     showItems: store.showItems,
                     onPressedShowItem: () => store.viewItems(true),
                     onPressedShowWorker: () => store.viewItems(false),

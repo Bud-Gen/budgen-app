@@ -4,7 +4,7 @@ import 'package:budgen/app/home/widgets/add_product_button.dart';
 import 'package:budgen/app/home/widgets/alerts/new_project_alert.dart';
 import 'package:budgen/app/home/widgets/empty_products_body.dart';
 import 'package:budgen/app/home/widgets/header/home_header.dart';
-import 'package:budgen/app/home/widgets/header/product_bottons.dart';
+import 'package:budgen/app/home/widgets/header/product_buttons.dart';
 import 'package:budgen/app/home/widgets/lists/item_list.dart';
 import 'package:budgen/app/home/widgets/lists/worker_list.dart';
 import 'package:budgen/app/import/import_spreadsheet_page.dart';
@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                       },
                     )
                   else ...[
-                    ProductBottons(
+                    ProductButtons(
                       showItems: store.showItems,
                       onPressedShowItem: () => store.viewItems(true),
                       onPressedShowWorker: () => store.viewItems(false),

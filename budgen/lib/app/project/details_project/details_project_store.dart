@@ -26,6 +26,9 @@ abstract class _DetailsProjectStore with Store {
   Project? currentProject;
 
   @observable
+  bool showItems = true;
+
+  @observable
   bool isLoading = false;
 
   @observable
@@ -50,6 +53,14 @@ abstract class _DetailsProjectStore with Store {
   Future<void> deleteProject() async {
     await _deleteProject.call(project!);
     await _sync();
+  }
+
+  @action
+  void viewItems(bool showItem) {
+    if (showItem)
+      showItems = true;
+    else
+      showItems = false;
   }
 
   Future<void> _sync() async {

@@ -1,12 +1,12 @@
 import 'package:budgen/utils/widgets/type_button.dart';
 import 'package:flutter/material.dart';
 
-class ProductBottons extends StatelessWidget {
+class ProductButtons extends StatelessWidget {
   final Function onPressedShowItem;
   final Function onPressedShowWorker;
   final bool showItems;
 
-  const ProductBottons({
+  const ProductButtons({
     Key? key,
     required this.onPressedShowItem,
     required this.onPressedShowWorker,

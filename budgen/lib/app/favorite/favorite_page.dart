@@ -1,5 +1,5 @@
 import 'package:budgen/app/favorite/favorite_store.dart';
-import 'package:budgen/app/home/widgets/header/product_bottons.dart';
+import 'package:budgen/app/home/widgets/header/product_buttons.dart';
 import 'package:budgen/app/home/widgets/lists/worker_list.dart';
 import 'package:budgen/utils/widgets/lists/item_list.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
@@ -48,7 +48,7 @@ class _FavoritePageState extends State<FavoritePage> {
               else
                 return Column(
                   children: [
-                    ProductBottons(
+                    ProductButtons(
                       onPressedShowItem: () => store.showItemsList(),
                       onPressedShowWorker: () => store.showWorkersList(),
                       showItems: store.showItems,

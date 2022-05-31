@@ -1,7 +1,10 @@
+import 'package:budgen/app/home/widgets/header/product_buttons.dart';
 import 'package:budgen/app/project/details_project/details_project_store.dart';
 import 'package:budgen/app/project/details_project/widgets/delete_project_alert.dart';
 import 'package:budgen/app/project/details_project/widgets/details_finished_project_header.dart';
 import 'package:budgen/app/project/details_project/widgets/details_finished_project_list.dart';
+import 'package:budgen/app/project/details_project/widgets/finished_product_item_list.dart';
+import 'package:budgen/app/project/details_project/widgets/finished_product_worker_list.dart';
 import 'package:budgen/domain/entities/project.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:flutter/material.dart';
@@ -23,53 +26,72 @@ class DetailsProjectPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         backgroundColor: colorPalette.primaryCollor,
-        title: Text(project.name),
-        actions: [
-          Observer(builder: (context) {
-            return Row(
-              children: [
-                if (!store.existsCurrentProject)
-                  IconButton(
-                    icon: Icon(
-                      Icons.copy,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {
-                      store.copyProject(project);
-                      showSnack(context: context, content: "Projeto Copiado!");
-                    },
-                  ),
-                IconButton(
-                  icon: Icon(Icons.delete),
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (_) {
-                        return DeleteProjectAlert(
-                          deleteProject: () => store.deleteProject(),
-                        );
-                      },
-                    );
-                  },
-                ),
-              ],
-            );
-          }),
-        ],
+        title: Text('Detalhes do projeto'),
+        // actions: [
+        //   Observer(builder: (context) {
+        //     return Row(
+        //       children: [
+        //         if (!store.existsCurrentProject)
+        //           IconButton(
+        //             icon: Icon(
+        //               Icons.copy,
+        //               color: Colors.white,
+        //             ),
+        // onPressed:
+        //           ),
+        //         IconButton(
+        //           icon: Icon(Icons.delete),
+
+        //         ),
+        //       ],
+        //     );
+        //   }),
+        // ],
       ),
       body: Column(
         children: [
           DetailsFinishedProjectHeader(
             project: project,
+            copyProject: () {
+              store.copyProject(project);
+              showSnack(context: context, content: "Projeto Copiado!");
+            },
+            deleteProject: () {
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return DeleteProjectAlert(
+                    deleteProject: () => store.deleteProject(),
+                  );
+                },
+              );
+            },
           ),
           Observer(
             builder: (_) {
               if (store.isLoading) return CircularProgressIndicator();
-              return DetailsFinishedProjectList(
-                project: project,
-                items: store.items!,
-                workers: store.workers!,
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    ProductButtons(
+                      showItems: store.showItems,
+                      onPressedShowItem: () => store.viewItems(true),
+                      onPressedShowWorker: () => store.viewItems(false),
+                    ),
+                    if (store.showItems)
+                      FinishedProductItemList(
+                        items: store.items,
+                        project: store.project,
+                      )
+                    else
+                      FinishedProductWorkerList(
+                        project: store.project,
+                        workers: store.workers,
+                      )
+                  ],
+                ),
               );
             },
           ),
@@ -82,7 +104,6 @@ class DetailsProjectPage extends StatelessWidget {
     required BuildContext context,
     required String content,
   }) {
-
     final snack = SnackBar(
       content: Text(content),
       duration: Duration(milliseconds: 500),
