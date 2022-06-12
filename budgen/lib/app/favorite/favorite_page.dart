@@ -1,85 +1,85 @@
 import 'package:budgen/app/favorite/favorite_store.dart';
-import 'package:budgen/utils/widgets/items_list.dart';
-import 'package:budgen/utils/widgets/workers_list.dart';
-import 'package:budgen/utils/widgets/type_button.dart';
-import 'package:budgen/domain/entities/item.dart';
-import 'package:budgen/domain/entities/worker.dart';
+import 'package:budgen/app/home/widgets/header/product_buttons.dart';
+import 'package:budgen/app/home/widgets/lists/worker_list.dart';
+import 'package:budgen/utils/widgets/lists/item_list.dart';
 import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-class FavoritePage extends StatelessWidget {
+class FavoritePage extends StatefulWidget {
   const FavoritePage() : super();
+
+  @override
+  State<FavoritePage> createState() => _FavoritePageState();
+}
+
+class _FavoritePageState extends State<FavoritePage> {
+  FavoriteStore store = FavoriteStore();
+
+  @override
+  void initState() {
+    store.onInit();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     ColorPalette colorPalette = ColorPalette();
-    FavoriteStore store = FavoriteStore();
-    store.onInit();
+    final screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: colorPalette.background,
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         backgroundColor: colorPalette.primaryCollor,
         title: Text("Favoritos"),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Observer(
-              builder: (_) {
-                return TypeButton(
-                  showItems: store.showItems,
-                  onPressedShowItem: () => store.showItemsList(),
-                  onPressedShowWorker: () => store.showWorkersList(),
+        child: Container(
+          width: screenSize.width,
+          height: screenSize.height,
+          child: Observer(
+            builder: (context) {
+              if (store.isLoading)
+                return Center(
+                  child: CircularProgressIndicator(
+                    color: colorPalette.primaryDarker,
+                  ),
                 );
-              },
-            ),
-            Observer(builder: (_) {
-              if (store.showItems) {
-                return ItemsList(
-                  items: store.items,
-                  onPressedFavorite: (Item item) =>
-                      store.changeFavoriteItem(item),
-                  onPressedAdd: (Item item) {
-                    store.addItemToProject(item);
-                    showSnack(
-                      context: context,
-                      content: "Item adicionado ao projeto",
-                    );
-                  },
-                  existsProject: store.existsProject,
+              else
+                return Column(
+                  children: [
+                    ProductButtons(
+                      onPressedShowItem: () => store.showItemsList(),
+                      onPressedShowWorker: () => store.showWorkersList(),
+                      showItems: store.showItems,
+                    ),
+                    if (store.showItems)
+                      ItemList(
+                        items: store.items,
+                        hasProject: store.currentProject != null,
+                        addToProject: store.addItemToProject,
+                        favorite: store.changeFavoriteItem,
+                        onChangedValue: (String value) {
+                          store.changeProductQuantity(value);
+                        },
+                      )
+                    else
+                      WorkerList(
+                        workers: store.workers,
+                        hasProject: store.currentProject != null,
+                        addToProject: store.addWorkerToProject,
+                        favorite: store.changeFavoriteWorker,
+                        onChangedValue: (String value) {
+                          store.changeProductQuantity(value);
+                          print(store.productQuantity.toString());
+                        },
+                      )
+                  ],
                 );
-              } else {
-                return WorkersList(
-                  workers: store.workers,
-                  onPressedFavorite: (Worker worker) =>
-                      store.changeFavoriteWorker(worker),
-                  onPressedAdd: (Worker worker) {
-                    store.addWorkerToProject(worker);
-                    showSnack(
-                      context: context,
-                      content: "Serviço adicionado ao projeto",
-                    );
-                  },
-                  existsProject: store.existsProject,
-                );
-              }
-            })
-          ],
+            },
+          ),
         ),
       ),
     );
-  }
-
-  void showSnack({
-    @required BuildContext? context,
-    @required String? content,
-  }) {
-    final snack = SnackBar(
-      content: Text(content ?? ""),
-      duration: Duration(milliseconds: 500),
-    );
-    Scaffold.of(context!).showSnackBar(snack);
   }
 }

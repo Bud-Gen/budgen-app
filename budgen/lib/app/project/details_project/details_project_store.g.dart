@@ -40,6 +40,21 @@ mixin _$DetailsProjectStore on _DetailsProjectStore, Store {
     });
   }
 
+  final _$showItemsAtom = Atom(name: '_DetailsProjectStore.showItems');
+
+  @override
+  bool get showItems {
+    _$showItemsAtom.reportRead();
+    return super.showItems;
+  }
+
+  @override
+  set showItems(bool value) {
+    _$showItemsAtom.reportWrite(value, super.showItems, () {
+      super.showItems = value;
+    });
+  }
+
   final _$isLoadingAtom = Atom(name: '_DetailsProjectStore.isLoading');
 
   @override
@@ -108,11 +123,26 @@ mixin _$DetailsProjectStore on _DetailsProjectStore, Store {
     return _$deleteProjectAsyncAction.run(() => super.deleteProject());
   }
 
+  final _$_DetailsProjectStoreActionController =
+      ActionController(name: '_DetailsProjectStore');
+
+  @override
+  void viewItems(bool showItem) {
+    final _$actionInfo = _$_DetailsProjectStoreActionController.startAction(
+        name: '_DetailsProjectStore.viewItems');
+    try {
+      return super.viewItems(showItem);
+    } finally {
+      _$_DetailsProjectStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 project: ${project},
 currentProject: ${currentProject},
+showItems: ${showItems},
 isLoading: ${isLoading},
 items: ${items},
 workers: ${workers}

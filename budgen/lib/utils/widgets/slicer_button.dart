@@ -1,4 +1,5 @@
 import 'package:budgen/domain/entities/product.dart';
+import 'package:budgen/utils/style/color_pallete.dart';
 import 'package:flutter/material.dart';
 
 class SlicerButton extends StatelessWidget {
@@ -19,18 +20,25 @@ class SlicerButton extends StatelessWidget {
     const add = 1;
     const decrease = -1;
     final value = int.tryParse(qtd);
+    final ColorPalette colorPalette = ColorPalette();
 
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         IconButton(
           // +
-          icon: Icon(Icons.add_circle),
+          icon: Icon(
+            Icons.add,
+            color: colorPalette.primaryCollor,
+          ),
           onPressed: () {
             alterValue(add, product);
           },
         ),
         Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(150),
+          ),
           child: Padding(
             padding: EdgeInsets.all(15),
             child: Text(qtd),
@@ -38,7 +46,7 @@ class SlicerButton extends StatelessWidget {
         ),
         IconButton(
           // -
-          icon: Icon(Icons.do_disturb_on_rounded),
+          icon: Icon(Icons.remove, color: colorPalette.primaryCollor),
           onPressed: () {
             if (value == 1)
               showDialog(

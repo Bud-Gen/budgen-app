@@ -19,32 +19,31 @@ class FinishedProductWorkerList extends StatelessWidget {
     return Column(
       children: [
         if (workers != null) ...[
-          Center(
-            child: Text(
-              "Serviços",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
-            ),
-          ),
           for (Worker worker in workers!) ...[
-            Card(
-              child: ListTile(
-                leading: Icon(Icons.person),
-                title: Text(worker.name!),
-                subtitle: Text(worker.price!.toStringAsFixed(2).toString()),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Card(
-                      child: Container(
-                        color: colorPalette.background,
-                        height: screenSize.height * 0.2,
-                        width: screenSize.width * 0.13,
-                        child: Center(
-                          child: Text(project!.workers![worker.id].toString()),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: screenSize.width * 0.05),
+              child: Card(
+                child: ListTile(
+                  leading: Icon(Icons.person,color: colorPalette.primaryCollor,),
+                  title: Text(worker.name!),
+                  subtitle: Text(worker.price!.toStringAsFixed(2).toString()),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(150),
                         ),
-                      ),
-                    )
-                  ],
+                        child: Container(
+                          height: screenSize.height * 0.2,
+                          width: screenSize.width * 0.13,
+                          child: Center(
+                            child: Text(project!.workers![worker.id].toString()),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             )

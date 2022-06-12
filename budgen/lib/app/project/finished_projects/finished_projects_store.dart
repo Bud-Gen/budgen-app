@@ -25,7 +25,6 @@ abstract class _FinishedProjectsStore with Store {
   @observable
   bool? isLoading;
 
-  ///functions
   @action
   Future<void> onInit() async {
     await _sync();

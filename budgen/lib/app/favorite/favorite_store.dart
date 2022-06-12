@@ -29,6 +29,9 @@ abstract class _FavoriteStore with Store {
   List<Item>? items;
 
   @observable
+  int productQuantity = 0;
+
+  @observable
   bool showItems = true;
 
   @observable
@@ -50,33 +53,50 @@ abstract class _FavoriteStore with Store {
   }
 
   @action
-  Future<void> addItemToProject(Item item) async {
-    await _addItem.call(item: item, project: currentProject!, qtd: 1);
-  }
-
-  @action
-  Future<void> addWorkerToProject(Worker worker) async {
-    await _addWorker.call(project: currentProject!, worker: worker, qtd: 1);
-  }
-
-  @action
   void showItemsList() {
     showItems = true;
   }
 
-  bool get existsProject => currentProject != null;
+  @action
+  Future<void> changeFavoriteWorker(Worker worker) async {
+    isLoading = true;
+
+    await _changeFavoriteWorker.call(worker);
+    workers = await _getFavoriteWorkers.call();
+
+    isLoading = false;
+  }
 
   @action
   Future<void> changeFavoriteItem(Item item) async {
+    isLoading = true;
+
     await _changeFavoriteItem.call(item);
-    await _sync();
+    items = await _getFavoriteItems.call();
+
+    isLoading = false;
   }
 
   @action
-  Future<void> changeFavoriteWorker(Worker worker) async {
-    await _changeFavoriteWorker.call(worker);
-    await _sync();
+  Future<void> addItemToProject(Item item) async {
+    await _addItem.call(
+        item: item, project: currentProject!, qtd: productQuantity);
+    currentProject = await _getCurrentProject.call();
   }
+
+  @action
+  Future<void> addWorkerToProject(Worker worker) async {
+    await _addWorker.call(
+        project: currentProject!, worker: worker, qtd: productQuantity);
+    currentProject = await _getCurrentProject.call();
+  }
+
+  void changeProductQuantity(String? value) {
+    int valueInt = value != null && value.isNotEmpty ? int.parse(value) : 0;
+    productQuantity = valueInt;
+  }
+
+  bool get existsProject => currentProject != null;
 
   @action
   Future<void> _sync() async {

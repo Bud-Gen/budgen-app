@@ -13,13 +13,17 @@ class DeleteProjectAlert extends StatelessWidget {
       title: Text("Deseja deletar projeto?"),
       actions: [
         TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              deleteProject();
-              Navigator.of(context).pop();
-            },
-            child: Text('Sim')),
-        TextButton(onPressed: () => print("Não"), child: Text('Não')),
+          child: Text('Sim'),
+          onPressed: () {
+            Navigator.of(context).pop();
+            deleteProject();
+            Navigator.of(context).pop();
+          },
+        ),
+        TextButton(
+          child: Text('Não'),
+          onPressed: () => Navigator.pop(context),
+        ),
       ],
     );
   }

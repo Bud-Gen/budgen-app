@@ -24,33 +24,48 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
-  final _$workersAtom = Atom(name: '_HomeStore.workers');
+  final _$_workersAtom = Atom(name: '_HomeStore._workers');
 
   @override
-  List<Worker>? get workers {
-    _$workersAtom.reportRead();
-    return super.workers;
+  List<Worker>? get _workers {
+    _$_workersAtom.reportRead();
+    return super._workers;
   }
 
   @override
-  set workers(List<Worker>? value) {
-    _$workersAtom.reportWrite(value, super.workers, () {
-      super.workers = value;
+  set _workers(List<Worker>? value) {
+    _$_workersAtom.reportWrite(value, super._workers, () {
+      super._workers = value;
     });
   }
 
-  final _$itemsAtom = Atom(name: '_HomeStore.items');
+  final _$_itemsAtom = Atom(name: '_HomeStore._items');
 
   @override
-  List<Item>? get items {
-    _$itemsAtom.reportRead();
-    return super.items;
+  List<Item>? get _items {
+    _$_itemsAtom.reportRead();
+    return super._items;
   }
 
   @override
-  set items(List<Item>? value) {
-    _$itemsAtom.reportWrite(value, super.items, () {
-      super.items = value;
+  set _items(List<Item>? value) {
+    _$_itemsAtom.reportWrite(value, super._items, () {
+      super._items = value;
+    });
+  }
+
+  final _$productQuantityAtom = Atom(name: '_HomeStore.productQuantity');
+
+  @override
+  int get productQuantity {
+    _$productQuantityAtom.reportRead();
+    return super.productQuantity;
+  }
+
+  @override
+  set productQuantity(int value) {
+    _$productQuantityAtom.reportWrite(value, super.productQuantity, () {
+      super.productQuantity = value;
     });
   }
 
@@ -69,21 +84,6 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
-  final _$projectEmailAtom = Atom(name: '_HomeStore.projectEmail');
-
-  @override
-  String get projectEmail {
-    _$projectEmailAtom.reportRead();
-    return super.projectEmail;
-  }
-
-  @override
-  set projectEmail(String value) {
-    _$projectEmailAtom.reportWrite(value, super.projectEmail, () {
-      super.projectEmail = value;
-    });
-  }
-
   final _$isLoadingAtom = Atom(name: '_HomeStore.isLoading');
 
   @override
@@ -96,6 +96,21 @@ mixin _$HomeStore on _HomeStore, Store {
   set isLoading(bool value) {
     _$isLoadingAtom.reportWrite(value, super.isLoading, () {
       super.isLoading = value;
+    });
+  }
+
+  final _$showItemsAtom = Atom(name: '_HomeStore.showItems');
+
+  @override
+  bool get showItems {
+    _$showItemsAtom.reportRead();
+    return super.showItems;
+  }
+
+  @override
+  set showItems(bool value) {
+    _$showItemsAtom.reportWrite(value, super.showItems, () {
+      super.showItems = value;
     });
   }
 
@@ -129,6 +144,21 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
+  final _$filterAtom = Atom(name: '_HomeStore.filter');
+
+  @override
+  String get filter {
+    _$filterAtom.reportRead();
+    return super.filter;
+  }
+
+  @override
+  set filter(String value) {
+    _$filterAtom.reportWrite(value, super.filter, () {
+      super.filter = value;
+    });
+  }
+
   final _$addMockAsyncAction = AsyncAction('_HomeStore.addMock');
 
   @override
@@ -143,98 +173,72 @@ mixin _$HomeStore on _HomeStore, Store {
     return _$onInitAsyncAction.run(() => super.onInit());
   }
 
-  final _$renameProjectAsyncAction = AsyncAction('_HomeStore.renameProject');
+  final _$changeFavoriteItemAsyncAction =
+      AsyncAction('_HomeStore.changeFavoriteItem');
 
   @override
-  Future<void> renameProject() {
-    return _$renameProjectAsyncAction.run(() => super.renameProject());
+  Future<void> changeFavoriteItem(Item item) {
+    return _$changeFavoriteItemAsyncAction
+        .run(() => super.changeFavoriteItem(item));
   }
 
-  final _$addNewProjectAsyncAction = AsyncAction('_HomeStore.addNewProject');
+  final _$addItemToProjectAsyncAction =
+      AsyncAction('_HomeStore.addItemToProject');
 
   @override
-  Future<void> addNewProject() {
-    return _$addNewProjectAsyncAction.run(() => super.addNewProject());
+  Future<void> addItemToProject(Item item) {
+    return _$addItemToProjectAsyncAction
+        .run(() => super.addItemToProject(item));
   }
 
-  final _$finishProjectAsyncAction = AsyncAction('_HomeStore.finishProject');
+  final _$addWorkerToProjectAsyncAction =
+      AsyncAction('_HomeStore.addWorkerToProject');
 
   @override
-  Future<bool> finishProject() {
-    return _$finishProjectAsyncAction.run(() => super.finishProject());
+  Future<void> addWorkerToProject(Worker worker) {
+    return _$addWorkerToProjectAsyncAction
+        .run(() => super.addWorkerToProject(worker));
   }
 
-  final _$addDiscountAsyncAction = AsyncAction('_HomeStore.addDiscount');
+  final _$changeFavoriteWorkerAsyncAction =
+      AsyncAction('_HomeStore.changeFavoriteWorker');
 
   @override
-  Future<void> addDiscount() {
-    return _$addDiscountAsyncAction.run(() => super.addDiscount());
-  }
-
-  final _$alterItemQuantityAsyncAction =
-      AsyncAction('_HomeStore.alterItemQuantity');
-
-  @override
-  Future<void> alterItemQuantity(int value, Item item) {
-    return _$alterItemQuantityAsyncAction
-        .run(() => super.alterItemQuantity(value, item));
-  }
-
-  final _$removeItemAsyncAction = AsyncAction('_HomeStore.removeItem');
-
-  @override
-  Future<void> removeItem(Item item) {
-    return _$removeItemAsyncAction.run(() => super.removeItem(item));
-  }
-
-  final _$removeWorkerAsyncAction = AsyncAction('_HomeStore.removeWorker');
-
-  @override
-  Future<void> removeWorker(Worker worker) {
-    return _$removeWorkerAsyncAction.run(() => super.removeWorker(worker));
+  Future<void> changeFavoriteWorker(Worker worker) {
+    return _$changeFavoriteWorkerAsyncAction
+        .run(() => super.changeFavoriteWorker(worker));
   }
 
   final _$_HomeStoreActionController = ActionController(name: '_HomeStore');
 
   @override
-  String getProjectName() {
+  void changeFilter(String value) {
     final _$actionInfo = _$_HomeStoreActionController.startAction(
-        name: '_HomeStore.getProjectName');
+        name: '_HomeStore.changeFilter');
     try {
-      return super.getProjectName();
+      return super.changeFilter(value);
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void editDiscount(String newDiscount) {
+  void changeProjectName(String value) {
     final _$actionInfo = _$_HomeStoreActionController.startAction(
-        name: '_HomeStore.editDiscount');
+        name: '_HomeStore.changeProjectName');
     try {
-      return super.editDiscount(newDiscount);
+      return super.changeProjectName(value);
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void editProjectName(String newName) {
-    final _$actionInfo = _$_HomeStoreActionController.startAction(
-        name: '_HomeStore.editProjectName');
+  void viewItems(bool showItem) {
+    final _$actionInfo =
+        _$_HomeStoreActionController.startAction(name: '_HomeStore.viewItems');
     try {
-      return super.editProjectName(newName);
-    } finally {
-      _$_HomeStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void editEmailProject(String email) {
-    final _$actionInfo = _$_HomeStoreActionController.startAction(
-        name: '_HomeStore.editEmailProject');
-    try {
-      return super.editEmailProject(email);
+      return super.viewItems(showItem);
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }
@@ -255,13 +259,13 @@ mixin _$HomeStore on _HomeStore, Store {
   String toString() {
     return '''
 currentProject: ${currentProject},
-workers: ${workers},
-items: ${items},
+productQuantity: ${productQuantity},
 projectName: ${projectName},
-projectEmail: ${projectEmail},
 isLoading: ${isLoading},
+showItems: ${showItems},
 discount: ${discount},
-errorMessage: ${errorMessage}
+errorMessage: ${errorMessage},
+filter: ${filter}
     ''';
   }
 }

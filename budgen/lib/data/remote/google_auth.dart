@@ -61,7 +61,9 @@ class GoogleAuth {
     UserCredentials user = new UserCredentials(
         id: googleSignInAccount?.id ?? "",
         name: googleSignInAccount?.displayName ?? "",
-        email: googleSignInAccount?.email ?? "");
+        email: googleSignInAccount?.email ?? "",
+        profileImage: googleSignInAccount?.photoUrl ?? ""
+      );
 
     return user;
   }

@@ -39,6 +39,21 @@ mixin _$FavoriteStore on _FavoriteStore, Store {
     });
   }
 
+  final _$productQuantityAtom = Atom(name: '_FavoriteStore.productQuantity');
+
+  @override
+  int get productQuantity {
+    _$productQuantityAtom.reportRead();
+    return super.productQuantity;
+  }
+
+  @override
+  set productQuantity(int value) {
+    _$productQuantityAtom.reportWrite(value, super.productQuantity, () {
+      super.productQuantity = value;
+    });
+  }
+
   final _$showItemsAtom = Atom(name: '_FavoriteStore.showItems');
 
   @override
@@ -84,6 +99,24 @@ mixin _$FavoriteStore on _FavoriteStore, Store {
     });
   }
 
+  final _$changeFavoriteWorkerAsyncAction =
+      AsyncAction('_FavoriteStore.changeFavoriteWorker');
+
+  @override
+  Future<void> changeFavoriteWorker(Worker worker) {
+    return _$changeFavoriteWorkerAsyncAction
+        .run(() => super.changeFavoriteWorker(worker));
+  }
+
+  final _$changeFavoriteItemAsyncAction =
+      AsyncAction('_FavoriteStore.changeFavoriteItem');
+
+  @override
+  Future<void> changeFavoriteItem(Item item) {
+    return _$changeFavoriteItemAsyncAction
+        .run(() => super.changeFavoriteItem(item));
+  }
+
   final _$addItemToProjectAsyncAction =
       AsyncAction('_FavoriteStore.addItemToProject');
 
@@ -100,24 +133,6 @@ mixin _$FavoriteStore on _FavoriteStore, Store {
   Future<void> addWorkerToProject(Worker worker) {
     return _$addWorkerToProjectAsyncAction
         .run(() => super.addWorkerToProject(worker));
-  }
-
-  final _$changeFavoriteItemAsyncAction =
-      AsyncAction('_FavoriteStore.changeFavoriteItem');
-
-  @override
-  Future<void> changeFavoriteItem(Item item) {
-    return _$changeFavoriteItemAsyncAction
-        .run(() => super.changeFavoriteItem(item));
-  }
-
-  final _$changeFavoriteWorkerAsyncAction =
-      AsyncAction('_FavoriteStore.changeFavoriteWorker');
-
-  @override
-  Future<void> changeFavoriteWorker(Worker worker) {
-    return _$changeFavoriteWorkerAsyncAction
-        .run(() => super.changeFavoriteWorker(worker));
   }
 
   final _$_syncAsyncAction = AsyncAction('_FavoriteStore._sync');
@@ -157,6 +172,7 @@ mixin _$FavoriteStore on _FavoriteStore, Store {
     return '''
 workers: ${workers},
 items: ${items},
+productQuantity: ${productQuantity},
 showItems: ${showItems},
 isLoading: ${isLoading},
 currentProject: ${currentProject}
