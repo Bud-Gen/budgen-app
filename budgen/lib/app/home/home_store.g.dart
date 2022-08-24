@@ -6,10 +6,11 @@ part of 'home_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$HomeStore on _HomeStore, Store {
-  final _$currentProjectAtom = Atom(name: '_HomeStore.currentProject');
+  late final _$currentProjectAtom =
+      Atom(name: '_HomeStore.currentProject', context: context);
 
   @override
   Project? get currentProject {
@@ -24,7 +25,8 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
-  final _$_workersAtom = Atom(name: '_HomeStore._workers');
+  late final _$_workersAtom =
+      Atom(name: '_HomeStore._workers', context: context);
 
   @override
   List<Worker>? get _workers {
@@ -39,7 +41,7 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
-  final _$_itemsAtom = Atom(name: '_HomeStore._items');
+  late final _$_itemsAtom = Atom(name: '_HomeStore._items', context: context);
 
   @override
   List<Item>? get _items {
@@ -54,7 +56,8 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
-  final _$productQuantityAtom = Atom(name: '_HomeStore.productQuantity');
+  late final _$productQuantityAtom =
+      Atom(name: '_HomeStore.productQuantity', context: context);
 
   @override
   int get productQuantity {
@@ -69,7 +72,8 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
-  final _$projectNameAtom = Atom(name: '_HomeStore.projectName');
+  late final _$projectNameAtom =
+      Atom(name: '_HomeStore.projectName', context: context);
 
   @override
   String? get projectName {
@@ -84,7 +88,8 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
-  final _$isLoadingAtom = Atom(name: '_HomeStore.isLoading');
+  late final _$isLoadingAtom =
+      Atom(name: '_HomeStore.isLoading', context: context);
 
   @override
   bool get isLoading {
@@ -99,7 +104,8 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
-  final _$showItemsAtom = Atom(name: '_HomeStore.showItems');
+  late final _$showItemsAtom =
+      Atom(name: '_HomeStore.showItems', context: context);
 
   @override
   bool get showItems {
@@ -114,7 +120,8 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
-  final _$discountAtom = Atom(name: '_HomeStore.discount');
+  late final _$discountAtom =
+      Atom(name: '_HomeStore.discount', context: context);
 
   @override
   double get discount {
@@ -129,7 +136,8 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
-  final _$errorMessageAtom = Atom(name: '_HomeStore.errorMessage');
+  late final _$errorMessageAtom =
+      Atom(name: '_HomeStore.errorMessage', context: context);
 
   @override
   String? get errorMessage {
@@ -144,7 +152,7 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
-  final _$filterAtom = Atom(name: '_HomeStore.filter');
+  late final _$filterAtom = Atom(name: '_HomeStore.filter', context: context);
 
   @override
   String get filter {
@@ -159,22 +167,24 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
-  final _$addMockAsyncAction = AsyncAction('_HomeStore.addMock');
+  late final _$addMockAsyncAction =
+      AsyncAction('_HomeStore.addMock', context: context);
 
   @override
   Future<void> addMock() {
     return _$addMockAsyncAction.run(() => super.addMock());
   }
 
-  final _$onInitAsyncAction = AsyncAction('_HomeStore.onInit');
+  late final _$onInitAsyncAction =
+      AsyncAction('_HomeStore.onInit', context: context);
 
   @override
   Future<void> onInit() {
     return _$onInitAsyncAction.run(() => super.onInit());
   }
 
-  final _$changeFavoriteItemAsyncAction =
-      AsyncAction('_HomeStore.changeFavoriteItem');
+  late final _$changeFavoriteItemAsyncAction =
+      AsyncAction('_HomeStore.changeFavoriteItem', context: context);
 
   @override
   Future<void> changeFavoriteItem(Item item) {
@@ -182,8 +192,8 @@ mixin _$HomeStore on _HomeStore, Store {
         .run(() => super.changeFavoriteItem(item));
   }
 
-  final _$addItemToProjectAsyncAction =
-      AsyncAction('_HomeStore.addItemToProject');
+  late final _$addItemToProjectAsyncAction =
+      AsyncAction('_HomeStore.addItemToProject', context: context);
 
   @override
   Future<void> addItemToProject(Item item) {
@@ -191,8 +201,8 @@ mixin _$HomeStore on _HomeStore, Store {
         .run(() => super.addItemToProject(item));
   }
 
-  final _$addWorkerToProjectAsyncAction =
-      AsyncAction('_HomeStore.addWorkerToProject');
+  late final _$addWorkerToProjectAsyncAction =
+      AsyncAction('_HomeStore.addWorkerToProject', context: context);
 
   @override
   Future<void> addWorkerToProject(Worker worker) {
@@ -200,8 +210,8 @@ mixin _$HomeStore on _HomeStore, Store {
         .run(() => super.addWorkerToProject(worker));
   }
 
-  final _$changeFavoriteWorkerAsyncAction =
-      AsyncAction('_HomeStore.changeFavoriteWorker');
+  late final _$changeFavoriteWorkerAsyncAction =
+      AsyncAction('_HomeStore.changeFavoriteWorker', context: context);
 
   @override
   Future<void> changeFavoriteWorker(Worker worker) {
@@ -209,7 +219,8 @@ mixin _$HomeStore on _HomeStore, Store {
         .run(() => super.changeFavoriteWorker(worker));
   }
 
-  final _$_HomeStoreActionController = ActionController(name: '_HomeStore');
+  late final _$_HomeStoreActionController =
+      ActionController(name: '_HomeStore', context: context);
 
   @override
   void changeFilter(String value) {

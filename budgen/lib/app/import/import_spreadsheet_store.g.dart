@@ -6,11 +6,11 @@ part of 'import_spreadsheet_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$ImportSpreadsheetStore on _ImportSpreadsheetStore, Store {
-  final _$loadSpreadsheetAtom =
-      Atom(name: '_ImportSpreadsheetStore.loadSpreadsheet');
+  late final _$loadSpreadsheetAtom =
+      Atom(name: '_ImportSpreadsheetStore.loadSpreadsheet', context: context);
 
   @override
   bool get loadSpreadsheet {
@@ -25,7 +25,8 @@ mixin _$ImportSpreadsheetStore on _ImportSpreadsheetStore, Store {
     });
   }
 
-  final _$isLoadingAtom = Atom(name: '_ImportSpreadsheetStore.isLoading');
+  late final _$isLoadingAtom =
+      Atom(name: '_ImportSpreadsheetStore.isLoading', context: context);
 
   @override
   bool get isLoading {
@@ -40,7 +41,8 @@ mixin _$ImportSpreadsheetStore on _ImportSpreadsheetStore, Store {
     });
   }
 
-  final _$spreadsheetsAtom = Atom(name: '_ImportSpreadsheetStore.spreadsheets');
+  late final _$spreadsheetsAtom =
+      Atom(name: '_ImportSpreadsheetStore.spreadsheets', context: context);
 
   @override
   ObservableList<DriveFile> get spreadsheets {
@@ -55,15 +57,17 @@ mixin _$ImportSpreadsheetStore on _ImportSpreadsheetStore, Store {
     });
   }
 
-  final _$getFilesAsyncAction = AsyncAction('_ImportSpreadsheetStore.getFiles');
+  late final _$getFilesAsyncAction =
+      AsyncAction('_ImportSpreadsheetStore.getFiles', context: context);
 
   @override
   Future<void> getFiles() {
     return _$getFilesAsyncAction.run(() => super.getFiles());
   }
 
-  final _$importSpreadsheetAsyncAction =
-      AsyncAction('_ImportSpreadsheetStore.importSpreadsheet');
+  late final _$importSpreadsheetAsyncAction = AsyncAction(
+      '_ImportSpreadsheetStore.importSpreadsheet',
+      context: context);
 
   @override
   Future<void> importSpreadsheet(BuildContext context, String id) {
@@ -71,8 +75,8 @@ mixin _$ImportSpreadsheetStore on _ImportSpreadsheetStore, Store {
         .run(() => super.importSpreadsheet(context, id));
   }
 
-  final _$_ImportSpreadsheetStoreActionController =
-      ActionController(name: '_ImportSpreadsheetStore');
+  late final _$_ImportSpreadsheetStoreActionController =
+      ActionController(name: '_ImportSpreadsheetStore', context: context);
 
   @override
   void setLoadSpreadsheet(bool value) {

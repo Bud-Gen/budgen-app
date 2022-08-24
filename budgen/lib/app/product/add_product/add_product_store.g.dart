@@ -6,10 +6,11 @@ part of 'add_product_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$AddProductStore on _AddProductStore, Store {
-  final _$isItemAtom = Atom(name: '_AddProductStore.isItem');
+  late final _$isItemAtom =
+      Atom(name: '_AddProductStore.isItem', context: context);
 
   @override
   bool get isItem {
@@ -24,7 +25,8 @@ mixin _$AddProductStore on _AddProductStore, Store {
     });
   }
 
-  final _$isLoadingAtom = Atom(name: '_AddProductStore.isLoading');
+  late final _$isLoadingAtom =
+      Atom(name: '_AddProductStore.isLoading', context: context);
 
   @override
   bool get isLoading {
@@ -39,7 +41,7 @@ mixin _$AddProductStore on _AddProductStore, Store {
     });
   }
 
-  final _$nameAtom = Atom(name: '_AddProductStore.name');
+  late final _$nameAtom = Atom(name: '_AddProductStore.name', context: context);
 
   @override
   String get name {
@@ -54,7 +56,7 @@ mixin _$AddProductStore on _AddProductStore, Store {
     });
   }
 
-  final _$codeAtom = Atom(name: '_AddProductStore.code');
+  late final _$codeAtom = Atom(name: '_AddProductStore.code', context: context);
 
   @override
   String get code {
@@ -69,7 +71,8 @@ mixin _$AddProductStore on _AddProductStore, Store {
     });
   }
 
-  final _$priceAtom = Atom(name: '_AddProductStore.price');
+  late final _$priceAtom =
+      Atom(name: '_AddProductStore.price', context: context);
 
   @override
   String get price {
@@ -84,7 +87,7 @@ mixin _$AddProductStore on _AddProductStore, Store {
     });
   }
 
-  final _$typeAtom = Atom(name: '_AddProductStore.type');
+  late final _$typeAtom = Atom(name: '_AddProductStore.type', context: context);
 
   @override
   String get type {
@@ -99,7 +102,8 @@ mixin _$AddProductStore on _AddProductStore, Store {
     });
   }
 
-  final _$descriptionAtom = Atom(name: '_AddProductStore.description');
+  late final _$descriptionAtom =
+      Atom(name: '_AddProductStore.description', context: context);
 
   @override
   String get description {
@@ -114,7 +118,7 @@ mixin _$AddProductStore on _AddProductStore, Store {
     });
   }
 
-  final _$urlAtom = Atom(name: '_AddProductStore.url');
+  late final _$urlAtom = Atom(name: '_AddProductStore.url', context: context);
 
   @override
   String get url {
@@ -129,8 +133,8 @@ mixin _$AddProductStore on _AddProductStore, Store {
     });
   }
 
-  final _$_AddProductStoreActionController =
-      ActionController(name: '_AddProductStore');
+  late final _$_AddProductStoreActionController =
+      ActionController(name: '_AddProductStore', context: context);
 
   @override
   void setItem() {

@@ -6,10 +6,11 @@ part of 'details_project_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$DetailsProjectStore on _DetailsProjectStore, Store {
-  final _$projectAtom = Atom(name: '_DetailsProjectStore.project');
+  late final _$projectAtom =
+      Atom(name: '_DetailsProjectStore.project', context: context);
 
   @override
   Project? get project {
@@ -24,8 +25,8 @@ mixin _$DetailsProjectStore on _DetailsProjectStore, Store {
     });
   }
 
-  final _$currentProjectAtom =
-      Atom(name: '_DetailsProjectStore.currentProject');
+  late final _$currentProjectAtom =
+      Atom(name: '_DetailsProjectStore.currentProject', context: context);
 
   @override
   Project? get currentProject {
@@ -40,7 +41,8 @@ mixin _$DetailsProjectStore on _DetailsProjectStore, Store {
     });
   }
 
-  final _$showItemsAtom = Atom(name: '_DetailsProjectStore.showItems');
+  late final _$showItemsAtom =
+      Atom(name: '_DetailsProjectStore.showItems', context: context);
 
   @override
   bool get showItems {
@@ -55,7 +57,8 @@ mixin _$DetailsProjectStore on _DetailsProjectStore, Store {
     });
   }
 
-  final _$isLoadingAtom = Atom(name: '_DetailsProjectStore.isLoading');
+  late final _$isLoadingAtom =
+      Atom(name: '_DetailsProjectStore.isLoading', context: context);
 
   @override
   bool get isLoading {
@@ -70,7 +73,8 @@ mixin _$DetailsProjectStore on _DetailsProjectStore, Store {
     });
   }
 
-  final _$itemsAtom = Atom(name: '_DetailsProjectStore.items');
+  late final _$itemsAtom =
+      Atom(name: '_DetailsProjectStore.items', context: context);
 
   @override
   List<Item>? get items {
@@ -85,7 +89,8 @@ mixin _$DetailsProjectStore on _DetailsProjectStore, Store {
     });
   }
 
-  final _$workersAtom = Atom(name: '_DetailsProjectStore.workers');
+  late final _$workersAtom =
+      Atom(name: '_DetailsProjectStore.workers', context: context);
 
   @override
   List<Worker>? get workers {
@@ -100,31 +105,32 @@ mixin _$DetailsProjectStore on _DetailsProjectStore, Store {
     });
   }
 
-  final _$onInitAsyncAction = AsyncAction('_DetailsProjectStore.onInit');
+  late final _$onInitAsyncAction =
+      AsyncAction('_DetailsProjectStore.onInit', context: context);
 
   @override
   Future<void> onInit(Project newProject) {
     return _$onInitAsyncAction.run(() => super.onInit(newProject));
   }
 
-  final _$copyProjectAsyncAction =
-      AsyncAction('_DetailsProjectStore.copyProject');
+  late final _$copyProjectAsyncAction =
+      AsyncAction('_DetailsProjectStore.copyProject', context: context);
 
   @override
   Future<void> copyProject(Project project) {
     return _$copyProjectAsyncAction.run(() => super.copyProject(project));
   }
 
-  final _$deleteProjectAsyncAction =
-      AsyncAction('_DetailsProjectStore.deleteProject');
+  late final _$deleteProjectAsyncAction =
+      AsyncAction('_DetailsProjectStore.deleteProject', context: context);
 
   @override
   Future<void> deleteProject() {
     return _$deleteProjectAsyncAction.run(() => super.deleteProject());
   }
 
-  final _$_DetailsProjectStoreActionController =
-      ActionController(name: '_DetailsProjectStore');
+  late final _$_DetailsProjectStoreActionController =
+      ActionController(name: '_DetailsProjectStore', context: context);
 
   @override
   void viewItems(bool showItem) {

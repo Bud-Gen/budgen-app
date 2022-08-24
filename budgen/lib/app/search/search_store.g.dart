@@ -6,7 +6,7 @@ part of 'search_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$SearchStore on _SearchStore, Store {
   Computed<List<Item>?>? _$filteredItemsListComputed;
@@ -24,7 +24,8 @@ mixin _$SearchStore on _SearchStore, Store {
               name: '_SearchStore.filteredWorkersList'))
       .value;
 
-  final _$workersAtom = Atom(name: '_SearchStore.workers');
+  late final _$workersAtom =
+      Atom(name: '_SearchStore.workers', context: context);
 
   @override
   List<Worker>? get workers {
@@ -39,7 +40,7 @@ mixin _$SearchStore on _SearchStore, Store {
     });
   }
 
-  final _$itemsAtom = Atom(name: '_SearchStore.items');
+  late final _$itemsAtom = Atom(name: '_SearchStore.items', context: context);
 
   @override
   List<Item>? get items {
@@ -54,7 +55,8 @@ mixin _$SearchStore on _SearchStore, Store {
     });
   }
 
-  final _$currentProjectAtom = Atom(name: '_SearchStore.currentProject');
+  late final _$currentProjectAtom =
+      Atom(name: '_SearchStore.currentProject', context: context);
 
   @override
   Project? get currentProject {
@@ -69,7 +71,8 @@ mixin _$SearchStore on _SearchStore, Store {
     });
   }
 
-  final _$isLoadingAtom = Atom(name: '_SearchStore.isLoading');
+  late final _$isLoadingAtom =
+      Atom(name: '_SearchStore.isLoading', context: context);
 
   @override
   bool get isLoading {
@@ -84,7 +87,8 @@ mixin _$SearchStore on _SearchStore, Store {
     });
   }
 
-  final _$showItemsAtom = Atom(name: '_SearchStore.showItems');
+  late final _$showItemsAtom =
+      Atom(name: '_SearchStore.showItems', context: context);
 
   @override
   bool get showItems {
@@ -99,7 +103,8 @@ mixin _$SearchStore on _SearchStore, Store {
     });
   }
 
-  final _$searchTextAtom = Atom(name: '_SearchStore.searchText');
+  late final _$searchTextAtom =
+      Atom(name: '_SearchStore.searchText', context: context);
 
   @override
   String get searchText {
@@ -114,15 +119,16 @@ mixin _$SearchStore on _SearchStore, Store {
     });
   }
 
-  final _$onInitAsyncAction = AsyncAction('_SearchStore.onInit');
+  late final _$onInitAsyncAction =
+      AsyncAction('_SearchStore.onInit', context: context);
 
   @override
   Future<void> onInit() {
     return _$onInitAsyncAction.run(() => super.onInit());
   }
 
-  final _$addItemToProjectAsyncAction =
-      AsyncAction('_SearchStore.addItemToProject');
+  late final _$addItemToProjectAsyncAction =
+      AsyncAction('_SearchStore.addItemToProject', context: context);
 
   @override
   Future<void> addItemToProject(Item item) {
@@ -130,8 +136,8 @@ mixin _$SearchStore on _SearchStore, Store {
         .run(() => super.addItemToProject(item));
   }
 
-  final _$addWorkerToProjectAsyncAction =
-      AsyncAction('_SearchStore.addWorkerToProject');
+  late final _$addWorkerToProjectAsyncAction =
+      AsyncAction('_SearchStore.addWorkerToProject', context: context);
 
   @override
   Future<void> addWorkerToProject(Worker worker) {
@@ -139,8 +145,8 @@ mixin _$SearchStore on _SearchStore, Store {
         .run(() => super.addWorkerToProject(worker));
   }
 
-  final _$changeFavoriteItemAsyncAction =
-      AsyncAction('_SearchStore.changeFavoriteItem');
+  late final _$changeFavoriteItemAsyncAction =
+      AsyncAction('_SearchStore.changeFavoriteItem', context: context);
 
   @override
   Future<void> changeFavoriteItem(Item item) {
@@ -148,8 +154,8 @@ mixin _$SearchStore on _SearchStore, Store {
         .run(() => super.changeFavoriteItem(item));
   }
 
-  final _$changeFavoriteWorkerAsyncAction =
-      AsyncAction('_SearchStore.changeFavoriteWorker');
+  late final _$changeFavoriteWorkerAsyncAction =
+      AsyncAction('_SearchStore.changeFavoriteWorker', context: context);
 
   @override
   Future<void> changeFavoriteWorker(Worker worker) {
@@ -157,14 +163,16 @@ mixin _$SearchStore on _SearchStore, Store {
         .run(() => super.changeFavoriteWorker(worker));
   }
 
-  final _$_syncAsyncAction = AsyncAction('_SearchStore._sync');
+  late final _$_syncAsyncAction =
+      AsyncAction('_SearchStore._sync', context: context);
 
   @override
   Future<void> _sync() {
     return _$_syncAsyncAction.run(() => super._sync());
   }
 
-  final _$_SearchStoreActionController = ActionController(name: '_SearchStore');
+  late final _$_SearchStoreActionController =
+      ActionController(name: '_SearchStore', context: context);
 
   @override
   void showItemsList() {

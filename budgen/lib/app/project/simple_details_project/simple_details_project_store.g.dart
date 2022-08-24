@@ -6,11 +6,11 @@ part of 'simple_details_project_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$SimpleDetailsProjectStore on _SimpleDetailsProjectStore, Store {
-  final _$currentProjectAtom =
-      Atom(name: '_SimpleDetailsProjectStore.currentProject');
+  late final _$currentProjectAtom =
+      Atom(name: '_SimpleDetailsProjectStore.currentProject', context: context);
 
   @override
   Project? get currentProject {
@@ -25,7 +25,8 @@ mixin _$SimpleDetailsProjectStore on _SimpleDetailsProjectStore, Store {
     });
   }
 
-  final _$_workersAtom = Atom(name: '_SimpleDetailsProjectStore._workers');
+  late final _$_workersAtom =
+      Atom(name: '_SimpleDetailsProjectStore._workers', context: context);
 
   @override
   List<Worker>? get _workers {
@@ -40,7 +41,8 @@ mixin _$SimpleDetailsProjectStore on _SimpleDetailsProjectStore, Store {
     });
   }
 
-  final _$_itemsAtom = Atom(name: '_SimpleDetailsProjectStore._items');
+  late final _$_itemsAtom =
+      Atom(name: '_SimpleDetailsProjectStore._items', context: context);
 
   @override
   List<Item>? get _items {
@@ -55,8 +57,8 @@ mixin _$SimpleDetailsProjectStore on _SimpleDetailsProjectStore, Store {
     });
   }
 
-  final _$productQuantityAtom =
-      Atom(name: '_SimpleDetailsProjectStore.productQuantity');
+  late final _$productQuantityAtom = Atom(
+      name: '_SimpleDetailsProjectStore.productQuantity', context: context);
 
   @override
   int get productQuantity {
@@ -71,8 +73,8 @@ mixin _$SimpleDetailsProjectStore on _SimpleDetailsProjectStore, Store {
     });
   }
 
-  final _$projectNameAtom =
-      Atom(name: '_SimpleDetailsProjectStore.projectName');
+  late final _$projectNameAtom =
+      Atom(name: '_SimpleDetailsProjectStore.projectName', context: context);
 
   @override
   String? get projectName {
@@ -87,8 +89,8 @@ mixin _$SimpleDetailsProjectStore on _SimpleDetailsProjectStore, Store {
     });
   }
 
-  final _$projectEmailAtom =
-      Atom(name: '_SimpleDetailsProjectStore.projectEmail');
+  late final _$projectEmailAtom =
+      Atom(name: '_SimpleDetailsProjectStore.projectEmail', context: context);
 
   @override
   String get projectEmail {
@@ -103,7 +105,8 @@ mixin _$SimpleDetailsProjectStore on _SimpleDetailsProjectStore, Store {
     });
   }
 
-  final _$isLoadingAtom = Atom(name: '_SimpleDetailsProjectStore.isLoading');
+  late final _$isLoadingAtom =
+      Atom(name: '_SimpleDetailsProjectStore.isLoading', context: context);
 
   @override
   bool get isLoading {
@@ -118,7 +121,8 @@ mixin _$SimpleDetailsProjectStore on _SimpleDetailsProjectStore, Store {
     });
   }
 
-  final _$showItemsAtom = Atom(name: '_SimpleDetailsProjectStore.showItems');
+  late final _$showItemsAtom =
+      Atom(name: '_SimpleDetailsProjectStore.showItems', context: context);
 
   @override
   bool get showItems {
@@ -133,7 +137,8 @@ mixin _$SimpleDetailsProjectStore on _SimpleDetailsProjectStore, Store {
     });
   }
 
-  final _$discountAtom = Atom(name: '_SimpleDetailsProjectStore.discount');
+  late final _$discountAtom =
+      Atom(name: '_SimpleDetailsProjectStore.discount', context: context);
 
   @override
   double get discount {
@@ -148,8 +153,8 @@ mixin _$SimpleDetailsProjectStore on _SimpleDetailsProjectStore, Store {
     });
   }
 
-  final _$errorMessageAtom =
-      Atom(name: '_SimpleDetailsProjectStore.errorMessage');
+  late final _$errorMessageAtom =
+      Atom(name: '_SimpleDetailsProjectStore.errorMessage', context: context);
 
   @override
   String? get errorMessage {
@@ -164,7 +169,8 @@ mixin _$SimpleDetailsProjectStore on _SimpleDetailsProjectStore, Store {
     });
   }
 
-  final _$filterAtom = Atom(name: '_SimpleDetailsProjectStore.filter');
+  late final _$filterAtom =
+      Atom(name: '_SimpleDetailsProjectStore.filter', context: context);
 
   @override
   String get filter {
@@ -179,15 +185,17 @@ mixin _$SimpleDetailsProjectStore on _SimpleDetailsProjectStore, Store {
     });
   }
 
-  final _$onInitAsyncAction = AsyncAction('_SimpleDetailsProjectStore.onInit');
+  late final _$onInitAsyncAction =
+      AsyncAction('_SimpleDetailsProjectStore.onInit', context: context);
 
   @override
   Future<void> onInit() {
     return _$onInitAsyncAction.run(() => super.onInit());
   }
 
-  final _$alterItemQuantityAsyncAction =
-      AsyncAction('_SimpleDetailsProjectStore.alterItemQuantity');
+  late final _$alterItemQuantityAsyncAction = AsyncAction(
+      '_SimpleDetailsProjectStore.alterItemQuantity',
+      context: context);
 
   @override
   Future<void> alterItemQuantity(int value, Item item) {
@@ -195,40 +203,40 @@ mixin _$SimpleDetailsProjectStore on _SimpleDetailsProjectStore, Store {
         .run(() => super.alterItemQuantity(value, item));
   }
 
-  final _$removeItemAsyncAction =
-      AsyncAction('_SimpleDetailsProjectStore.removeItem');
+  late final _$removeItemAsyncAction =
+      AsyncAction('_SimpleDetailsProjectStore.removeItem', context: context);
 
   @override
   Future<void> removeItem(Item item) {
     return _$removeItemAsyncAction.run(() => super.removeItem(item));
   }
 
-  final _$removeWorkerAsyncAction =
-      AsyncAction('_SimpleDetailsProjectStore.removeWorker');
+  late final _$removeWorkerAsyncAction =
+      AsyncAction('_SimpleDetailsProjectStore.removeWorker', context: context);
 
   @override
   Future<void> removeWorker(Worker worker) {
     return _$removeWorkerAsyncAction.run(() => super.removeWorker(worker));
   }
 
-  final _$addDiscountAsyncAction =
-      AsyncAction('_SimpleDetailsProjectStore.addDiscount');
+  late final _$addDiscountAsyncAction =
+      AsyncAction('_SimpleDetailsProjectStore.addDiscount', context: context);
 
   @override
   Future<void> addDiscount() {
     return _$addDiscountAsyncAction.run(() => super.addDiscount());
   }
 
-  final _$finishProjectAsyncAction =
-      AsyncAction('_SimpleDetailsProjectStore.finishProject');
+  late final _$finishProjectAsyncAction =
+      AsyncAction('_SimpleDetailsProjectStore.finishProject', context: context);
 
   @override
   Future<bool> finishProject() {
     return _$finishProjectAsyncAction.run(() => super.finishProject());
   }
 
-  final _$_SimpleDetailsProjectStoreActionController =
-      ActionController(name: '_SimpleDetailsProjectStore');
+  late final _$_SimpleDetailsProjectStoreActionController =
+      ActionController(name: '_SimpleDetailsProjectStore', context: context);
 
   @override
   void changeFilter(String value) {

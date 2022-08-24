@@ -6,10 +6,11 @@ part of 'favorite_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$FavoriteStore on _FavoriteStore, Store {
-  final _$workersAtom = Atom(name: '_FavoriteStore.workers');
+  late final _$workersAtom =
+      Atom(name: '_FavoriteStore.workers', context: context);
 
   @override
   List<Worker>? get workers {
@@ -24,7 +25,7 @@ mixin _$FavoriteStore on _FavoriteStore, Store {
     });
   }
 
-  final _$itemsAtom = Atom(name: '_FavoriteStore.items');
+  late final _$itemsAtom = Atom(name: '_FavoriteStore.items', context: context);
 
   @override
   List<Item>? get items {
@@ -39,7 +40,8 @@ mixin _$FavoriteStore on _FavoriteStore, Store {
     });
   }
 
-  final _$productQuantityAtom = Atom(name: '_FavoriteStore.productQuantity');
+  late final _$productQuantityAtom =
+      Atom(name: '_FavoriteStore.productQuantity', context: context);
 
   @override
   int get productQuantity {
@@ -54,7 +56,8 @@ mixin _$FavoriteStore on _FavoriteStore, Store {
     });
   }
 
-  final _$showItemsAtom = Atom(name: '_FavoriteStore.showItems');
+  late final _$showItemsAtom =
+      Atom(name: '_FavoriteStore.showItems', context: context);
 
   @override
   bool get showItems {
@@ -69,7 +72,8 @@ mixin _$FavoriteStore on _FavoriteStore, Store {
     });
   }
 
-  final _$isLoadingAtom = Atom(name: '_FavoriteStore.isLoading');
+  late final _$isLoadingAtom =
+      Atom(name: '_FavoriteStore.isLoading', context: context);
 
   @override
   bool get isLoading {
@@ -84,7 +88,8 @@ mixin _$FavoriteStore on _FavoriteStore, Store {
     });
   }
 
-  final _$currentProjectAtom = Atom(name: '_FavoriteStore.currentProject');
+  late final _$currentProjectAtom =
+      Atom(name: '_FavoriteStore.currentProject', context: context);
 
   @override
   Project? get currentProject {
@@ -99,8 +104,8 @@ mixin _$FavoriteStore on _FavoriteStore, Store {
     });
   }
 
-  final _$changeFavoriteWorkerAsyncAction =
-      AsyncAction('_FavoriteStore.changeFavoriteWorker');
+  late final _$changeFavoriteWorkerAsyncAction =
+      AsyncAction('_FavoriteStore.changeFavoriteWorker', context: context);
 
   @override
   Future<void> changeFavoriteWorker(Worker worker) {
@@ -108,8 +113,8 @@ mixin _$FavoriteStore on _FavoriteStore, Store {
         .run(() => super.changeFavoriteWorker(worker));
   }
 
-  final _$changeFavoriteItemAsyncAction =
-      AsyncAction('_FavoriteStore.changeFavoriteItem');
+  late final _$changeFavoriteItemAsyncAction =
+      AsyncAction('_FavoriteStore.changeFavoriteItem', context: context);
 
   @override
   Future<void> changeFavoriteItem(Item item) {
@@ -117,8 +122,8 @@ mixin _$FavoriteStore on _FavoriteStore, Store {
         .run(() => super.changeFavoriteItem(item));
   }
 
-  final _$addItemToProjectAsyncAction =
-      AsyncAction('_FavoriteStore.addItemToProject');
+  late final _$addItemToProjectAsyncAction =
+      AsyncAction('_FavoriteStore.addItemToProject', context: context);
 
   @override
   Future<void> addItemToProject(Item item) {
@@ -126,8 +131,8 @@ mixin _$FavoriteStore on _FavoriteStore, Store {
         .run(() => super.addItemToProject(item));
   }
 
-  final _$addWorkerToProjectAsyncAction =
-      AsyncAction('_FavoriteStore.addWorkerToProject');
+  late final _$addWorkerToProjectAsyncAction =
+      AsyncAction('_FavoriteStore.addWorkerToProject', context: context);
 
   @override
   Future<void> addWorkerToProject(Worker worker) {
@@ -135,15 +140,16 @@ mixin _$FavoriteStore on _FavoriteStore, Store {
         .run(() => super.addWorkerToProject(worker));
   }
 
-  final _$_syncAsyncAction = AsyncAction('_FavoriteStore._sync');
+  late final _$_syncAsyncAction =
+      AsyncAction('_FavoriteStore._sync', context: context);
 
   @override
   Future<void> _sync() {
     return _$_syncAsyncAction.run(() => super._sync());
   }
 
-  final _$_FavoriteStoreActionController =
-      ActionController(name: '_FavoriteStore');
+  late final _$_FavoriteStoreActionController =
+      ActionController(name: '_FavoriteStore', context: context);
 
   @override
   void showWorkersList() {

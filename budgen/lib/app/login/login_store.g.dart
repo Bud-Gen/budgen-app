@@ -6,10 +6,10 @@ part of 'login_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$LoginStore on _LoginStore, Store {
-  final _$loginAtom = Atom(name: '_LoginStore.login');
+  late final _$loginAtom = Atom(name: '_LoginStore.login', context: context);
 
   @override
   GetSignInGoogleAuth get login {
@@ -24,7 +24,8 @@ mixin _$LoginStore on _LoginStore, Store {
     });
   }
 
-  final _$googleUserAtom = Atom(name: '_LoginStore.googleUser');
+  late final _$googleUserAtom =
+      Atom(name: '_LoginStore.googleUser', context: context);
 
   @override
   GetGoogleUser get googleUser {
@@ -39,7 +40,8 @@ mixin _$LoginStore on _LoginStore, Store {
     });
   }
 
-  final _$loggedInAtom = Atom(name: '_LoginStore.loggedIn');
+  late final _$loggedInAtom =
+      Atom(name: '_LoginStore.loggedIn', context: context);
 
   @override
   bool get loggedIn {
@@ -54,8 +56,8 @@ mixin _$LoginStore on _LoginStore, Store {
     });
   }
 
-  final _$signInWithGoogleAsyncAction =
-      AsyncAction('_LoginStore.signInWithGoogle');
+  late final _$signInWithGoogleAsyncAction =
+      AsyncAction('_LoginStore.signInWithGoogle', context: context);
 
   @override
   Future<void> signInWithGoogle() {
